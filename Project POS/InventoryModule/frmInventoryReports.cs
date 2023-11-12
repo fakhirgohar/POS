@@ -79,8 +79,8 @@ namespace Project_POS.InventoryModule
             Dictionary<string, string> dictReportParams = GetReportParams();
             dictReportParams.Add("pmrReportName", rptNamePath.Item1);
 
-            //frmReportViewer FrmReport = new frmReportViewer(rptNamePath.Item2, dataSets, dictReportParams);
-            frmReportVeiwer FrmReport = new frmReportVeiwer(dtReports);
+            frmReportVeiwer FrmReport = new frmReportVeiwer(rptNamePath.Item2, dataSets, dictReportParams);
+            //frmReportVeiwer FrmReport = new frmReportVeiwer(dtReports);
             FrmReport.Text = "Stock Reports";
             FrmReport.Show();
         }
@@ -177,8 +177,8 @@ namespace Project_POS.InventoryModule
                     switch (cboRepCase.SelectedItem.ToString().Replace(" ", ""))
                     {
                         case nameof(RepCase.StockReportItemWise):
-                            reportPath = Global.InventoryReportPath + @"rptReportPath";
-                            reportName = "rptReportName";
+                            reportPath = Global.InventoryReportPath + @"StockReportItemWise.rdlc";
+                            reportName = "Stock-Report-Item-Wise";
                             break;
                         case nameof(RepCase.StockReportSerialWise):
                             reportPath = Global.InventoryReportPath + @"rptReportPath";
@@ -206,8 +206,7 @@ namespace Project_POS.InventoryModule
         private Dictionary<string, string> GetReportParams()
         {
             Dictionary<string, string> dictParm = new Dictionary<string, string>();
-            dictParm.Add("pmrHeader1", "");
-            dictParm.Add("pmrHeader2", "");
+            //dictParm.Add("pmrReportName", "Stock Report Item Wise");
             return dictParm;
         }
     }

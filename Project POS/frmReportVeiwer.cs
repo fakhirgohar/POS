@@ -21,7 +21,8 @@ namespace Project_POS
         {
             //MessageBox.Show("Method is Under Developement");
             InitializeComponent();
-            CtrlRptVeiwer.LocalReport.ReportPath = ReportPath; 
+            //CtrlRptVeiwer.LocalReport.ReportPath = ReportPath;
+            CtrlRptVeiwer.LocalReport.ReportEmbeddedResource = ReportPath;
             foreach (var dataset in dataSets)
             {
                 CtrlRptVeiwer.LocalReport.DataSources.Add(new ReportDataSource(dataset.Key, dataset.Value));
