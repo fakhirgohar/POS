@@ -49,17 +49,10 @@ namespace Project_POS.Login
 
         public static bool VerifyPassword(string password, string hash, string salt)
         {
-            // Get the salt value from the database.
             byte[] saltBytes = Convert.FromBase64String(salt);
-
-            // Generate a hash of the password using the same salt value.
             Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 10000);
             byte[] hashBytes = rfc2898DeriveBytes.GetBytes(20);
-
-            // Convert the hash bytes to a string.
             string hashString = Convert.ToBase64String(hashBytes);
-
-            // Compare the hash strings.
             return hashString == hash;
         }
     }

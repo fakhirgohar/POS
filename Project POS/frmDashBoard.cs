@@ -1,4 +1,5 @@
 ﻿using Project_POS.InventoryModule;
+using Project_POS.Login;
 using Project_POS.PurchaseModule;
 using Project_POS.SaleModule;
 using System;
@@ -76,10 +77,10 @@ namespace POS
             Sale_Panel.Visible = false;
 
 
-            //frmLoginVerification frm = new frmLoginVerification();
-            //frm.Owner = this;
-            //frm.StartPosition = FormStartPosition.CenterParent;
-            //frm.ShowDialog();
+            frmLoginVerification frm = new frmLoginVerification();
+            frm.Owner = this;
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
         }
 
 
