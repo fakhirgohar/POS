@@ -137,16 +137,16 @@ namespace Project_POS.InventoryModule
             switch (cboRepCase.SelectedItem.ToString().Replace(" ", ""))
             {
                 case nameof(RepCase.StockReportItemWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT DISTINCT ItemCode, SUM(Qty) AS QTY FROM FN_CURRENT_STOCK() GROUP BY ItemCode");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, SUM(Qty) AS QTY FROM FN_CURRENT_STOCK() GROUP BY ItemCode");
                     break;
                 case nameof(RepCase.StockReportSerialWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT SerialNo, Qty FROM FN_CURRENT_STOCK()");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, SerialNo, Qty FROM FN_CURRENT_STOCK() GROUP BY ItemCode, SerialNo, Qty");
                     break;
                 case nameof(RepCase.StockReportItemAndSerialWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, ItemName, SerialNo, Qty FROM FN_CURRENT_STOCK()");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, ItemName, SerialNo, Qty FROM FN_CURRENT_STOCK() GROUP BY ItemCode, ItemName, SerialNo, Qty");
                     break;
                 case nameof(RepCase.StockReportItemSerialAndPriceWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, ItemName, SerialNo, Qty, (SELECT PPrice FROM Inventory_PurchaseDetail IPD WITH(NOLOCK) WHERE IPD.ItemCode = FN.ItemCode AND IPD.SerialNo = FN.SerialNo ) AS PPrice FROM FN_CURRENT_STOCK() FN");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, ItemName, SerialNo, Qty, (SELECT PPrice FROM Inventory_PurchaseDetail IPD WITH(NOLOCK) WHERE IPD.ItemCode = FN.ItemCode AND IPD.SerialNo = FN.SerialNo ) AS PPrice FROM FN_CURRENT_STOCK() FN GROUP BY ItemCode, ItemName, SerialNo, Qty");
                     break;
                 default:
                     break;

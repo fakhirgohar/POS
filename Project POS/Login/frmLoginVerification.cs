@@ -20,6 +20,7 @@ namespace Project_POS.Login
             InitializeComponent();
         }
         SqlConnection con; SqlTransaction tran;
+        public string UserId, UserName = string.Empty;
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtLoginID.Text.Trim().ToString()))
@@ -32,14 +33,15 @@ namespace Project_POS.Login
             }
             else
             {
-                string LoginId = string.Empty;
+                UserName = string.Empty;
+                UserName = txtLoginID.Text;
                 if (SqlQuery.IsFound(con, tran, Global.ConnectionString, "tbl_Users", $"UserName='{txtLoginID.Text}'"))
                 {
-                    LoginId = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT UserId FROM tbl_Users WHERE UserName = '{txtLoginID.Text}'");
+                    UserId = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT UserId FROM tbl_Users WHERE UserName = '{txtLoginID.Text}'");
                 }
 
-                string hash = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT HashingPassword FROM LoginVerification WITH(NOLOCK) WHERE LoginID = '{LoginId}'");
-                string salt = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT SaltString FROM LoginVerification WITH(NOLOCK) WHERE LoginID = '{LoginId}'");
+                string hash = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT HashingPassword FROM LoginVerification WITH(NOLOCK) WHERE LoginID = '{UserId}'");
+                string salt = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT SaltString FROM LoginVerification WITH(NOLOCK) WHERE LoginID = '{UserId}'");
                 bool isValidPassword = VerifyPassword(txtPassword.Text, hash, salt);
                 if (isValidPassword)
                 {

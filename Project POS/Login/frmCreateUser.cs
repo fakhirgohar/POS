@@ -1,4 +1,5 @@
-﻿using Project_POS.Classes;
+﻿using POS;
+using Project_POS.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,43 +16,50 @@ namespace Project_POS.Login
 {
     public partial class frmCreateUser : Form
     {
+        SqlConnection con; SqlTransaction tran; DataTable dtCategory = new DataTable();
+        string UserId, UserName = string.Empty;
         public frmCreateUser()
         {
             InitializeComponent();
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
+            frmDashBoard frm = new frmDashBoard();
+            UserId = frm.UserId;
+            UserName = frm.UserName;
         }
-        SqlConnection con; SqlTransaction tran; DataTable dtCategory = new DataTable();
 
         #region functions
         private void Insert()
         {
-            using (con = new SqlConnection(Global.ConnectionString))
+            if (InsertUpdateValidation())
             {
-                con.Open();
-                tran = con.BeginTransaction();
-                try
+                using (con = new SqlConnection(Global.ConnectionString))
                 {
-                    if (string.IsNullOrEmpty(txtUserName.Text)) { MessageBox.Show(this, "Enter User Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                    txtUserID.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "tbl_Users", "UserId"));
-                    byte[] saltBytes = GenerateSalt();
-                    string salt = Convert.ToBase64String(saltBytes);
-                    string hashedPassword = HashPassword(txtPass.Text, saltBytes);
-                    SqlQuery.Insert(con, tran, "tbl_Users", Global.ConnectionString, new Dictionary<string, object> { { "UserId", txtUserID.Text }, { "UserName", txtUserName.Text }, { "Password", txtPass.Text}, { "IsActive", chkActive.Checked } });
-                    SqlQuery.Insert(con, tran, "LoginVerification", Global.ConnectionString, new Dictionary<string, object> { {"LoginID", txtUserID.Text }, { "SaltString", salt }, { "HashingPassword", hashedPassword } });;
-                    tran.Commit();
-                    con.Dispose();
-                    MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
-                    MessageBox.Show(this, "Saved Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    IsEnable(false);
-                }
-                catch (Exception ex)
-                {
-                    tran.Rollback();
-                    throw new Exception(ex.Message);
-                }
-                finally
-                {
-                    if (con.State == ConnectionState.Open) { con.Close(); }
+                    con.Open();
+                    tran = con.BeginTransaction();
+                    try
+                    {
+
+                        txtUserID.Text = SqlQuery.GetNewTransNo();
+                        byte[] saltBytes = GenerateSalt();
+                        string salt = Convert.ToBase64String(saltBytes);
+                        string hashedPassword = HashPassword(txtPass.Text, saltBytes);
+                        SqlQuery.Insert(con, tran, "tbl_Users", Global.ConnectionString, new Dictionary<string, object> { { "UserId", txtUserID.Text }, { "UserName", txtUserName.Text }, { "Password", txtPass.Text }, { "IsActive", chkActive.Checked } });
+                        SqlQuery.Insert(con, tran, "LoginVerification", Global.ConnectionString, new Dictionary<string, object> { { "LoginID", txtUserID.Text }, { "SaltString", salt }, { "HashingPassword", hashedPassword } }); ;
+                        tran.Commit();
+                        con.Dispose();
+                        MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
+                        MessageBox.Show(this, "Saved Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        IsEnable(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        throw new Exception(ex.Message);
+                    }
+                    finally
+                    {
+                        if (con.State == ConnectionState.Open) { con.Close(); }
+                    }
                 }
             }
         }
@@ -167,7 +175,7 @@ namespace Project_POS.Login
         {
             SqlConnection con = new SqlConnection(Global.ConnectionString);
             frmLOV frm = new frmLOV();
-            frm.SetData(con, Global.ConnectionString, "SELECT * FROM Inventory_Category WITH(NOLOCK)", "CatID");
+            frm.SetData(con, Global.ConnectionString, "SELECT * FROM tbl_Users WITH(NOLOCK)", "UserId");
             frm.FormClosing += (o, a) =>
             {
                 con.Open();
@@ -177,7 +185,7 @@ namespace Project_POS.Login
                 {
                     return;
                 }
-                string query = "SELECT * FROM Inventory_Category WITH(NOLOCK) WHERE CatID = @Code";
+                string query = "SELECT * FROM tbl_Users WITH(NOLOCK) WHERE UserId = @Code";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Code", code);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -188,8 +196,10 @@ namespace Project_POS.Login
                 if (dtCategory.Rows.Count > 0)
                 {
                     DataRow row = dtCategory.Rows[0];
-                    txtUserID.Text = row["CatID"].ToString();
-                    txtUserName.Text = row["CatName"].ToString();
+                    txtUserID.Text = row["UserId"].ToString();
+                    txtUserName.Text = row["UserName"].ToString();
+                    txtPass.Text = row["Password"].ToString();
+                    chkActive.Checked = Convert.ToBoolean(row["IsActive"]);
                 }
                 MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
             };
@@ -200,6 +210,17 @@ namespace Project_POS.Login
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.New);
             txtboxClear();
             IsEnable(true);
+
+            //if (UserName.ToLower() == "admin")
+            //{
+            //    MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.New);
+            //    txtboxClear();
+            //    IsEnable(true);
+            //}
+            //else
+            //{
+            //    MessageBox.Show(this, "Cannot Perform this action !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            //}
         }
         private void txtboxClear()
         {
@@ -235,6 +256,20 @@ namespace Project_POS.Login
             }
         }
 
+        private bool InsertUpdateValidation()
+        {
+            if (string.IsNullOrEmpty(txtUserName.Text))
+            {
+                MessageBox.Show(this, "Enter User Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return false;
+            }
+            if (txtPass.Text.Trim().ToString() != txtConPass.Text.Trim().ToString())
+            {
+                MessageBox.Show(this, "Enter Same Password in both field !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return false;
+            }
+            else { return true; }
+        }
 
         #endregion
 
@@ -272,7 +307,7 @@ namespace Project_POS.Login
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

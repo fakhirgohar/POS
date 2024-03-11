@@ -58,12 +58,14 @@ namespace POS
             this.btnInventory = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelLoadForms = new System.Windows.Forms.Panel();
-            this.btnUser = new System.Windows.Forms.Button();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.PanelMenu.SuspendLayout();
             this.Sale_Panel.SuspendLayout();
             this.Purchase_Panel.SuspendLayout();
             this.Inventory_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PanelLoadForms.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -86,7 +88,6 @@ namespace POS
             // Sale_Panel
             // 
             this.Sale_Panel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.Sale_Panel.Controls.Add(this.btnUser);
             this.Sale_Panel.Controls.Add(this.btnSaleRep);
             this.Sale_Panel.Controls.Add(this.btnSaleReturn);
             this.Sale_Panel.Controls.Add(this.btnCustomerPayment);
@@ -95,7 +96,7 @@ namespace POS
             this.Sale_Panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.Sale_Panel.Location = new System.Drawing.Point(0, 539);
             this.Sale_Panel.Name = "Sale_Panel";
-            this.Sale_Panel.Size = new System.Drawing.Size(173, 168);
+            this.Sale_Panel.Size = new System.Drawing.Size(173, 138);
             this.Sale_Panel.TabIndex = 6;
             // 
             // btnSaleRep
@@ -513,28 +514,33 @@ namespace POS
             // 
             // PanelLoadForms
             // 
+            this.PanelLoadForms.Controls.Add(this.label2);
+            this.PanelLoadForms.Controls.Add(this.lblUser);
             this.PanelLoadForms.Location = new System.Drawing.Point(178, 10);
             this.PanelLoadForms.Name = "PanelLoadForms";
             this.PanelLoadForms.Size = new System.Drawing.Size(1347, 792);
             this.PanelLoadForms.TabIndex = 1;
             // 
-            // btnUser
+            // lblUser
             // 
-            this.btnUser.BackColor = System.Drawing.Color.Transparent;
-            this.btnUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUser.FlatAppearance.BorderSize = 0;
-            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUser.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnUser.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnUser.Location = new System.Drawing.Point(0, 138);
-            this.btnUser.Name = "btnUser";
-            this.btnUser.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
-            this.btnUser.Size = new System.Drawing.Size(173, 30);
-            this.btnUser.TabIndex = 5;
-            this.btnUser.Text = "CreateUser";
-            this.btnUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUser.UseVisualStyleBackColor = false;
-            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(58, 774);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(35, 13);
+            this.lblUser.TabIndex = 0;
+            this.lblUser.Text = "label1";
+            this.lblUser.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 774);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "User :";
+            this.label2.Visible = false;
             // 
             // frmDashBoard
             // 
@@ -555,6 +561,8 @@ namespace POS
             this.Purchase_Panel.ResumeLayout(false);
             this.Inventory_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PanelLoadForms.ResumeLayout(false);
+            this.PanelLoadForms.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -588,6 +596,7 @@ namespace POS
         private Button btnInvRep;
         private Button btnPurchaseRep;
         private Button btnSaleRep;
-        private Button btnUser;
+        private Label label2;
+        private Label lblUser;
     }
 }

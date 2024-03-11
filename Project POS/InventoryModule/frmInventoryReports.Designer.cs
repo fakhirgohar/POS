@@ -285,13 +285,13 @@
             this.groupBox3.Controls.Add(this.cboRepCase);
             this.groupBox3.Location = new System.Drawing.Point(31, 342);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(564, 139);
+            this.groupBox3.Size = new System.Drawing.Size(564, 122);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(253, 70);
+            this.btnPreview.Location = new System.Drawing.Point(237, 60);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(88, 54);
             this.btnPreview.TabIndex = 1;
@@ -317,12 +317,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 513);
+            this.ClientSize = new System.Drawing.Size(621, 470);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmInventoryReports";
-            this.Text = "frmInventoryReports";
+            this.Text = "Stock Report (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

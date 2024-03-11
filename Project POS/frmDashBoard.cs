@@ -31,12 +31,12 @@ namespace POS
             //frm.FormClosing += (o, a) =>
             //{ PanelMenu.Enabled = true; };
         }
-
+        public string UserId, UserName = string.Empty;
         private void HideSubMenu()
         {
             if (Inventory_Panel.Visible)
             {
-                Inventory_Panel.Visible = false;
+                //Inventory_Panel.Visible = false;
             }
         }
 
@@ -78,10 +78,17 @@ namespace POS
             Sale_Panel.Visible = false;
 
 
-            //frmLoginVerification frm = new frmLoginVerification();
-            //frm.Owner = this;
-            //frm.StartPosition = FormStartPosition.CenterParent;
-            //frm.ShowDialog();
+            frmLoginVerification frm = new frmLoginVerification();
+            frm.Owner = this;
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
+            frm.FormClosing += (o, a) =>
+            {
+                var Key = o as frmLoginVerification;
+                UserId = Key.UserId;
+                UserName = Key.UserName;
+                lblUser.Text = Key.UserName;
+            };
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
