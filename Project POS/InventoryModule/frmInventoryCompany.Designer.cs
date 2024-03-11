@@ -215,6 +215,7 @@
             this.txtCompCode.Location = new System.Drawing.Point(117, 19);
             this.txtCompCode.Multiline = true;
             this.txtCompCode.Name = "txtCompCode";
+            this.txtCompCode.ReadOnly = true;
             this.txtCompCode.Size = new System.Drawing.Size(248, 23);
             this.txtCompCode.TabIndex = 0;
             // 

@@ -197,6 +197,7 @@ namespace Project_POS.InventoryModule
         {
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.New);
             ClearControls();
+            IsEnable(true);
         }
         private void ClearControls()
         {
@@ -205,7 +206,8 @@ namespace Project_POS.InventoryModule
         }
         private void IsEnable(bool cond)
         {
-            grpMain.Enabled = cond;
+            txtCompCode.Enabled = cond;
+            txtCompName.Enabled = cond;
         }
         #endregion
 
@@ -221,14 +223,14 @@ namespace Project_POS.InventoryModule
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //if (string.IsNullOrEmpty(txtCompCode.Text.Trim()))
-            //{
-            //    Insert();
-            //}
-            //else
-            //{
-            //    Update();
-            //}
+            if (string.IsNullOrEmpty(txtCompCode.Text.Trim()))
+            {
+                Insert();
+            }
+            else
+            {
+                Update();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

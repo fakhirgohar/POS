@@ -70,19 +70,24 @@ namespace POS
                 frm.BringToFront();
             }
         }
-        private void frmDashBoard_Load(object sender, EventArgs e)
+
+        private void frmDashBoard_Load_1(object sender, EventArgs e)
         {
             Inventory_Panel.Visible = false;
             Purchase_Panel.Visible = false;
             Sale_Panel.Visible = false;
 
 
-            frmLoginVerification frm = new frmLoginVerification();
-            frm.Owner = this;
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.ShowDialog();
+            //frmLoginVerification frm = new frmLoginVerification();
+            //frm.Owner = this;
+            //frm.StartPosition = FormStartPosition.CenterParent;
+            //frm.ShowDialog();
         }
 
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            ShowSubMenu(Inventory_Panel);
+        }
 
         private void btnCompany_Click(object sender, EventArgs e)
         {
@@ -108,19 +113,15 @@ namespace POS
             LoadForm(frm);
         }
 
-        private void btnInventory_Click(object sender, EventArgs e)
+        private void btnInvRep_Click(object sender, EventArgs e)
         {
-            ShowSubMenu(Inventory_Panel);
+            frmInventoryReports frm = new frmInventoryReports();
+            LoadForm(frm);
         }
 
         private void btnPurchase_Click(object sender, EventArgs e)
         {
             ShowSubMenu(Purchase_Panel);
-        }
-
-        private void btnSale_Click(object sender, EventArgs e)
-        {
-            ShowSubMenu(Sale_Panel);
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)
@@ -135,9 +136,14 @@ namespace POS
             LoadForm(frm);
         }
 
-        private void btnCustomer_Click(object sender, EventArgs e)
+        private void btnSupplierPayment_Click(object sender, EventArgs e)
         {
-            frmInventoryCustomer frm = new frmInventoryCustomer();
+
+        }
+
+        private void btnPurchaseReturn_Click(object sender, EventArgs e)
+        {
+            frmInventoryPurchaseReturn frm = new frmInventoryPurchaseReturn();
             LoadForm(frm);
         }
 
@@ -153,16 +159,31 @@ namespace POS
             LoadForm(frm);
         }
 
+        private void btnPurchaseRep_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSale_Click(object sender, EventArgs e)
+        {
+            ShowSubMenu(Sale_Panel);
+        }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            frmInventoryCustomer frm = new frmInventoryCustomer();
+            LoadForm(frm);
+        }
+
         private void btn_SaleItem_Click(object sender, EventArgs e)
         {
             frmInventorySale frm = new frmInventorySale();
             LoadForm(frm);
         }
 
-        private void btnPurchaseReturn_Click(object sender, EventArgs e)
+        private void btnCustomerPayment_Click(object sender, EventArgs e)
         {
-            frmInventoryPurchaseReturn frm = new frmInventoryPurchaseReturn();
-            LoadForm(frm);
+
         }
 
         private void btnSaleReturn_Click(object sender, EventArgs e)
@@ -171,9 +192,14 @@ namespace POS
             LoadForm(frm);
         }
 
-        private void btnInvRep_Click(object sender, EventArgs e)
+        private void btnSaleRep_Click(object sender, EventArgs e)
         {
-            frmInventoryReports frm = new frmInventoryReports();
+
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            frmCreateUser frm = new frmCreateUser();
             LoadForm(frm);
         }
     }

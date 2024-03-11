@@ -6,22 +6,21 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project_POS.InventoryModule
+namespace Project_POS.Login
 {
-    public partial class frmInventoryCategory : Form
+    public partial class frmCreateUser : Form
     {
-        public frmInventoryCategory()
+        public frmCreateUser()
         {
             InitializeComponent();
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
         }
-
         SqlConnection con; SqlTransaction tran; DataTable dtCategory = new DataTable();
-
 
         #region functions
         private void Insert()
@@ -32,9 +31,13 @@ namespace Project_POS.InventoryModule
                 tran = con.BeginTransaction();
                 try
                 {
-                    if (string.IsNullOrEmpty(txtCatName.Text)) { MessageBox.Show(this, "Enter Category Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                    txtCatID.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_Category", "CatID"));
-                    SqlQuery.Insert(con, tran, "Inventory_Category", Global.ConnectionString, new Dictionary<string, object> { { "CatID", txtCatID.Text }, { "CatName", txtCatName.Text } });
+                    if (string.IsNullOrEmpty(txtUserName.Text)) { MessageBox.Show(this, "Enter User Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
+                    txtUserID.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "tbl_Users", "UserId"));
+                    byte[] saltBytes = GenerateSalt();
+                    string salt = Convert.ToBase64String(saltBytes);
+                    string hashedPassword = HashPassword(txtPass.Text, saltBytes);
+                    SqlQuery.Insert(con, tran, "tbl_Users", Global.ConnectionString, new Dictionary<string, object> { { "UserId", txtUserID.Text }, { "UserName", txtUserName.Text }, { "Password", txtPass.Text}, { "IsActive", chkActive.Checked } });
+                    SqlQuery.Insert(con, tran, "LoginVerification", Global.ConnectionString, new Dictionary<string, object> { {"LoginID", txtUserID.Text }, { "SaltString", salt }, { "HashingPassword", hashedPassword } });;
                     tran.Commit();
                     con.Dispose();
                     MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
@@ -62,8 +65,8 @@ namespace Project_POS.InventoryModule
                     tran = con.BeginTransaction();
                     try
                     {
-                        if (string.IsNullOrEmpty(txtCatName.Text)) { MessageBox.Show(this, "Enter Category Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Category", $"WHERE CatID = {txtCatID.Text} ", new Dictionary<string, object> { { "CatName", txtCatName.Text } });
+                        if (string.IsNullOrEmpty(txtUserName.Text)) { MessageBox.Show(this, "Enter Category Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Category", $"WHERE CatID = {txtUserID.Text} ", new Dictionary<string, object> { { "CatName", txtUserName.Text } });
                         tran.Commit();
                         con.Dispose();
                         MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
@@ -84,7 +87,7 @@ namespace Project_POS.InventoryModule
         }
         private void Delete()
         {
-            if (string.IsNullOrEmpty(txtCatID.Text.Trim())) { MessageBox.Show(this, "No Record to Delete !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
+            if (string.IsNullOrEmpty(txtUserID.Text.Trim())) { MessageBox.Show(this, "No Record to Delete !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
 
             else
             {
@@ -99,7 +102,8 @@ namespace Project_POS.InventoryModule
                             tran = con.BeginTransaction();
                             try
                             {
-                                SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_Category", $" CatID = '{txtCatID.Text}'");
+                                SqlQuery.Delete(con, tran, Global.ConnectionString, "tbl_Users", $" UserId = '{txtUserID.Text}'");
+                                SqlQuery.Delete(con, tran, Global.ConnectionString, "LoginVerification", $" LoginId = '{txtUserID.Text}'");
                                 tran.Commit();
                                 con.Dispose();
                                 MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Cancel);
@@ -124,29 +128,30 @@ namespace Project_POS.InventoryModule
 
         private bool BeforeUpdateDelete()
         {
-            if (SqlQuery.IsFound(con, tran, Global.ConnectionString, "Inventory_Products", $"CatID = {txtCatID.Text}"))
-            {
-                MessageBox.Show(this, "Category Used in Product !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false;
-            }
-            else if (SqlQuery.IsFound(con, tran, Global.ConnectionString, "Inventory_Items", $"CatID = {txtCatID.Text}"))
-            {
-                MessageBox.Show(this, "Category Used in Items !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false;
-            }
+            //if (SqlQuery.IsFound(con, tran, Global.ConnectionString, "Inventory_Products", $"CatID = {txtUserID.Text}"))
+            //{
+            //    MessageBox.Show(this, "Category Used in Product !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false;
+            //}
+            //else if (SqlQuery.IsFound(con, tran, Global.ConnectionString, "Inventory_Items", $"CatID = {txtUserID.Text}"))
+            //{
+            //    MessageBox.Show(this, "Category Used in Items !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false;
+            //}
             return true;
 
         }
         private void Edit()
         {
-            if (BeforeUpdateDelete())
-            {
-                if (string.IsNullOrEmpty(txtCatID.Text.Trim()))
-                {
-                    MessageBox.Show(this, "No Record to Edit!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    return;
-                }
-                MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Edit);
-                IsEnable(true);
-            }
+            MessageBox.Show(this, "Cannot Edit The User !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            //if (BeforeUpdateDelete())
+            //{
+            //    if (string.IsNullOrEmpty(txtUserID.Text.Trim()))
+            //    {
+            //        MessageBox.Show(this, "No Record to Edit!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            //        return;
+            //    }
+            //    MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Edit);
+            //    IsEnable(true);
+            //}
         }
         private void Cancel()
         {
@@ -183,8 +188,8 @@ namespace Project_POS.InventoryModule
                 if (dtCategory.Rows.Count > 0)
                 {
                     DataRow row = dtCategory.Rows[0];
-                    txtCatID.Text = row["CatID"].ToString();
-                    txtCatName.Text = row["CatName"].ToString();
+                    txtUserID.Text = row["CatID"].ToString();
+                    txtUserName.Text = row["CatName"].ToString();
                 }
                 MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
             };
@@ -198,23 +203,40 @@ namespace Project_POS.InventoryModule
         }
         private void txtboxClear()
         {
-            txtCatID.Text = string.Empty;
-            txtCatName.Text = string.Empty;
+            txtUserID.Text = string.Empty;
+            txtUserName.Text = string.Empty;
         }
         private void IsEnable(bool cond)
         {
-            txtCatID.Enabled = cond;
-            txtCatName.Enabled = cond;
+            txtUserID.Enabled = cond;
+            txtUserName.Enabled = cond;
+            txtPass.Enabled = cond;
+            txtConPass.Enabled = cond;
+            chkActive.Enabled = cond;
         }
+
+
+        private byte[] GenerateSalt()
+        {
+            byte[] salt = new byte[16];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(salt);
+            }
+            return salt;
+        }
+
+        private string HashPassword(string password, byte[] saltBytes)
+        {
+            using (var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, 10000))
+            {
+                byte[] hashBytes = pbkdf2.GetBytes(20);
+                return Convert.ToBase64String(hashBytes);
+            }
+        }
+
 
         #endregion
-
-        private void frmInventoryCategory_Load(object sender, EventArgs e)
-        {
-            MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
-            txtboxClear();
-            IsEnable(false);
-        }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -223,19 +245,12 @@ namespace Project_POS.InventoryModule
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCatID.Text.Trim()))
-            {
-                MessageBox.Show(this, "No Record To Edit !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return;
-            }
-            else
-            {
-                IsEnable(true);
-            }
+            Edit();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCatID.Text.Trim()))
+            if (string.IsNullOrEmpty(txtUserID.Text.Trim()))
             {
                 Insert();
             }
@@ -255,27 +270,14 @@ namespace Project_POS.InventoryModule
             Delete();
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Search();
         }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            string reprotPath = string.Empty;
-            reprotPath = Global.InventoryReportPath + @"rptInventoryCategory.rdlc";
-            Dictionary<string, string> dicParm = new Dictionary<string, string>();
-            Dictionary<string, DataTable> dataSets = new Dictionary<string, DataTable>();
-
-            dicParm.Add("pmrCatID", txtCatID.Text);
-            dicParm.Add("pmrCatName", txtCatName.Text);
-            dicParm.Add("pmrReportName", "Inventory Category Report");
-
-            //dataSets.Add("DataSet1", dtCategory);
-            frmReportVeiwer frmReport = new frmReportVeiwer(reprotPath, dataSets, dicParm);
-            frmReport.Text = "Inventory Category";
-            frmReport.Show();
-        }
     }
-
 }
