@@ -147,3 +147,4 @@ F:\POS\Project POS\obj\Debug\Project POS.csproj.CopyComplete
 F:\POS\Project POS\obj\Debug\Project POS.exe
 F:\POS\Project POS\obj\Debug\Project POS.pdb
 F:\POS\Project POS\obj\Debug\Project_POS.Login.frmCreateUser.resources
+F:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmFilter.resources

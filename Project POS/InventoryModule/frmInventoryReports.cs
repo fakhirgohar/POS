@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Project_POS.InventoryModule
             InitializeComponent();
             cboRepType.SelectedIndex = 0;
         }
+        SqlConnection con; SqlTransaction tran;
 
         public enum RepType
         {
@@ -208,6 +210,22 @@ namespace Project_POS.InventoryModule
             Dictionary<string, string> dictParm = new Dictionary<string, string>();
             //dictParm.Add("pmrReportName", "Stock Report Item Wise");
             return dictParm;
+        }
+
+        private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemCode, ItemName FROM Inventory_Items where Active = 1");
+                frmFilter frm  = new frmFilter(dt);
+                frm.ShowDialog();
+                frm.FormClosed += Frm_FormClosed;   
+            }
+        }
+
+        private void Frm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

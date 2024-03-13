@@ -277,6 +277,7 @@
             this.txtItemCode.Name = "txtItemCode";
             this.txtItemCode.Size = new System.Drawing.Size(421, 20);
             this.txtItemCode.TabIndex = 0;
+            this.txtItemCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItemCode_KeyDown);
             // 
             // groupBox3
             // 

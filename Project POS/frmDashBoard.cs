@@ -78,17 +78,17 @@ namespace POS
             Sale_Panel.Visible = false;
 
 
-            frmLoginVerification frm = new frmLoginVerification();
-            frm.Owner = this;
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.ShowDialog();
-            frm.FormClosing += (o, a) =>
-            {
-                var Key = o as frmLoginVerification;
-                UserId = Key.UserId;
-                UserName = Key.UserName;
-                lblUser.Text = Key.UserName;
-            };
+            //frmLoginVerification frm = new frmLoginVerification();
+            //frm.Owner = this;
+            //frm.StartPosition = FormStartPosition.CenterParent;
+            //frm.ShowDialog();
+            //frm.FormClosing += (o, a) =>
+            //{
+            //    var Key = o as frmLoginVerification;
+            //    UserId = Key.UserId;
+            //    UserName = Key.UserName;
+            //    lblUser.Text = Key.UserName;
+            //};
         }
 
         private void btnInventory_Click(object sender, EventArgs e)

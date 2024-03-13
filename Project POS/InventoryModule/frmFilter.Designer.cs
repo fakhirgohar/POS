@@ -28,91 +28,143 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.dgvDetail = new System.Windows.Forms.DataGridView();
+            this.dgvFilterdRows = new System.Windows.Forms.DataGridView();
+            this.txtSearchDetial = new System.Windows.Forms.TextBox();
+            this.btnSearchDetial = new System.Windows.Forms.Button();
+            this.btnSearchFilterdRows = new System.Windows.Forms.Button();
+            this.txtSearchFilterdRows = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Add = new System.Windows.Forms.DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFilterdRows)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvDetail
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(385, 374);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvDetail.AllowUserToAddRows = false;
+            this.dgvDetail.AllowUserToDeleteRows = false;
+            this.dgvDetail.AllowUserToResizeColumns = false;
+            this.dgvDetail.AllowUserToResizeRows = false;
+            this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Add});
+            this.dgvDetail.Location = new System.Drawing.Point(6, 66);
+            this.dgvDetail.MultiSelect = false;
+            this.dgvDetail.Name = "dgvDetail";
+            this.dgvDetail.RowHeadersVisible = false;
+            this.dgvDetail.Size = new System.Drawing.Size(385, 374);
+            this.dgvDetail.TabIndex = 0;
+            this.dgvDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellClick);
             // 
-            // dataGridView2
+            // dgvFilterdRows
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(403, 64);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(385, 374);
-            this.dataGridView2.TabIndex = 1;
+            this.dgvFilterdRows.AllowUserToAddRows = false;
+            this.dgvFilterdRows.AllowUserToDeleteRows = false;
+            this.dgvFilterdRows.AllowUserToResizeColumns = false;
+            this.dgvFilterdRows.AllowUserToResizeRows = false;
+            this.dgvFilterdRows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFilterdRows.Location = new System.Drawing.Point(6, 65);
+            this.dgvFilterdRows.MultiSelect = false;
+            this.dgvFilterdRows.Name = "dgvFilterdRows";
+            this.dgvFilterdRows.RowHeadersVisible = false;
+            this.dgvFilterdRows.Size = new System.Drawing.Size(385, 374);
+            this.dgvFilterdRows.TabIndex = 1;
             // 
-            // textBox1
+            // txtSearchDetial
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(295, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtSearchDetial.Location = new System.Drawing.Point(6, 30);
+            this.txtSearchDetial.Name = "txtSearchDetial";
+            this.txtSearchDetial.Size = new System.Drawing.Size(295, 20);
+            this.txtSearchDetial.TabIndex = 2;
             // 
-            // button1
+            // btnSearchDetial
             // 
-            this.button1.Location = new System.Drawing.Point(313, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 37);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Find";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearchDetial.Location = new System.Drawing.Point(307, 14);
+            this.btnSearchDetial.Name = "btnSearchDetial";
+            this.btnSearchDetial.Size = new System.Drawing.Size(75, 37);
+            this.btnSearchDetial.TabIndex = 3;
+            this.btnSearchDetial.Text = "Find";
+            this.btnSearchDetial.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnSearchFilterdRows
             // 
-            this.button2.Location = new System.Drawing.Point(704, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 37);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Find";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSearchFilterdRows.Location = new System.Drawing.Point(307, 13);
+            this.btnSearchFilterdRows.Name = "btnSearchFilterdRows";
+            this.btnSearchFilterdRows.Size = new System.Drawing.Size(75, 37);
+            this.btnSearchFilterdRows.TabIndex = 5;
+            this.btnSearchFilterdRows.Text = "Find";
+            this.btnSearchFilterdRows.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtSearchFilterdRows
             // 
-            this.textBox2.Location = new System.Drawing.Point(403, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(295, 20);
-            this.textBox2.TabIndex = 4;
+            this.txtSearchFilterdRows.Location = new System.Drawing.Point(6, 29);
+            this.txtSearchFilterdRows.Name = "txtSearchFilterdRows";
+            this.txtSearchFilterdRows.Size = new System.Drawing.Size(295, 20);
+            this.txtSearchFilterdRows.TabIndex = 4;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dgvFilterdRows);
+            this.groupBox1.Controls.Add(this.btnSearchFilterdRows);
+            this.groupBox1.Controls.Add(this.txtSearchFilterdRows);
+            this.groupBox1.Location = new System.Drawing.Point(425, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(397, 448);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvDetail);
+            this.groupBox2.Controls.Add(this.txtSearchDetial);
+            this.groupBox2.Controls.Add(this.btnSearchDetial);
+            this.groupBox2.Location = new System.Drawing.Point(12, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(397, 448);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // Add
+            // 
+            this.Add.HeaderText = "Add";
+            this.Add.Name = "Add";
+            this.Add.Text = "Add";
+            this.Add.ToolTipText = "Add";
+            this.Add.Width = 50;
             // 
             // frmFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(829, 457);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Name = "frmFilter";
             this.Text = "frmFilter";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFilterdRows)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView dgvDetail;
+        private System.Windows.Forms.DataGridView dgvFilterdRows;
+        private System.Windows.Forms.TextBox txtSearchDetial;
+        private System.Windows.Forms.Button btnSearchDetial;
+        private System.Windows.Forms.Button btnSearchFilterdRows;
+        private System.Windows.Forms.TextBox txtSearchFilterdRows;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewButtonColumn Add;
     }
 }
