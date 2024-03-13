@@ -67,7 +67,7 @@
             this.groupBox1.Controls.Add(this.dtpToDate);
             this.groupBox1.Controls.Add(this.dtpFromDate);
             this.groupBox1.Controls.Add(this.cboRepType);
-            this.groupBox1.Location = new System.Drawing.Point(31, 39);
+            this.groupBox1.Location = new System.Drawing.Point(11, 14);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(564, 129);
             this.groupBox1.TabIndex = 0;
@@ -160,7 +160,7 @@
             this.groupBox2.Controls.Add(this.txtCategory);
             this.groupBox2.Controls.Add(this.txtSerialNo);
             this.groupBox2.Controls.Add(this.txtItemCode);
-            this.groupBox2.Location = new System.Drawing.Point(31, 188);
+            this.groupBox2.Location = new System.Drawing.Point(11, 163);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(564, 129);
             this.groupBox2.TabIndex = 1;
@@ -216,9 +216,9 @@
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(7, 100);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 7;
-            this.label6.Text = "From Date :";
+            this.label6.Text = "Product :";
             // 
             // label5
             // 
@@ -226,9 +226,9 @@
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(7, 74);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 6;
-            this.label5.Text = "From Date :";
+            this.label5.Text = "Category :";
             // 
             // label4
             // 
@@ -236,9 +236,9 @@
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(7, 48);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "From Date :";
+            this.label4.Text = "Serial No:";
             // 
             // label3
             // 
@@ -246,9 +246,9 @@
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(7, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "From Date :";
+            this.label3.Text = "ItemCode :";
             // 
             // txtProduct
             // 
@@ -283,7 +283,7 @@
             this.groupBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox3.Controls.Add(this.btnPreview);
             this.groupBox3.Controls.Add(this.cboRepCase);
-            this.groupBox3.Location = new System.Drawing.Point(31, 342);
+            this.groupBox3.Location = new System.Drawing.Point(11, 317);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(564, 122);
             this.groupBox3.TabIndex = 2;
@@ -317,7 +317,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 470);
+            this.ClientSize = new System.Drawing.Size(584, 449);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

@@ -77,6 +77,12 @@
     <Compile Include="frmLOV.Designer.cs">
       <DependentUpon>frmLOV.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryModule\frmFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryModule\frmFilter.Designer.cs">
+      <DependentUpon>frmFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryModule\frmInventoryCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLOV.resx">
       <DependentUpon>frmLOV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryModule\frmFilter.resx">
+      <DependentUpon>frmFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryModule\frmInventoryCategory.resx">
       <DependentUpon>frmInventoryCategory.cs</DependentUpon>
