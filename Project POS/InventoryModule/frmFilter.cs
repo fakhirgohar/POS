@@ -38,6 +38,8 @@ namespace Project_POS.InventoryModule
             if (e.ColumnIndex == 0)
             {
                 MessageBox.Show("add button click");
+
+                
             }
         }
     }

@@ -36,6 +36,7 @@
             this.txtSearchFilterdRows = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Add = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilterdRows)).BeginInit();
@@ -67,6 +68,8 @@
             this.dgvFilterdRows.AllowUserToResizeColumns = false;
             this.dgvFilterdRows.AllowUserToResizeRows = false;
             this.dgvFilterdRows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFilterdRows.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Remove});
             this.dgvFilterdRows.Location = new System.Drawing.Point(6, 65);
             this.dgvFilterdRows.MultiSelect = false;
             this.dgvFilterdRows.Name = "dgvFilterdRows";
@@ -128,12 +131,22 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
+            // Remove
+            // 
+            this.Remove.HeaderText = "Remove";
+            this.Remove.Name = "Remove";
+            this.Remove.Text = "Remove";
+            this.Remove.ToolTipText = "Remove";
+            this.Remove.UseColumnTextForButtonValue = true;
+            this.Remove.Width = 60;
+            // 
             // Add
             // 
             this.Add.HeaderText = "Add";
             this.Add.Name = "Add";
             this.Add.Text = "Add";
             this.Add.ToolTipText = "Add";
+            this.Add.UseColumnTextForButtonValue = true;
             this.Add.Width = 50;
             // 
             // frmFilter
@@ -166,5 +179,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridViewButtonColumn Add;
+        private System.Windows.Forms.DataGridViewButtonColumn Remove;
     }
 }

@@ -148,3 +148,45 @@ F:\POS\Project POS\obj\Debug\Project POS.exe
 F:\POS\Project POS\obj\Debug\Project POS.pdb
 F:\POS\Project POS\obj\Debug\Project_POS.Login.frmCreateUser.resources
 F:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmFilter.resources
+E:\POS\Project POS\bin\Debug\Project POS.exe.config
+E:\POS\Project POS\bin\Debug\Project POS.exe
+E:\POS\Project POS\bin\Debug\Project POS.pdb
+E:\POS\Project POS\bin\Debug\Microsoft.SqlServer.Types.dll
+E:\POS\Project POS\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+E:\POS\Project POS\obj\Debug\Project POS.csproj.AssemblyReference.cache
+E:\POS\Project POS\obj\Debug\Project POS.csproj.SuggestedBindingRedirects.cache
+E:\POS\Project POS\obj\Debug\POS.frmDashBoard.resources
+E:\POS\Project POS\obj\Debug\Project_POS.frmReportVeiwer.resources
+E:\POS\Project POS\obj\Debug\Project_POS.frmLOV.resources
+E:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmFilter.resources
+E:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmInventoryCategory.resources
+E:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmInventoryCompany.resources
+E:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmInventoryItems.resources
+E:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmInventoryProduct.resources
+E:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmInventoryReports.resources
+E:\POS\Project POS\obj\Debug\Project_POS.Login.frmCreateUser.resources
+E:\POS\Project POS\obj\Debug\Project_POS.Login.frmLoginVerification.resources
+E:\POS\Project POS\obj\Debug\Project_POS.Properties.Resources.resources
+E:\POS\Project POS\obj\Debug\Project_POS.PurchaseModule.frmInventoryPurchase.resources
+E:\POS\Project POS\obj\Debug\Project_POS.PurchaseModule.frmInventoryPurchaseReturn.resources
+E:\POS\Project POS\obj\Debug\Project_POS.PurchaseModule.frmInventoryStore.resources
+E:\POS\Project POS\obj\Debug\Project_POS.PurchaseModule.frmInventoryStoreType.resources
+E:\POS\Project POS\obj\Debug\Project_POS.PurchaseModule.frmSupplier.resources
+E:\POS\Project POS\obj\Debug\Project_POS.SaleModule.frmAddSerial.resources
+E:\POS\Project POS\obj\Debug\Project_POS.SaleModule.frmInventoryCustomer.resources
+E:\POS\Project POS\obj\Debug\Project_POS.SaleModule.frmInventorySale.resources
+E:\POS\Project POS\obj\Debug\Project_POS.SaleModule.frmInventorySaleReturn.resources
+E:\POS\Project POS\obj\Debug\Project POS.csproj.GenerateResource.cache
+E:\POS\Project POS\obj\Debug\Project POS.csproj.CoreCompileInputs.cache
+E:\POS\Project POS\obj\Debug\Project POS.csproj.CopyComplete
+E:\POS\Project POS\obj\Debug\Project POS.exe
+E:\POS\Project POS\obj\Debug\Project POS.pdb
