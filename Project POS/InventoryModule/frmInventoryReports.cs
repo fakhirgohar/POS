@@ -21,6 +21,7 @@ namespace Project_POS.InventoryModule
             cboRepType.SelectedIndex = 0;
         }
         SqlConnection con; SqlTransaction tran;
+        string ItemCode;
 
         public enum RepType
         {
@@ -216,16 +217,25 @@ namespace Project_POS.InventoryModule
         {
             if (e.KeyCode == Keys.Down)
             {
-                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemCode, ItemName FROM Inventory_Items where Active = 1");
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemCode as TransNo FROM Inventory_Items where Active = 1");
                 frmFilter frm  = new frmFilter(dt);
+                frm.FormClosed += Frm_FormClosed;
                 frm.ShowDialog();
-                frm.FormClosed += Frm_FormClosed;   
             }
         }
 
         private void Frm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            throw new NotImplementedException();
+            var filter = sender as frmFilter;
+            DataTable dt = filter.DtFilterdRows.Copy();
+            if(dt.Rows.Count > 0)
+            {
+                foreach (DataRow Row in dt.Rows)
+                {
+                    ItemCode += ItemCode = $",'{Row["TransNo"]}'";
+                }
+            }
+
         }
     }
 }

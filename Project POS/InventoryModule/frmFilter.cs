@@ -31,16 +31,46 @@ namespace Project_POS.InventoryModule
         private void LoadData()
         {
             dgvDetail.DataSource = DtDetial;
+            DtFilterdRows = DtDetial.Clone();
         }
 
         private void dgvDetail_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
-                MessageBox.Show("add button click");
-
-                
+                DataRow newRow = DtFilterdRows.NewRow();
+                newRow["TransNo"] = dgvDetail.Rows[e.RowIndex].Cells["TransNo"].Value;
+                DtFilterdRows.Rows.Add(newRow);
+                dgvFilterdRows.DataSource = DtFilterdRows;
             }
+        }
+
+        private void btnAddAll_Click(object sender, EventArgs e)
+        {
+            DtFilterdRows.Clear();
+            DtFilterdRows = DtDetial.Copy();
+            dgvFilterdRows.DataSource = DtFilterdRows;
+        }
+
+        private void btnRemoveAll_Click(object sender, EventArgs e)
+        {
+            DtFilterdRows.Clear();
+            dgvFilterdRows.DataSource = DtFilterdRows;
+        }
+
+        private void dgvFilterdRows_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                DataRow newRow = DtFilterdRows.NewRow();
+                DtFilterdRows.Rows.RemoveAt(e.RowIndex);
+                dgvFilterdRows.DataSource = DtFilterdRows;
+            }
+        }
+
+        private void btnApplyFilter_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
