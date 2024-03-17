@@ -21,7 +21,7 @@ namespace Project_POS.InventoryModule
             cboRepType.SelectedIndex = 0;
         }
         SqlConnection con; SqlTransaction tran;
-        string ItemCode, ProdCode, SerialNo, CatCode = string.Empty;
+        string ItemCode, ProdCode, CompCode, CatCode = string.Empty;
         DataTable DtItemcode, dtProdCode, dtCompCode, dtCatCode = new DataTable();
 
         public enum RepType
@@ -109,9 +109,9 @@ namespace Project_POS.InventoryModule
 
             string item = chkItemCode.Checked ? $"ItemCode IN ({ItemCode})" : string.Empty;
             string prodCode = chkProduct.Checked ? $"ProdCode IN ({ProdCode})" : string.Empty;
-            //string serialNo = chkSerialNo.Checked ? $"SerialNo IN ({SerialNo})" : string.Empty;
+            string compcode = chkCompCode.Checked ? $"SerialNo IN ({CompCode})" : string.Empty;
             string catCode = chkCategory.Checked ? $"CatId IN ({CatCode})" : string.Empty;
-            string WhereClause = string.Join(" AND ", new[] { item, prodCode, /*serialNo,*/ catCode }.Where(s => !string.IsNullOrEmpty(s)));
+            string WhereClause = string.Join(" AND ", new[] { item, prodCode, compcode, catCode }.Where(s => !string.IsNullOrEmpty(s)));
             WhereClause = !string.IsNullOrEmpty(WhereClause) ? $"WHERE {WhereClause}" : string.Empty;
 
 
@@ -146,14 +146,13 @@ namespace Project_POS.InventoryModule
                     break;
             }
 
-            //Tuple<string, string> rptNamePath = ReportPathAndName();
-            //Dictionary<string, string> dictReportParams = GetReportParams();
-            //dictReportParams.Add("pmrReportName", rptNamePath.Item1);
+            Tuple<string, string> rptNamePath = ReportPathAndName();
+            Dictionary<string, string> dictReportParams = GetReportParams();
+            dictReportParams.Add("pmrReportName", rptNamePath.Item1);
 
-            //frmReportVeiwer FrmReport = new frmReportVeiwer(rptNamePath.Item2, dataSets, dictReportParams);
-            ////frmReportVeiwer FrmReport = new frmReportVeiwer(dtReports);
-            //FrmReport.Text = "Stock Reports";
-            //FrmReport.Show();
+            frmReportVeiwer FrmReport = new frmReportVeiwer(rptNamePath.Item2, dataSets, dictReportParams);
+            FrmReport.Text = "Stock Reports";
+            FrmReport.Show();
         }
 
         private void cboRepType_SelectedValueChanged(object sender, EventArgs e)
@@ -296,11 +295,11 @@ namespace Project_POS.InventoryModule
                             SerialNoBuilder.Append($"'{transNo}',");
                         }
                         txtCompCode.Text = SerialNoBuilder.ToString().TrimEnd(',');
-                        SerialNo = txtCompCode.Text;
+                        CompCode = txtCompCode.Text;
                     }
                     else
                     {
-                        SerialNo = txtCompCode.Text = string.Empty;
+                        CompCode = txtCompCode.Text = string.Empty;
                     }
                 };
                 frm.ShowDialog();
