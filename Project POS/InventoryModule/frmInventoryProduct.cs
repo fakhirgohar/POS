@@ -30,7 +30,7 @@ namespace Project_POS.InventoryModule
                 try
                 {
 
-                    txtProdCode.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_Products", "ProdCode"));
+                    txtProdCode.Text = Convert.ToString(SqlQuery.GetNewTransNo());
                     SqlQuery.Insert(con, tran, "Inventory_Products", Global.ConnectionString, new Dictionary<string, object> { { "ProdCode", txtProdCode.Text }, { "ProdName", txtProdName.Text }, { "CatID", cboCat.SelectedValue } });
                     MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
                     MessageBox.Show(this, "Saved Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);

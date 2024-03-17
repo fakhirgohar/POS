@@ -21,7 +21,8 @@ namespace Project_POS.InventoryModule
             cboRepType.SelectedIndex = 0;
         }
         SqlConnection con; SqlTransaction tran;
-        string ItemCode;
+        string ItemCode, ProdCode, SerialNo, CatCode = string.Empty;
+        DataTable DtItemcode, dtProdCode, dtCompCode, dtCatCode = new DataTable();
 
         public enum RepType
         {
@@ -39,14 +40,81 @@ namespace Project_POS.InventoryModule
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            //Stock Report Item Wise
-            //Stock Report Serial Wise
-            //Stock Report Item & Serial Wise
-            //Stock Report Item, Serial &Price Wise
+            ///////////////////-------------------Old Method-------------------///////////////////
+
+            //string item = ItemCode;
+            //string prodCode = ProdCode;
+            //string serialNo = SerialNo;
+            //string catCode = CatCode;
+
+            //if (!chkItemCode.Checked)
+            //{
+            //    item = string.Empty;
+            //}
+            //if (!chkCategory.Checked)
+            //{
+            //    catCode = string.Empty;
+            //}
+            //if (!chkProduct.Checked)
+            //{
+            //    prodCode = string.Empty;
+            //}
+            //if (!chkSerialNo.Checked)
+            //{
+            //    serialNo = string.Empty;
+            //}
+
+            //if(string.IsNullOrEmpty(ItemCode) && string.IsNullOrEmpty(ItemCode) && string.IsNullOrEmpty(ItemCode) && string.IsNullOrEmpty(ItemCode))
+            //{
+            //    WhereClause = string.Empty;
+            //}
+            //if (!string.IsNullOrEmpty(ItemCode))
+            //{
+            //    WhereClause += $" Where ItemCode IN ({ItemCode})";
+            //}
+            //if (!string.IsNullOrEmpty(CatCode) && !string.IsNullOrEmpty(WhereClause))
+            //{
+            //    WhereClause += $" And CatId IN ({CatCode})";
+            //}
+            //if(!string.IsNullOrEmpty(CatCode) && string.IsNullOrEmpty(WhereClause))
+            //{
+            //    WhereClause += $" Where CatId IN ({CatCode})";
+            //}
+
+            //if (!string.IsNullOrEmpty(ProdCode) && !string.IsNullOrEmpty(WhereClause))
+            //{
+            //    WhereClause += $" And CatId IN ({ProdCode})";
+            //}
+            //if (!string.IsNullOrEmpty(ProdCode) && string.IsNullOrEmpty(WhereClause))
+            //{
+            //    WhereClause += $" Where CatId IN ({ProdCode})";
+            //}
+
+            //if (!string.IsNullOrEmpty(SerialNo) && !string.IsNullOrEmpty(WhereClause))
+            //{
+            //    WhereClause += $" And CatId IN ({SerialNo})";
+            //}
+            //if (!string.IsNullOrEmpty(SerialNo) && string.IsNullOrEmpty(WhereClause))
+            //{
+            //    WhereClause += $" Where CatId IN ({SerialNo})";
+            //}
+
+            //string WhereClause = string.Empty;
+            //WhereClause = string.IsNullOrEmpty(item) ? string.Empty : $" WHERE ItemCode IN ({item})";
+            //WhereClause += !string.IsNullOrEmpty(catCode) ? (string.IsNullOrEmpty(WhereClause) ? $" WHERE CatId IN ({catCode})" : $" AND CatId IN ({catCode})") : "";
+            //WhereClause += !string.IsNullOrEmpty(prodCode) ? (string.IsNullOrEmpty(WhereClause) ? $" WHERE ProdCode IN ({prodCode})" : $" AND ProdId IN ({prodCode})") : "";
+            //WhereClause += !string.IsNullOrEmpty(serialNo) ? (string.IsNullOrEmpty(WhereClause) ? $" WHERE SerialNo IN ({serialNo})" : $" AND SerialNo IN ({serialNo})") : "";
+
+            ///////////////////-------------------New Method-------------------///////////////////
+
+            string item = chkItemCode.Checked ? $"ItemCode IN ({ItemCode})" : string.Empty;
+            string prodCode = chkProduct.Checked ? $"ProdCode IN ({ProdCode})" : string.Empty;
+            //string serialNo = chkSerialNo.Checked ? $"SerialNo IN ({SerialNo})" : string.Empty;
+            string catCode = chkCategory.Checked ? $"CatId IN ({CatCode})" : string.Empty;
+            string WhereClause = string.Join(" AND ", new[] { item, prodCode, /*serialNo,*/ catCode }.Where(s => !string.IsNullOrEmpty(s)));
+            WhereClause = !string.IsNullOrEmpty(WhereClause) ? $"WHERE {WhereClause}" : string.Empty;
 
 
-            //Current Stock
-            //Back Date Stock
 
             if (cboRepCase.SelectedItem == null || cboRepCase.SelectedItem.ToString() == "")
             {
@@ -63,7 +131,7 @@ namespace Project_POS.InventoryModule
                 case nameof(RepType.CurrentStock):
                     dtReports.Clear();
                     dataSets.Clear();
-                    dtReports = CurrentStock();
+                    dtReports = CurrentStock(WhereClause);
                     dataSets.Add("DataSet1", dtReports);
                     break;
                 case nameof(RepType.BackDateStock):
@@ -78,14 +146,14 @@ namespace Project_POS.InventoryModule
                     break;
             }
 
-            Tuple<string, string> rptNamePath = ReportPathAndName();
-            Dictionary<string, string> dictReportParams = GetReportParams();
-            dictReportParams.Add("pmrReportName", rptNamePath.Item1);
+            //Tuple<string, string> rptNamePath = ReportPathAndName();
+            //Dictionary<string, string> dictReportParams = GetReportParams();
+            //dictReportParams.Add("pmrReportName", rptNamePath.Item1);
 
-            frmReportVeiwer FrmReport = new frmReportVeiwer(rptNamePath.Item2, dataSets, dictReportParams);
-            //frmReportVeiwer FrmReport = new frmReportVeiwer(dtReports);
-            FrmReport.Text = "Stock Reports";
-            FrmReport.Show();
+            //frmReportVeiwer FrmReport = new frmReportVeiwer(rptNamePath.Item2, dataSets, dictReportParams);
+            ////frmReportVeiwer FrmReport = new frmReportVeiwer(dtReports);
+            //FrmReport.Text = "Stock Reports";
+            //FrmReport.Show();
         }
 
         private void cboRepType_SelectedValueChanged(object sender, EventArgs e)
@@ -116,7 +184,6 @@ namespace Project_POS.InventoryModule
                 dtpToDate.Enabled = false;
                 chkFromDate.Enabled = false;
                 chkToDate.Enabled = false;
-
             }
         }
 
@@ -133,29 +200,26 @@ namespace Project_POS.InventoryModule
             }
         }
 
-        private DataTable CurrentStock()
+        private DataTable CurrentStock(string WhereClause)
         {
             DataTable dt = new DataTable();
-
             switch (cboRepCase.SelectedItem.ToString().Replace(" ", ""))
             {
                 case nameof(RepCase.StockReportItemWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, SUM(Qty) AS QTY FROM FN_CURRENT_STOCK() GROUP BY ItemCode");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, SUM(Qty) AS QTY FROM FN_CURRENT_STOCK() {WhereClause} GROUP BY ItemCode");
                     break;
                 case nameof(RepCase.StockReportSerialWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, SerialNo, Qty FROM FN_CURRENT_STOCK() GROUP BY ItemCode, SerialNo, Qty");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, SerialNo, Qty FROM FN_CURRENT_STOCK() {WhereClause} GROUP BY ItemCode, SerialNo, Qty");
                     break;
                 case nameof(RepCase.StockReportItemAndSerialWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, ItemName, SerialNo, Qty FROM FN_CURRENT_STOCK() GROUP BY ItemCode, ItemName, SerialNo, Qty");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, ItemName, SerialNo, Qty FROM FN_CURRENT_STOCK() {WhereClause} GROUP BY ItemCode, ItemName, SerialNo, Qty");
                     break;
                 case nameof(RepCase.StockReportItemSerialAndPriceWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT ItemCode, ItemName, SerialNo, Qty, (SELECT PPrice FROM Inventory_PurchaseDetail IPD WITH(NOLOCK) WHERE IPD.ItemCode = FN.ItemCode AND IPD.SerialNo = FN.SerialNo ) AS PPrice FROM FN_CURRENT_STOCK() FN GROUP BY ItemCode, ItemName, SerialNo, Qty");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, ItemName, SerialNo, Qty, (SELECT PPrice FROM Inventory_PurchaseDetail IPD WITH(NOLOCK) WHERE IPD.ItemCode = FN.ItemCode AND IPD.SerialNo = FN.SerialNo ) AS PPrice FROM FN_CURRENT_STOCK() FN {WhereClause} GROUP BY ItemCode, ItemName, SerialNo, Qty");
                     break;
                 default:
                     break;
             }
-            //dt = SqllExtension.Read(Global.Con, Global.tran, Global.ConnectionString, "SELECT * FROM FN_CURRENT_STOCK()");
-
             return dt;
         }
 
@@ -213,29 +277,125 @@ namespace Project_POS.InventoryModule
             return dictParm;
         }
 
-        private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
+        private void txtCompCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down)
             {
-                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemCode as TransNo FROM Inventory_Items where Active = 1");
-                frmFilter frm  = new frmFilter(dt);
-                frm.FormClosed += Frm_FormClosed;
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT CompCode as TransNo FROM Inventory_Company WITH(NOLOCK)");
+                frmFilter frm = new frmFilter(dt, dtCompCode);
+                frm.FormClosed += (Obj, key) =>
+                {
+                    var filter = Obj as frmFilter;
+                    dtCompCode = filter.DtFilterdRows.Copy();
+                    if (dtCompCode.Rows.Count > 0)
+                    {
+                        StringBuilder SerialNoBuilder = new StringBuilder();
+                        foreach (DataRow row in dtCompCode.Rows)
+                        {
+                            string transNo = row["TransNo"].ToString();
+                            SerialNoBuilder.Append($"'{transNo}',");
+                        }
+                        txtCompCode.Text = SerialNoBuilder.ToString().TrimEnd(',');
+                        SerialNo = txtCompCode.Text;
+                    }
+                    else
+                    {
+                        SerialNo = txtCompCode.Text = string.Empty;
+                    }
+                };
                 frm.ShowDialog();
             }
         }
 
-        private void Frm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            var filter = sender as frmFilter;
-            DataTable dt = filter.DtFilterdRows.Copy();
-            if(dt.Rows.Count > 0)
-            {
-                foreach (DataRow Row in dt.Rows)
-                {
-                    ItemCode += ItemCode = $",'{Row["TransNo"]}'";
-                }
-            }
+       
 
+        private void txtCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT CatID AS TransNo FROM Inventory_Category WITH(NOLOCK)");
+                frmFilter frm = new frmFilter(dt, dtCatCode);
+                frm.FormClosed += (Obj, key) =>
+                {
+                    var filter = Obj as frmFilter;
+                    dtCatCode = filter.DtFilterdRows.Copy();
+                    if (dtCatCode.Rows.Count > 0)
+                    {
+                        StringBuilder CatCodeBuilder = new StringBuilder();
+                        foreach (DataRow row in dtCatCode.Rows)
+                        {
+                            string transNo = row["TransNo"].ToString();
+                            CatCodeBuilder.Append($"'{transNo}',");
+                        }
+                        txtCategory.Text = CatCodeBuilder.ToString().TrimEnd(',');
+                        CatCode = txtCategory.Text;
+                    }
+                    else
+                    {
+                        CatCode = txtCategory.Text = string.Empty;
+                    }
+                };
+                frm.ShowDialog();
+            }
+        }
+
+        private void txtProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                DataTable dtQuery = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ProdCode AS TransNo FROM Inventory_Products WITH(NOLOCK)");
+                frmFilter frm = new frmFilter(dtQuery, dtProdCode);
+                frm.FormClosed += (Obj, key) =>
+                {
+                    var filter = Obj as frmFilter;
+                    dtProdCode = filter.DtFilterdRows.Copy();
+                    if (dtProdCode.Rows.Count > 0)
+                    {
+                        StringBuilder ProdCodeBuilder = new StringBuilder();
+                        foreach (DataRow row in dtProdCode.Rows)
+                        {
+                            string transNo = row["TransNo"].ToString();
+                            ProdCodeBuilder.Append($"'{transNo}',");
+                        }
+                        txtProduct.Text = ProdCodeBuilder.ToString().TrimEnd(',');
+                        ProdCode = txtProduct.Text;
+                    }
+                    else
+                    {
+                        ProdCode = txtProduct.Text = string.Empty;
+                    }
+                };
+                frm.ShowDialog();
+            }
+        }
+        private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                DataTable dtQuery = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemCode as TransNo FROM Inventory_Items where Active = 1");
+                frmFilter frm = new frmFilter(dtQuery, DtItemcode);
+                frm.FormClosed += (Obj, key) =>
+                {
+                    var filter = Obj as frmFilter;
+                    DtItemcode = filter.DtFilterdRows.Copy();
+                    if (DtItemcode.Rows.Count > 0)
+                    {
+                        StringBuilder itemCodeBuilder = new StringBuilder();
+                        foreach (DataRow row in DtItemcode.Rows)
+                        {
+                            string transNo = row["TransNo"].ToString();
+                            itemCodeBuilder.Append($"'{transNo}',");
+                        }
+                        txtItemCode.Text = itemCodeBuilder.ToString().TrimEnd(',');
+                        ItemCode = txtItemCode.Text;
+                    }
+                    else
+                    {
+                        ItemCode = txtItemCode.Text = string.Empty;
+                    }
+                };
+                frm.ShowDialog();
+            }
         }
     }
 }

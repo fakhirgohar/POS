@@ -20,18 +20,32 @@ namespace Project_POS.InventoryModule
             InitializeComponent();
         }
 
-        public frmFilter(DataTable DT)
+        public frmFilter(DataTable Dt1, DataTable Dt2)
         {
             InitializeComponent();
             DtDetial.Clear();
-            DtDetial = DT.Copy();
+            DtDetial = Dt1.Copy();
+            if ( Dt2 != null)
+            {
+                DtFilterdRows.Clear();
+                DtFilterdRows = Dt2.Copy();
+            }
             LoadData();
         }
 
         private void LoadData()
         {
+            
             dgvDetail.DataSource = DtDetial;
-            DtFilterdRows = DtDetial.Clone();
+            if(DtFilterdRows.Rows.Count > 0)
+            {
+                dgvFilterdRows.DataSource = DtFilterdRows;
+            }
+            else
+            {
+                DtFilterdRows = DtDetial.Clone();
+            }
+            
         }
 
         private void dgvDetail_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -32,7 +32,7 @@ namespace Project_POS.InventoryModule
                 try
                 {
                     InsertUpdateCheck();
-                    txtCompCode.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_Company", "CompCode"));
+                    txtCompCode.Text = Convert.ToString(SqlQuery.GetNewTransNo());
                     SqlQuery.Insert(con, tran, "Inventory_Company", Global.ConnectionString, new Dictionary<string, object> { { "CompCode", txtCompCode.Text }, { "CompName", txtCompName.Text } });
                     tran.Commit();
                     con.Dispose();

@@ -31,7 +31,7 @@ namespace Project_POS.PurchaseModule
                 try
                 {
                     if (string.IsNullOrEmpty(txtTypeName.Text)) { MessageBox.Show(this, "Enter Type Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                    txtTypeID.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_StoreType", "TypeID"));
+                    txtTypeID.Text = Convert.ToString(SqlQuery.GetNewTransNo());
                     SqlQuery.Insert(con, tran, "Inventory_StoreType", Global.ConnectionString, new Dictionary<string, object> { { "TypeID", txtTypeID.Text }, { "Name", txtTypeName.Text } });
                     tran.Commit();
                     con.Dispose();

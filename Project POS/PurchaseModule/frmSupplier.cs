@@ -32,7 +32,7 @@ namespace Project_POS.PurchaseModule
                 try
                 {
                     if (string.IsNullOrEmpty(txtSuppName.Text)) { MessageBox.Show(this, "Enter Supplier Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                    txtSuppCode.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_Suppliers", "SuppCode"));
+                    txtSuppCode.Text = Convert.ToString(SqlQuery.GetNewTransNo());
                     SqlQuery.Insert(con, tran, "Inventory_Suppliers", Global.ConnectionString, new Dictionary<string, object> { { "SuppCode", txtSuppCode.Text }, { "SuppName", txtSuppName.Text }, { "NIC", txtNIC.Text }, { "Address", txtAddress.Text }, { "PhoneNo", txtPhoneNo.Text }, { "Active", chkActive.Checked } });
                     tran.Commit();
                     con.Dispose();

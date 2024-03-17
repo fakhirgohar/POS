@@ -33,7 +33,7 @@ namespace Project_POS.InventoryModule
                 try
                 {
                     if (string.IsNullOrEmpty(txtCatName.Text)) { MessageBox.Show(this, "Enter Category Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                    txtCatID.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_Category", "CatID"));
+                    txtCatID.Text = Convert.ToString(SqlQuery.GetNewTransNo());
                     SqlQuery.Insert(con, tran, "Inventory_Category", Global.ConnectionString, new Dictionary<string, object> { { "CatID", txtCatID.Text }, { "CatName", txtCatName.Text } });
                     tran.Commit();
                     con.Dispose();

@@ -26,13 +26,14 @@ namespace Project_POS.SaleModule
         {
 
             using (con = new SqlConnection(Global.ConnectionString))
+            using (con = new SqlConnection(Global.ConnectionString))
             {
                 con.Open();
                 tran = con.BeginTransaction();
                 try
                 {
                     if (string.IsNullOrEmpty(txtCustName.Text)) { MessageBox.Show(this, "Enter Customer Name !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
-                    txtCustCode.Text = Convert.ToString(SqlQuery.GetTransNo(con, tran, Global.ConnectionString, "Inventory_Customer", "CustCode"));
+                    txtCustCode.Text = Convert.ToString(SqlQuery.GetNewTransNo());
                     SqlQuery.Insert(con, tran, "Inventory_Customer", Global.ConnectionString, new Dictionary<string, object> { { "CustCode", txtCustCode.Text }, { "CustName", txtCustName.Text }, { "NIC", txtNIC.Text }, { "Address", txtAddress.Text }, { "PhoneNo", txtPhoneNo.Text }, { "Active", chkActive.Checked } });
                     tran.Commit();
                     con.Dispose();
