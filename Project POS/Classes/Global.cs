@@ -17,7 +17,7 @@ namespace Project_POS.Classes
         public static string ConnectionString = "Data Source=SKYTERNE\\SQLEXPRESS;Initial Catalog=Testing;Integrated Security=True";
         public static SqlConnection Con = new SqlConnection();
         public static SqlTransaction tran;
-        public static string InventoryReportPath = @"InventoryModule\Reports\";
+        public static string InventoryReportPath = @"F:\POS\Project POS\InventoryModule\Reports\";
         public static string PurchaseReportPath = @"Inventory Reports ";
 
     }

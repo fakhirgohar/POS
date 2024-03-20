@@ -120,12 +120,6 @@ namespace POS
             LoadForm(frm);
         }
 
-        private void btnInvRep_Click(object sender, EventArgs e)
-        {
-            frmInventoryReports frm = new frmInventoryReports();
-            LoadForm(frm);
-        }
-
         private void btnPurchase_Click(object sender, EventArgs e)
         {
             ShowSubMenu(Purchase_Panel);
@@ -202,6 +196,18 @@ namespace POS
         private void btnSaleRep_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnInvRep_Click_1(object sender, EventArgs e)
+        {
+            frmInventoryReports frm = new frmInventoryReports();
+            LoadForm(frm);
+        }
+
+        private void btnStockDetail_Click(object sender, EventArgs e)
+        {
+            frmStockDetail frm = new frmStockDetail();
+            LoadForm(frm);
         }
 
         private void btnUser_Click(object sender, EventArgs e)

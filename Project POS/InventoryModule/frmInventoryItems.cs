@@ -370,5 +370,16 @@ namespace Project_POS.InventoryModule
         {
             Search();
         }
+
+        private void cboCat_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty(cboCat.Text.Trim()))
+            {
+                DataTable dtCat = SqlQuery.Read(con, tran, Global.ConnectionString, $"select ProdCode, ProdName from Inventory_Products WITH(NOLOCK) WHERE CatID = '{cboCat.SelectedValue}'");
+                cboSubCat.DisplayMember = "ProdName";
+                cboSubCat.ValueMember = "ProdCode";
+                cboSubCat.DataSource = dtCat;
+            }
+        }
     }
 }

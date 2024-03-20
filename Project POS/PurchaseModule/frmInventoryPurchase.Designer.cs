@@ -370,6 +370,9 @@
             // cboPayMode
             // 
             this.cboPayMode.FormattingEnabled = true;
+            this.cboPayMode.Items.AddRange(new object[] {
+            "Cash",
+            "Credit"});
             this.cboPayMode.Location = new System.Drawing.Point(105, 68);
             this.cboPayMode.Name = "cboPayMode";
             this.cboPayMode.Size = new System.Drawing.Size(239, 21);
@@ -424,6 +427,11 @@
             // txtSummary
             // 
             this.txtSummary.Location = new System.Drawing.Point(665, 332);
+            this.txtSummary.Maximum = new decimal(new int[] {
+            1661992960,
+            1808227885,
+            5,
+            0});
             this.txtSummary.Name = "txtSummary";
             this.txtSummary.Size = new System.Drawing.Size(178, 20);
             this.txtSummary.TabIndex = 10;
@@ -551,6 +559,11 @@
             // txtQtyTotal
             // 
             this.txtQtyTotal.Location = new System.Drawing.Point(644, 41);
+            this.txtQtyTotal.Maximum = new decimal(new int[] {
+            1661992960,
+            1808227885,
+            5,
+            0});
             this.txtQtyTotal.Name = "txtQtyTotal";
             this.txtQtyTotal.Size = new System.Drawing.Size(120, 20);
             this.txtQtyTotal.TabIndex = 6;
@@ -558,6 +571,11 @@
             // txtPPrice
             // 
             this.txtPPrice.Location = new System.Drawing.Point(518, 41);
+            this.txtPPrice.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
             this.txtPPrice.Name = "txtPPrice";
             this.txtPPrice.Size = new System.Drawing.Size(120, 20);
             this.txtPPrice.TabIndex = 5;
@@ -566,9 +584,19 @@
             // txtQty
             // 
             this.txtQty.Location = new System.Drawing.Point(392, 40);
+            this.txtQty.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(120, 20);
             this.txtQty.TabIndex = 4;
+            this.txtQty.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.txtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQty_KeyDown);
             this.txtQty.Leave += new System.EventHandler(this.txtQty_Leave);
             // 

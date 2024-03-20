@@ -147,9 +147,7 @@ namespace Project_POS.InventoryModule
             }
 
             Tuple<string, string> rptNamePath = ReportPathAndName();
-            Dictionary<string, string> dictReportParams = GetReportParams();
-            dictReportParams.Add("pmrReportName", rptNamePath.Item1);
-
+            Dictionary<string, string> dictReportParams = GetReportParams(rptNamePath.Item1);
             frmReportVeiwer FrmReport = new frmReportVeiwer(rptNamePath.Item2, dataSets, dictReportParams);
             FrmReport.Text = "Stock Reports";
             FrmReport.Show();
@@ -205,7 +203,7 @@ namespace Project_POS.InventoryModule
             switch (cboRepCase.SelectedItem.ToString().Replace(" ", ""))
             {
                 case nameof(RepCase.StockReportItemWise):
-                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, SUM(Qty) AS QTY FROM FN_CURRENT_STOCK() {WhereClause} GROUP BY ItemCode");
+                    dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, ItemName, SUM(Qty) AS QTY FROM FN_CURRENT_STOCK() {WhereClause} GROUP BY ItemCode,ItemName");
                     break;
                 case nameof(RepCase.StockReportSerialWise):
                     dt = SqlQuery.Read(Global.Con, Global.tran, Global.ConnectionString, $"SELECT ItemCode, SerialNo, Qty FROM FN_CURRENT_STOCK() {WhereClause} GROUP BY ItemCode, SerialNo, Qty");
@@ -243,7 +241,7 @@ namespace Project_POS.InventoryModule
                     switch (cboRepCase.SelectedItem.ToString().Replace(" ", ""))
                     {
                         case nameof(RepCase.StockReportItemWise):
-                            reportPath = Global.InventoryReportPath + @"StockReportItemWise.rdlc";
+                            reportPath = Global.InventoryReportPath + @"rptCurrentStockItemWise.rdlc";
                             reportName = "Stock-Report-Item-Wise";
                             break;
                         case nameof(RepCase.StockReportSerialWise):
@@ -269,11 +267,50 @@ namespace Project_POS.InventoryModule
             return new Tuple<string, string>(reportName, reportPath);
         }
 
-        private Dictionary<string, string> GetReportParams()
+        private Dictionary<string, string> GetReportParams(string ReportName)
         {
             Dictionary<string, string> dictParm = new Dictionary<string, string>();
-            //dictParm.Add("pmrReportName", "Stock Report Item Wise");
+
+            switch (cboRepType.SelectedItem.ToString().Replace(" ", ""))
+            {
+                case nameof(RepType.CurrentStock):
+                    switch (cboRepCase.SelectedItem.ToString().Replace(" ", ""))
+                    {
+                        case nameof(RepCase.StockReportItemWise):
+                            dictParm = GetStockReportItemWiseParameter();
+                            break;
+                        case nameof(RepCase.StockReportSerialWise):
+                            //reportPath = Global.InventoryReportPath + @"rptReportPath";
+                            //reportName = "rptReportName";
+                            break;
+                        case nameof(RepCase.StockReportItemAndSerialWise):
+                            //reportPath = Global.InventoryReportPath + @"rptReportPath";
+                            //reportName = "rptReportName";
+                            break;
+                        case nameof(RepCase.StockReportItemSerialAndPriceWise):
+                            //reportPath = Global.InventoryReportPath + @"rptReportPath";
+                            //reportName = "rptReportName";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+
+            dictParm.Add("pmrReportName", ReportName);
+            dictParm.Add("pmrComp", "Testing Company");
+            dictParm.Add("pmrDate", DateTime.Now.ToShortDateString());
             return dictParm;
+        }
+
+        private Dictionary<string, string> GetStockReportItemWiseParameter()
+        {
+             Dictionary<string, string> ItemDic = new Dictionary<string, string>();
+             return ItemDic;
         }
 
         private void txtCompCode_KeyDown(object sender, KeyEventArgs e)
@@ -306,7 +343,7 @@ namespace Project_POS.InventoryModule
             }
         }
 
-       
+
 
         private void txtCategory_KeyDown(object sender, KeyEventArgs e)
         {

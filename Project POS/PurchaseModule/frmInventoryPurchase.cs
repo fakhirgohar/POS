@@ -601,6 +601,7 @@ namespace Project_POS.PurchaseModule
             if (e.KeyCode == Keys.Right)
             {
                 btnAdd.Focus();
+                txtQtyTotal.Value = txtQty.Value * txtPPrice.Value; 
             }
             if (e.KeyCode == Keys.Left)
             {

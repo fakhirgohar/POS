@@ -111,16 +111,6 @@ F:\POS\Project POS\bin\Debug\Project POS.exe.config
 F:\POS\Project POS\bin\Debug\Project POS.exe
 F:\POS\Project POS\bin\Debug\Project POS.pdb
 F:\POS\Project POS\bin\Debug\Microsoft.SqlServer.Types.dll
-F:\POS\Project POS\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
-F:\POS\Project POS\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
 F:\POS\Project POS\obj\Debug\Project POS.csproj.AssemblyReference.cache
 F:\POS\Project POS\obj\Debug\POS.frmDashBoard.resources
 F:\POS\Project POS\obj\Debug\Project_POS.frmReportVeiwer.resources
@@ -190,3 +180,64 @@ E:\POS\Project POS\obj\Debug\Project POS.csproj.CoreCompileInputs.cache
 E:\POS\Project POS\obj\Debug\Project POS.csproj.CopyComplete
 E:\POS\Project POS\obj\Debug\Project POS.exe
 E:\POS\Project POS\obj\Debug\Project POS.pdb
+F:\POS\Project POS\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+F:\POS\Project POS\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+F:\POS\Project POS\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+F:\POS\Project POS\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+F:\POS\Project POS\bin\Debug\Microsoft.ReportViewer.Common.dll
+F:\POS\Project POS\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+F:\POS\Project POS\bin\Debug\Microsoft.ReportViewer.Design.dll
+F:\POS\Project POS\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+F:\POS\Project POS\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+F:\POS\Project POS\bin\Debug\EnvDTE.dll
+F:\POS\Project POS\bin\Debug\stdole.dll
+F:\POS\Project POS\bin\Debug\Microsoft.MSXML.dll
+F:\POS\Project POS\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANS\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANT\Microsoft.ReportViewer.Common.resources.dll
+F:\POS\Project POS\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANS\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANT\Microsoft.ReportViewer.DataVisualization.resources.dll
+F:\POS\Project POS\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANS\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANT\Microsoft.ReportViewer.Design.resources.dll
+F:\POS\Project POS\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANS\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\bin\Debug\zh-HANT\Microsoft.ReportViewer.WinForms.resources.dll
+F:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmStockDetail.resources

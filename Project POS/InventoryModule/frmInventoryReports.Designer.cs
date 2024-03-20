@@ -135,6 +135,7 @@
             // 
             // cboRepType
             // 
+            this.cboRepType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboRepType.FormattingEnabled = true;
             this.cboRepType.Items.AddRange(new object[] {
             "Current Stock",
@@ -309,6 +310,7 @@
             // 
             // cboRepCase
             // 
+            this.cboRepCase.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboRepCase.FormattingEnabled = true;
             this.cboRepCase.Items.AddRange(new object[] {
             "Stock Report Item Wise",

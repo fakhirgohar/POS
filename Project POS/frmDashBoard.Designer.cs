@@ -51,6 +51,7 @@ namespace POS
             this.btnPurchase = new System.Windows.Forms.Button();
             this.Inventory_Panel = new System.Windows.Forms.Panel();
             this.btnInvRep = new System.Windows.Forms.Button();
+            this.btnStockDetail = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnCategory = new System.Windows.Forms.Button();
@@ -58,14 +59,13 @@ namespace POS
             this.btnInventory = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelLoadForms = new System.Windows.Forms.Panel();
-            this.lblUser = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblUser = new System.Windows.Forms.Label();
             this.PanelMenu.SuspendLayout();
             this.Sale_Panel.SuspendLayout();
             this.Purchase_Panel.SuspendLayout();
             this.Inventory_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.PanelLoadForms.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -82,7 +82,7 @@ namespace POS
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(173, 813);
+            this.PanelMenu.Size = new System.Drawing.Size(173, 1043);
             this.PanelMenu.TabIndex = 0;
             // 
             // Sale_Panel
@@ -94,7 +94,7 @@ namespace POS
             this.Sale_Panel.Controls.Add(this.btn_SaleItem);
             this.Sale_Panel.Controls.Add(this.btnCustomer);
             this.Sale_Panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Sale_Panel.Location = new System.Drawing.Point(0, 539);
+            this.Sale_Panel.Location = new System.Drawing.Point(0, 551);
             this.Sale_Panel.Name = "Sale_Panel";
             this.Sale_Panel.Size = new System.Drawing.Size(173, 138);
             this.Sale_Panel.TabIndex = 6;
@@ -199,7 +199,7 @@ namespace POS
             this.btnSale.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnSale.Image = ((System.Drawing.Image)(resources.GetObject("btnSale.Image")));
             this.btnSale.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSale.Location = new System.Drawing.Point(0, 509);
+            this.btnSale.Location = new System.Drawing.Point(0, 521);
             this.btnSale.Margin = new System.Windows.Forms.Padding(0);
             this.btnSale.Name = "btnSale";
             this.btnSale.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -222,9 +222,9 @@ namespace POS
             this.Purchase_Panel.Controls.Add(this.btnPurchaseItem);
             this.Purchase_Panel.Controls.Add(this.btnSupplier);
             this.Purchase_Panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Purchase_Panel.Location = new System.Drawing.Point(0, 306);
+            this.Purchase_Panel.Location = new System.Drawing.Point(0, 330);
             this.Purchase_Panel.Name = "Purchase_Panel";
-            this.Purchase_Panel.Size = new System.Drawing.Size(173, 203);
+            this.Purchase_Panel.Size = new System.Drawing.Size(173, 191);
             this.Purchase_Panel.TabIndex = 4;
             // 
             // btnPurchaseRep
@@ -235,10 +235,10 @@ namespace POS
             this.btnPurchaseRep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPurchaseRep.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPurchaseRep.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnPurchaseRep.Location = new System.Drawing.Point(0, 170);
+            this.btnPurchaseRep.Location = new System.Drawing.Point(0, 165);
             this.btnPurchaseRep.Name = "btnPurchaseRep";
             this.btnPurchaseRep.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
-            this.btnPurchaseRep.Size = new System.Drawing.Size(173, 33);
+            this.btnPurchaseRep.Size = new System.Drawing.Size(173, 27);
             this.btnPurchaseRep.TabIndex = 6;
             this.btnPurchaseRep.Text = "Report";
             this.btnPurchaseRep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,7 +256,7 @@ namespace POS
             this.btnStore.Location = new System.Drawing.Point(0, 138);
             this.btnStore.Name = "btnStore";
             this.btnStore.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
-            this.btnStore.Size = new System.Drawing.Size(173, 32);
+            this.btnStore.Size = new System.Drawing.Size(173, 27);
             this.btnStore.TabIndex = 5;
             this.btnStore.Text = "Store";
             this.btnStore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -363,7 +363,7 @@ namespace POS
             this.btnPurchase.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnPurchase.Image = ((System.Drawing.Image)(resources.GetObject("btnPurchase.Image")));
             this.btnPurchase.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurchase.Location = new System.Drawing.Point(0, 276);
+            this.btnPurchase.Location = new System.Drawing.Point(0, 300);
             this.btnPurchase.Margin = new System.Windows.Forms.Padding(0);
             this.btnPurchase.Name = "btnPurchase";
             this.btnPurchase.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -379,6 +379,7 @@ namespace POS
             // 
             this.Inventory_Panel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.Inventory_Panel.Controls.Add(this.btnInvRep);
+            this.Inventory_Panel.Controls.Add(this.btnStockDetail);
             this.Inventory_Panel.Controls.Add(this.btnItem);
             this.Inventory_Panel.Controls.Add(this.btnProduct);
             this.Inventory_Panel.Controls.Add(this.btnCategory);
@@ -386,7 +387,7 @@ namespace POS
             this.Inventory_Panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.Inventory_Panel.Location = new System.Drawing.Point(0, 138);
             this.Inventory_Panel.Name = "Inventory_Panel";
-            this.Inventory_Panel.Size = new System.Drawing.Size(173, 138);
+            this.Inventory_Panel.Size = new System.Drawing.Size(173, 162);
             this.Inventory_Panel.TabIndex = 2;
             // 
             // btnInvRep
@@ -397,15 +398,33 @@ namespace POS
             this.btnInvRep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInvRep.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnInvRep.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnInvRep.Location = new System.Drawing.Point(0, 105);
+            this.btnInvRep.Location = new System.Drawing.Point(0, 135);
             this.btnInvRep.Name = "btnInvRep";
             this.btnInvRep.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
-            this.btnInvRep.Size = new System.Drawing.Size(173, 33);
-            this.btnInvRep.TabIndex = 4;
+            this.btnInvRep.Size = new System.Drawing.Size(173, 27);
+            this.btnInvRep.TabIndex = 5;
             this.btnInvRep.Text = "Report";
             this.btnInvRep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInvRep.UseVisualStyleBackColor = false;
-            this.btnInvRep.Click += new System.EventHandler(this.btnInvRep_Click);
+            this.btnInvRep.Click += new System.EventHandler(this.btnInvRep_Click_1);
+            // 
+            // btnStockDetail
+            // 
+            this.btnStockDetail.BackColor = System.Drawing.Color.Transparent;
+            this.btnStockDetail.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStockDetail.FlatAppearance.BorderSize = 0;
+            this.btnStockDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockDetail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnStockDetail.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnStockDetail.Location = new System.Drawing.Point(0, 108);
+            this.btnStockDetail.Name = "btnStockDetail";
+            this.btnStockDetail.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
+            this.btnStockDetail.Size = new System.Drawing.Size(173, 27);
+            this.btnStockDetail.TabIndex = 4;
+            this.btnStockDetail.Text = "Stock Detail";
+            this.btnStockDetail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStockDetail.UseVisualStyleBackColor = false;
+            this.btnStockDetail.Click += new System.EventHandler(this.btnStockDetail_Click);
             // 
             // btnItem
             // 
@@ -418,7 +437,7 @@ namespace POS
             this.btnItem.Location = new System.Drawing.Point(0, 81);
             this.btnItem.Name = "btnItem";
             this.btnItem.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
-            this.btnItem.Size = new System.Drawing.Size(173, 24);
+            this.btnItem.Size = new System.Drawing.Size(173, 27);
             this.btnItem.TabIndex = 3;
             this.btnItem.Text = "Item";
             this.btnItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -514,42 +533,41 @@ namespace POS
             // 
             // PanelLoadForms
             // 
-            this.PanelLoadForms.Controls.Add(this.label2);
-            this.PanelLoadForms.Controls.Add(this.lblUser);
             this.PanelLoadForms.Location = new System.Drawing.Point(178, 10);
             this.PanelLoadForms.Name = "PanelLoadForms";
-            this.PanelLoadForms.Size = new System.Drawing.Size(1347, 792);
+            this.PanelLoadForms.Size = new System.Drawing.Size(1734, 1008);
             this.PanelLoadForms.TabIndex = 1;
-            // 
-            // lblUser
-            // 
-            this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(58, 774);
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(35, 13);
-            this.lblUser.TabIndex = 0;
-            this.lblUser.Text = "label1";
-            this.lblUser.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 774);
+            this.label2.Location = new System.Drawing.Point(174, 1021);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "User :";
             this.label2.Visible = false;
             // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(216, 1021);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(35, 13);
+            this.lblUser.TabIndex = 0;
+            this.lblUser.Text = "label1";
+            this.lblUser.Visible = false;
+            // 
             // frmDashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1535, 813);
+            this.ClientSize = new System.Drawing.Size(1924, 1043);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.PanelLoadForms);
+            this.Controls.Add(this.lblUser);
             this.Controls.Add(this.PanelMenu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmDashBoard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -561,9 +579,8 @@ namespace POS
             this.Purchase_Panel.ResumeLayout(false);
             this.Inventory_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.PanelLoadForms.ResumeLayout(false);
-            this.PanelLoadForms.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -593,10 +610,11 @@ namespace POS
         private Button btnStoreType;
         private Panel PanelLoadForms;
         private Button button3;
-        private Button btnInvRep;
+        private Button btnStockDetail;
         private Button btnPurchaseRep;
         private Button btnSaleRep;
         private Label label2;
         private Label lblUser;
+        private Button btnInvRep;
     }
 }
