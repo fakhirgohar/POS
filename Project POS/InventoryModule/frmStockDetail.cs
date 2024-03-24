@@ -178,16 +178,16 @@ namespace Project_POS.InventoryModule
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string item = !string.IsNullOrEmpty(txtitemCode.Text.Trim()) ? $"ItemCode IN ({ItemsCode})" : string.Empty;
-            string prodCode = !string.IsNullOrEmpty(txtProduct.Text.Trim()) ? $"ProdCode IN ({ProdCode})" : string.Empty;
-            string compcode = !string.IsNullOrEmpty(txtCompany.Text.Trim()) ? $"SerialNo IN ({CompCode})" : string.Empty;
-            string catCode = !string.IsNullOrEmpty(txtCategory.Text.Trim()) ? $"CatId IN ({CatCode})" : string.Empty;
-            string serial = !string.IsNullOrEmpty(txtSerial.Text.Trim()) ? $"SerialNo IN ({Serial})" : string.Empty;
+            string item = !string.IsNullOrEmpty(txtitemCode.Text.Trim()) ? $"FnCrr.ItemCode IN ({ItemsCode})" : string.Empty;
+            string prodCode = !string.IsNullOrEmpty(txtProduct.Text.Trim()) ? $"FnCrr.ProdCode IN ({ProdCode})" : string.Empty;
+            string compcode = !string.IsNullOrEmpty(txtCompany.Text.Trim()) ? $"FnCrr.SerialNo IN ({CompCode})" : string.Empty;
+            string catCode = !string.IsNullOrEmpty(txtCategory.Text.Trim()) ? $"FnCrr.CatId IN ({CatCode})" : string.Empty;
+            string serial = !string.IsNullOrEmpty(txtSerial.Text.Trim()) ? $"FnCrr.SerialNo IN ({Serial})" : string.Empty;
             string WhereClause = string.Join(" AND ", new[] { item, prodCode, compcode, catCode, serial }.Where(s => !string.IsNullOrEmpty(s)));
             WhereClause = !string.IsNullOrEmpty(WhereClause) ? $"WHERE {WhereClause}" : string.Empty;
 
 
-            dtDetail = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemCode, ItemName, SerialNo, Qty, CompName as Company, ProdName as Product, CatName as Category FROM FN_CURRENT_STOCK()   {WhereClause} ");
+            dtDetail = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT FnCrr.ItemCode, ItemName, FnCrr.SerialNo, Qty, CompName as Company, ProdName as Product, CatName as Category, FnP.PPrice FROM FN_CURRENT_STOCK() FnCrr LEFT JOIN FN_Get_PPrice() FnP on FnP.ItemCode = FnCrr.ItemCode and FnP.SerialNo = FnCrr.SerialNo   {WhereClause} ");
             dgvDetail.DataSource =  dtDetail;
         }
     }

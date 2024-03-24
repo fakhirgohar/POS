@@ -104,7 +104,7 @@
             this.btnHelp});
             this.tsItem.Location = new System.Drawing.Point(0, 0);
             this.tsItem.Name = "tsItem";
-            this.tsItem.Size = new System.Drawing.Size(882, 75);
+            this.tsItem.Size = new System.Drawing.Size(879, 75);
             this.tsItem.TabIndex = 20;
             this.tsItem.Text = "toolStrip1";
             // 
@@ -637,7 +637,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 648);
+            this.ClientSize = new System.Drawing.Size(879, 648);
             this.Controls.Add(this.grpDetail);
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);

@@ -139,7 +139,8 @@ namespace POS
 
         private void btnSupplierPayment_Click(object sender, EventArgs e)
         {
-
+            frmSupplierPayment frm = new frmSupplierPayment();
+            LoadForm(frm);
         }
 
         private void btnPurchaseReturn_Click(object sender, EventArgs e)

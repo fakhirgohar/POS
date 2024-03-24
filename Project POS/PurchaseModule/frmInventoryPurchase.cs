@@ -59,7 +59,7 @@ namespace Project_POS.PurchaseModule
         {
             dgvDetail.Columns["Sno"].Visible = false;
             dgvDetail.Columns["StoreName"].Visible = false;
-            dgvDetail.Columns["TotalPaidAmount"].Visible = false;
+            dgvDetail.Columns["TotalPayableAmount"].Visible = false;
             dgvDetail.Columns["ItemCode"].Width = 120;
             dgvDetail.Columns["ItemName"].Width = 120;
             dgvDetail.Columns["SerialNo"].Width = 150;
@@ -102,7 +102,7 @@ namespace Project_POS.PurchaseModule
                     {
                         int Sno = 1;
                         txtBillNo.Text = SqlQuery.GetNewTransNo();
-                        SqlQuery.Insert(con, tran, "Inventory_Purchase", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "ReceiptNo", txtReceiptNo.Text }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TotalPaidAmount", txtSummary.Value }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Insert(con, tran, "Inventory_Purchase", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "ReceiptNo", txtReceiptNo.Text }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TotalPayableAmount", txtSummary.Value }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
 
                         foreach (DataRow Row in dtDetail.Rows)
                         {
@@ -148,7 +148,7 @@ namespace Project_POS.PurchaseModule
                     tran = con.BeginTransaction();
                     try
                     {
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Purchase", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "TotalPaidAmount", txtSummary.Value }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Purchase", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "TotalPayableAmount", txtSummary.Value }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
                         SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_PurchaseDetail", $"BillNo='{txtBillNo.Text}'");
 
                         foreach (DataRow Row in dtDetail.Rows)
@@ -403,7 +403,7 @@ namespace Project_POS.PurchaseModule
             dtDetail.Columns.Add("StoreID", typeof(string));
             dtDetail.Columns.Add("StoreName", typeof(string));
             dtDetail.Columns.Add("PPrice", typeof(string));
-            dtDetail.Columns.Add("TotalPaidAmount", typeof(string));
+            dtDetail.Columns.Add("TotalPayableAmount", typeof(string));
         }
 
         private void IsEnable(bool cond)

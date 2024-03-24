@@ -76,9 +76,14 @@
             // 
             // dgvLov
             // 
+            this.dgvLov.AllowUserToAddRows = false;
+            this.dgvLov.AllowUserToDeleteRows = false;
+            this.dgvLov.AllowUserToResizeColumns = false;
+            this.dgvLov.AllowUserToResizeRows = false;
             this.dgvLov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLov.Location = new System.Drawing.Point(4, 14);
             this.dgvLov.Name = "dgvLov";
+            this.dgvLov.RowHeadersVisible = false;
             this.dgvLov.Size = new System.Drawing.Size(764, 334);
             this.dgvLov.TabIndex = 0;
             this.dgvLov.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLov_CellDoubleClick);

@@ -31,6 +31,7 @@
             this.grpFilter = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtSerial = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtitemCode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.grpDetail = new System.Windows.Forms.GroupBox();
             this.dgvDetail = new System.Windows.Forms.DataGridView();
-            this.txtSerial = new System.Windows.Forms.TextBox();
             this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SerialNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +49,7 @@
             this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpFilter.SuspendLayout();
             this.grpDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
@@ -92,6 +93,15 @@
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Serial :";
+            // 
+            // txtSerial
+            // 
+            this.txtSerial.Location = new System.Drawing.Point(236, 19);
+            this.txtSerial.Multiline = true;
+            this.txtSerial.Name = "txtSerial";
+            this.txtSerial.Size = new System.Drawing.Size(132, 24);
+            this.txtSerial.TabIndex = 14;
+            this.txtSerial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerial_KeyDown);
             // 
             // label5
             // 
@@ -193,21 +203,13 @@
             this.Qty,
             this.Company,
             this.Category,
-            this.Product});
+            this.Product,
+            this.PPrice});
             this.dgvDetail.Location = new System.Drawing.Point(6, 10);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.RowHeadersVisible = false;
-            this.dgvDetail.Size = new System.Drawing.Size(1003, 507);
+            this.dgvDetail.Size = new System.Drawing.Size(1004, 507);
             this.dgvDetail.TabIndex = 0;
-            // 
-            // txtSerial
-            // 
-            this.txtSerial.Location = new System.Drawing.Point(236, 19);
-            this.txtSerial.Multiline = true;
-            this.txtSerial.Name = "txtSerial";
-            this.txtSerial.Size = new System.Drawing.Size(132, 24);
-            this.txtSerial.TabIndex = 14;
-            this.txtSerial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerial_KeyDown);
             // 
             // ItemCode
             // 
@@ -221,14 +223,14 @@
             this.ItemName.DataPropertyName = "ItemName";
             this.ItemName.HeaderText = "ItemName";
             this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 170;
+            this.ItemName.Width = 150;
             // 
             // SerialNo
             // 
             this.SerialNo.DataPropertyName = "SerialNo";
             this.SerialNo.HeaderText = "SerialNo";
             this.SerialNo.Name = "SerialNo";
-            this.SerialNo.Width = 260;
+            this.SerialNo.Width = 240;
             // 
             // Qty
             // 
@@ -242,21 +244,28 @@
             this.Company.DataPropertyName = "Company";
             this.Company.HeaderText = "Company";
             this.Company.Name = "Company";
-            this.Company.Width = 130;
+            this.Company.Width = 120;
             // 
             // Category
             // 
             this.Category.DataPropertyName = "Category";
             this.Category.HeaderText = "Category";
             this.Category.Name = "Category";
-            this.Category.Width = 130;
+            this.Category.Width = 120;
             // 
             // Product
             // 
             this.Product.DataPropertyName = "Product";
             this.Product.HeaderText = "Product";
             this.Product.Name = "Product";
-            this.Product.Width = 130;
+            this.Product.Width = 120;
+            // 
+            // PPrice
+            // 
+            this.PPrice.DataPropertyName = "PPrice";
+            this.PPrice.HeaderText = "PPrice";
+            this.PPrice.Name = "PPrice";
+            this.PPrice.Width = 70;
             // 
             // frmStockDetail
             // 
@@ -298,5 +307,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Company;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PPrice;
     }
 }
