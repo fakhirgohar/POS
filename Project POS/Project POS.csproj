@@ -191,6 +191,12 @@
     <Compile Include="SaleModule\frmAddSerial.Designer.cs">
       <DependentUpon>frmAddSerial.cs</DependentUpon>
     </Compile>
+    <Compile Include="SaleModule\frmCustomerPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaleModule\frmCustomerPayment.Designer.cs">
+      <DependentUpon>frmCustomerPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleModule\frmInventoryCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaleModule\frmAddSerial.resx">
       <DependentUpon>frmAddSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleModule\frmCustomerPayment.resx">
+      <DependentUpon>frmCustomerPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaleModule\frmInventoryCustomer.resx">
       <DependentUpon>frmInventoryCustomer.cs</DependentUpon>

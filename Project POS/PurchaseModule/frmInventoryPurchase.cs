@@ -1,4 +1,5 @@
-﻿using Project_POS.Classes;
+﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Project_POS.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,13 @@ namespace Project_POS.PurchaseModule
             InitializeComponent();
             AddGridCountColumn();
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
+            SetCbo();
         }
         #region functions
 
         private void GenerateSerials()
         {
-            dtDetail.Rows.Clear();
+            //dtDetail.Rows.Clear();
             string itemCode = cboItems.SelectedValue.ToString();
             string lastTwoWords = GetLastTwoCharacters(itemCode);
             string lastTwoYearDigits = DateTime.Now.ToString("yy");
@@ -59,7 +61,7 @@ namespace Project_POS.PurchaseModule
         {
             dgvDetail.Columns["Sno"].Visible = false;
             dgvDetail.Columns["StoreName"].Visible = false;
-            dgvDetail.Columns["TotalPayableAmount"].Visible = false;
+           // dgvDetail.Columns["TotalPayableAmount"].Visible = false;
             dgvDetail.Columns["ItemCode"].Width = 120;
             dgvDetail.Columns["ItemName"].Width = 120;
             dgvDetail.Columns["SerialNo"].Width = 150;
@@ -94,15 +96,22 @@ namespace Project_POS.PurchaseModule
         {
             if (InsertUpdateValidate())
             {
+                txtBillNo.Text = SqlQuery.GetNewTransNo();
                 using (con = new SqlConnection(Global.ConnectionString))
                 {
                     con.Open();
                     SqlTransaction tran = con.BeginTransaction();
                     try
                     {
+                        Decimal TotalPayble = txtSummary.Value;
+                        if(cboPayMode.SelectedValue.ToString() == "Cash")
+                        {
+                            TotalPayble = 0;
+                            SqlQuery.Insert(con, tran, "Inventory_SuppliersPayment", Global.ConnectionString, new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text + SqlQuery.GetNewTransNo() }, { "ReceiptDate", dtpBillDate.Value }, { "PBillNo", txtBillNo.Text }, { "SuppCode", cboSuppliers.SelectedValue.ToString() }, { "PaidAmount", txtSummary.Value }, { "Remarks", txtRemarks.Text }, { "PayMode", cboPayMode.SelectedValue.ToString() }, { "TransDate", DateTime.Now}, { "TransTime", DateTime.Now.ToShortTimeString() }, { "UserId", "001" } });
+                            SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtBillNo.Text }, { "PTable", "Inventory_SuppliersPayment" }, { "Status", "New" }, { "UserId", "001" }, { "PkeyDate", dtpBillDate.Value }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
+                        }
                         int Sno = 1;
-                        txtBillNo.Text = SqlQuery.GetNewTransNo();
-                        SqlQuery.Insert(con, tran, "Inventory_Purchase", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "ReceiptNo", txtReceiptNo.Text }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TotalPayableAmount", txtSummary.Value }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Insert(con, tran, "Inventory_Purchase", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "ReceiptNo", txtReceiptNo.Text }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TotalPayableAmount", TotalPayble }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
 
                         foreach (DataRow Row in dtDetail.Rows)
                         {
@@ -144,11 +153,20 @@ namespace Project_POS.PurchaseModule
             {
                 using (con = new SqlConnection(Global.ConnectionString))
                 {
+                    Decimal TotalPayble = txtSummary.Value;
+                    if (cboPayMode.SelectedValue.ToString() == "Cash")
+                    {
+                        TotalPayble = 0;
+                        SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_SuppliersPayment", $"PBillNo='{txtBillNo.Text}' AND ReceiptNo = '{txtReceiptNo.Text}'");
+                        SqlQuery.Insert(con, tran, "Inventory_SuppliersPayment", Global.ConnectionString, new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text + SqlQuery.GetNewTransNo() }, { "ReceiptDate", dtpBillDate.Value }, { "PBillNo", txtBillNo.Text }, { "SuppCode", cboSuppliers.SelectedValue.ToString() }, { "PaidAmount", txtSummary.Value }, { "Remarks", txtRemarks.Text }, { "PayMode", cboPayMode.SelectedValue.ToString() }, { "TransDate", DateTime.Now }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "UserId", "001" } });
+                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtBillNo.Text }, { "PTable", "Inventory_SuppliersPayment" }, { "Status", "Edit" }, { "UserId", "001" }, { "PkeyDate", dtpBillDate.Value }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
+
+                    }
                     con.Open();
                     tran = con.BeginTransaction();
                     try
                     {
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Purchase", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "TotalPayableAmount", txtSummary.Value }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Purchase", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "TotalPayableAmount", TotalPayble }, { "SuppCode", cboSuppliers.SelectedValue }, { "Purchaser", txtPurchaser.Text }, { "PaymentTerm", cboPayMode.Text }, { "BillDate", dtpBillDate.Value.Date }, { "ReceiveDate", dtpReceiveDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "BillTransDate", DateTime.Now.Date }, { "BillTransTime", DateTime.Now.TimeOfDay } });
                         SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_PurchaseDetail", $"BillNo='{txtBillNo.Text}'");
 
                         foreach (DataRow Row in dtDetail.Rows)
@@ -201,7 +219,13 @@ namespace Project_POS.PurchaseModule
                                 MessageBox.Show(this, "Cannot Delete \nThere is Sale Against this Purchase !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return;
                             }
                         }
+                        if(SqlQuery.IsFound(con, tran, Global.ConnectionString, "Inventory_SuppliersPayment", $"PBillNo = '{txtBillNo.Text}' AND PayMode != 'Cash'"))
+                        {
+                            MessageBox.Show(this, "Cannot Delete \nThis is Credit Purchase and found a Payment !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return;
+
+                        }
                         SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_Purchase", $" BillNo = '{txtBillNo.Text}'");
+                        SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_SuppliersPayment", $"PBillNo='{txtBillNo.Text}'");
                         SqlQuery.ExecuteNonQuery(con, tran, Global.ConnectionString, $"DELETE FROM Inventory_ItemsDetail WHERE SerialNo IN (SELECT SerialNo FROM Inventory_PurchaseDetail WITH(NOLOCK) WHERE BillNo = '{txtBillNo.Text}')");
                         DeleteItemsDetail(dtDetail, con, tran);
                         UpdateItems(dtDetail, con, tran);
@@ -230,6 +254,8 @@ namespace Project_POS.PurchaseModule
             }
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Edit);
             IsEnable(true);
+            cboPayMode.Enabled = cboPayMode.SelectedIndex == 1 ? false : true;
+
         }
         private void Cancel()
         {
@@ -261,19 +287,20 @@ namespace Project_POS.PurchaseModule
                 if (dtMaster.Rows.Count > 0)
                 {
                     DataRow row = dtMaster.Rows[0];
+                    int PayModeIndex = row["PaymentTerm"].ToString() == "Cash" ? 0 : 0;
                     dtpReceiveDate.Value = Convert.ToDateTime(row["ReceiveDate"]);
                     dtpBillDate.Value = Convert.ToDateTime(row["BillDate"]);
                     txtBillNo.Text = row["BillNo"].ToString();
                     txtReceiptNo.Text = row["ReceiptNo"].ToString();
                     txtPurchaser.Text = row["Purchaser"].ToString();
-                    cboPayMode.Text = row["PaymentTerm"].ToString();
+                    cboPayMode.SelectedIndex = PayModeIndex;
                     cboSuppliers.SelectedValue = row["SuppCode"].ToString();
                     txtRemarks.Text = row["Remarks"].ToString();
                 }
 
                 dtDetail.Rows.Clear();
                 StringBuilder StrB = new StringBuilder();
-                StrB.AppendLine("SELECT IPD.Sno, IPD.BillNo, IPD.ItemCode, II.ItemName, IPD.SerialNo, IPD.Qty, IPD.StoreID, ISS.Name AS StoreName, IPD.PPrice FROM Inventory_PurchaseDetail IPD WITH(NOLOCK)");
+                StrB.AppendLine("SELECT IPD.Sno, IPD.ItemCode, II.ItemName, IPD.SerialNo, IPD.Qty, IPD.StoreID, ISS.Name AS StoreName, IPD.PPrice FROM Inventory_PurchaseDetail IPD WITH(NOLOCK)");
                 StrB.AppendLine("LEFT JOIN Inventory_Items II WITH(NOLOCK) ON II.ItemCode = IPD.ItemCode ");
                 StrB.AppendLine("LEFT JOIN Inventory_Store ISS WITH(NOLOCK) ON ISS.StoreID = IPD.StoreID");
                 StrB.AppendLine($"WHERE IPD.BillNo = '{txtBillNo.Text}'");

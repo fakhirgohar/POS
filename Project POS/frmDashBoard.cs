@@ -185,7 +185,8 @@ namespace POS
 
         private void btnCustomerPayment_Click(object sender, EventArgs e)
         {
-
+            frmCustomerPayment frm = new frmCustomerPayment();
+            LoadForm(frm);
         }
 
         private void btnSaleReturn_Click(object sender, EventArgs e)

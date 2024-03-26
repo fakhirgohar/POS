@@ -39,6 +39,7 @@
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.btnHelp = new System.Windows.Forms.ToolStripButton();
             this.grpMain = new System.Windows.Forms.GroupBox();
+            this.cboPayMode = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCustName = new System.Windows.Forms.TextBox();
-            this.cboPayMode = new System.Windows.Forms.TextBox();
             this.dtpBillDate = new System.Windows.Forms.DateTimePicker();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.cboCustomer = new System.Windows.Forms.ComboBox();
@@ -93,7 +93,7 @@
             this.btnHelp});
             this.tsItem.Location = new System.Drawing.Point(0, 0);
             this.tsItem.Name = "tsItem";
-            this.tsItem.Size = new System.Drawing.Size(811, 75);
+            this.tsItem.Size = new System.Drawing.Size(808, 75);
             this.tsItem.TabIndex = 22;
             this.tsItem.Text = "toolStrip1";
             // 
@@ -202,6 +202,7 @@
             // 
             // grpMain
             // 
+            this.grpMain.Controls.Add(this.cboPayMode);
             this.grpMain.Controls.Add(this.label7);
             this.grpMain.Controls.Add(this.label6);
             this.grpMain.Controls.Add(this.label5);
@@ -210,7 +211,6 @@
             this.grpMain.Controls.Add(this.label2);
             this.grpMain.Controls.Add(this.label1);
             this.grpMain.Controls.Add(this.txtCustName);
-            this.grpMain.Controls.Add(this.cboPayMode);
             this.grpMain.Controls.Add(this.dtpBillDate);
             this.grpMain.Controls.Add(this.txtRemarks);
             this.grpMain.Controls.Add(this.cboCustomer);
@@ -221,6 +221,17 @@
             this.grpMain.Size = new System.Drawing.Size(785, 125);
             this.grpMain.TabIndex = 23;
             this.grpMain.TabStop = false;
+            // 
+            // cboPayMode
+            // 
+            this.cboPayMode.FormattingEnabled = true;
+            this.cboPayMode.Items.AddRange(new object[] {
+            "Cash",
+            "Credit"});
+            this.cboPayMode.Location = new System.Drawing.Point(487, 44);
+            this.cboPayMode.Name = "cboPayMode";
+            this.cboPayMode.Size = new System.Drawing.Size(200, 21);
+            this.cboPayMode.TabIndex = 14;
             // 
             // label7
             // 
@@ -299,13 +310,6 @@
             this.txtCustName.Size = new System.Drawing.Size(200, 20);
             this.txtCustName.TabIndex = 6;
             // 
-            // cboPayMode
-            // 
-            this.cboPayMode.Location = new System.Drawing.Point(487, 45);
-            this.cboPayMode.Name = "cboPayMode";
-            this.cboPayMode.Size = new System.Drawing.Size(200, 20);
-            this.cboPayMode.TabIndex = 5;
-            // 
             // dtpBillDate
             // 
             this.dtpBillDate.CustomFormat = "dd MMM yyyy";
@@ -374,6 +378,11 @@
             // txtQty
             // 
             this.txtQty.Location = new System.Drawing.Point(335, 52);
+            this.txtQty.Maximum = new decimal(new int[] {
+            276447232,
+            23283,
+            0,
+            0});
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(120, 22);
             this.txtQty.TabIndex = 16;
@@ -392,6 +401,7 @@
             this.cboItems.Name = "cboItems";
             this.cboItems.Size = new System.Drawing.Size(121, 21);
             this.cboItems.TabIndex = 14;
+            this.cboItems.SelectedValueChanged += new System.EventHandler(this.cboItems_SelectedValueChanged);
             // 
             // label8
             // 
@@ -406,6 +416,11 @@
             // txtSummary
             // 
             this.txtSummary.Location = new System.Drawing.Point(626, 336);
+            this.txtSummary.Maximum = new decimal(new int[] {
+            1569325056,
+            23283064,
+            0,
+            0});
             this.txtSummary.Name = "txtSummary";
             this.txtSummary.Size = new System.Drawing.Size(142, 22);
             this.txtSummary.TabIndex = 12;
@@ -447,6 +462,7 @@
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel1
             // 
@@ -504,7 +520,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 591);
+            this.ClientSize = new System.Drawing.Size(808, 591);
             this.Controls.Add(this.grpDetail);
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
@@ -548,7 +564,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCustName;
-        private System.Windows.Forms.TextBox cboPayMode;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -567,5 +582,6 @@
         private System.Windows.Forms.ComboBox cboItems;
         private System.Windows.Forms.TextBox txtSerial;
         private System.Windows.Forms.DataGridViewImageColumn btnDel;
+        private System.Windows.Forms.ComboBox cboPayMode;
     }
 }

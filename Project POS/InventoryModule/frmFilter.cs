@@ -14,13 +14,14 @@ namespace Project_POS.InventoryModule
     {
         public DataTable DtDetial  = new DataTable();
         public DataTable DtFilterdRows = new DataTable();
+        bool SingleSelect = false;
 
         public frmFilter()
         {
             InitializeComponent();
         }
 
-        public frmFilter(DataTable Dt1, DataTable Dt2)
+        public frmFilter(DataTable Dt1, DataTable Dt2, bool SingleSelection = false)
         {
             InitializeComponent();
             DtDetial.Clear();
@@ -28,7 +29,8 @@ namespace Project_POS.InventoryModule
             if ( Dt2 != null)
             {
                 DtFilterdRows.Clear();
-                DtFilterdRows = Dt2.Copy();
+                DtFilterdRows = Dt2.DefaultView.ToTable(false, "TransNo");
+                SingleSelect = SingleSelection;
             }
             LoadData();
         }
@@ -54,8 +56,19 @@ namespace Project_POS.InventoryModule
             {
                 DataRow newRow = DtFilterdRows.NewRow();
                 newRow["TransNo"] = dgvDetail.Rows[e.RowIndex].Cells["TransNo"].Value;
-                DtFilterdRows.Rows.Add(newRow);
+
+                if (!SingleSelect)
+                {
+                    DtFilterdRows.Rows.Add(newRow);
+                }
+                else
+                {
+                    DtFilterdRows.Rows.Clear();
+                    DtFilterdRows.Rows.Add(newRow);
+                }
+
                 dgvFilterdRows.DataSource = DtFilterdRows;
+
             }
         }
 

@@ -36,11 +36,16 @@ namespace Project_POS.SaleModule
                 {
                     if (InsertUpdateValidate(dtDetail))
                     {
+                        decimal TotalRecievAble = txtSummary.Value;
+                        if(cboPayMode.SelectedValue.ToString() == "Cash")
+                        {
+                            TotalRecievAble = 0;
 
+                        }
                         txtBillNo.Text = SqlQuery.GetNewTransNo();
                         string CustCode = string.IsNullOrEmpty(cboCustomer.Text) ? "1" : cboCustomer.Text;
                         string ReceiptNo = string.IsNullOrEmpty(txtReceiptNo.Text.Trim()) ? txtBillNo.Text : txtReceiptNo.Text;
-                        SqlQuery.Insert(con, tran, "Inventory_Sale", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", cboPayMode.Text }, { "CustCode", CustCode }, { "Advance", "" }, { "SaleAmount", txtSummary.Value.ToString() }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Insert(con, tran, "Inventory_Sale", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", cboPayMode.SelectedValue.ToString() }, { "CustCode", CustCode }, { "Advance", "" }, { "TotalReceiveAble", TotalRecievAble }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
                         int Sno = 1;
                         foreach (DataRow Row in dtDetail.Rows)
                         {
@@ -96,8 +101,14 @@ namespace Project_POS.SaleModule
                 {
                     if (InsertUpdateValidate(dtDetail))
                     {
+                        decimal TotalRecievAble = txtSummary.Value;
+                        if (cboPayMode.SelectedValue.ToString() == "Cash")
+                        {
+                            TotalRecievAble = 0;
+
+                        }
                         string ReceiptNo = string.IsNullOrEmpty(txtReceiptNo.Text.Trim()) ? txtBillNo.Text : txtReceiptNo.Text;
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Sale", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", cboPayMode.Text }, { "CustCode", "" }, { "Advance", "" }, { "SaleAmount", txtSummary.Value.ToString() }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Sale", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", cboPayMode.SelectedValue.ToString() }, { "CustCode", "" }, { "Advance", "" }, { "TotalReceiveAble", TotalRecievAble }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
 
                         SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_SaleDetail", $"BillNo='{txtBillNo.Text}'");
                         InsertItemDetail(dtDetail, con, tran);
@@ -555,6 +566,21 @@ namespace Project_POS.SaleModule
             {
                 txtCustName.Text = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT CustName FROM Inventory_Customer WITH(NOLOCK) WHERE CustCode = '{cboCustomer.SelectedValue.ToString()}'");
             }
+        }
+
+        private void cboItems_SelectedValueChanged(object sender, EventArgs e)
+        {
+             if(cboItems.SelectedValue != null)
+            {
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT ItemName, BalQty FROM Inventory_Items WITH(NOLOCK) WHERE ItemCode = '{cboItems.SelectedValue.ToString()}'");
+                txtItemName.Text = dt.Rows[0]["ItemName"].ToString();
+                txtQty.Value = Convert.ToDecimal(dt.Rows[0]["BalQty"].ToString());
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

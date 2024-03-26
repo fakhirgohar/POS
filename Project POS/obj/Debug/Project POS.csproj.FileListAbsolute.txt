@@ -242,3 +242,4 @@ F:\POS\Project POS\bin\Debug\zh-HANS\Microsoft.ReportViewer.WinForms.resources.d
 F:\POS\Project POS\bin\Debug\zh-HANT\Microsoft.ReportViewer.WinForms.resources.dll
 F:\POS\Project POS\obj\Debug\Project_POS.InventoryModule.frmStockDetail.resources
 F:\POS\Project POS\obj\Debug\Project_POS.PurchaseModule.frmSupplierPayment.resources
+F:\POS\Project POS\obj\Debug\Project_POS.SaleModule.frmCustomerPayment.resources
