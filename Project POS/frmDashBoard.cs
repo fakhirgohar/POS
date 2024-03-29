@@ -163,7 +163,8 @@ namespace POS
 
         private void btnPurchaseRep_Click(object sender, EventArgs e)
         {
-
+            frmPurchaseSummary frm = new frmPurchaseSummary();
+            LoadForm(frm);
         }
 
         private void btnSale_Click(object sender, EventArgs e)
@@ -185,7 +186,7 @@ namespace POS
 
         private void btnCustomerPayment_Click(object sender, EventArgs e)
         {
-            frmCustomerPayment frm = new frmCustomerPayment();
+            frmCustomerCollection frm = new frmCustomerCollection();
             LoadForm(frm);
         }
 
@@ -197,7 +198,8 @@ namespace POS
 
         private void btnSaleRep_Click(object sender, EventArgs e)
         {
-
+            frmSaleSummary frm = new frmSaleSummary();
+            LoadForm(frm);
         }
 
         private void btnInvRep_Click_1(object sender, EventArgs e)
@@ -209,6 +211,12 @@ namespace POS
         private void btnStockDetail_Click(object sender, EventArgs e)
         {
             frmStockDetail frm = new frmStockDetail();
+            LoadForm(frm);
+        }
+
+        private void btnCustomerCollection_Click(object sender, EventArgs e)
+        {
+            frmCustomerCollection frm = new frmCustomerCollection();
             LoadForm(frm);
         }
 

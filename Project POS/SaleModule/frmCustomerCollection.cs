@@ -13,12 +13,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Project_POS.SaleModule
 {
-    public partial class frmCustomerPayment : Form
+    public partial class frmCustomerCollection : Form
     {
         DataTable dtDetail = new DataTable();
         SqlConnection con; SqlTransaction tran;
         bool state = false;
-        public frmCustomerPayment()
+        public frmCustomerCollection()
         {
             InitializeComponent();
             txtPayment.Controls.RemoveAt(0);
@@ -27,12 +27,6 @@ namespace Project_POS.SaleModule
             ClearControls();
             IsEnable(false);
         }
-
-
-
-
-
-
 
         #region functions
 
@@ -113,8 +107,8 @@ namespace Project_POS.SaleModule
                     {
 
                         txtReceiptNo.Text = SqlQuery.GetNewTransNo();
-                        SqlQuery.Insert(con, tran, "Inventory_CustomersPayment", Global.ConnectionString, new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "ReceiptDate", dtpReceiptDate.Value }, {"SBillDate", dtpSBillDate.Value}, { "RecAmount", txtPayment.Value.ToString() }, { "PayMode", txtPayMode.Text }, { "SBillNo", txtSBillNo.Text }, { "Remarks", txtRemarks.Text }, { "CustCode", cboCust.SelectedValue.ToString() }, { "TransDate", DateTime.Now }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "UserId", "001" } });
-                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtReceiptNo.Text }, { "PTable", "Inventory_CustomersPayment" }, { "Status", "New" }, { "UserId", "001" }, { "PkeyDate", dtpReceiptDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
+                        SqlQuery.Insert(con, tran, "Inventory_CustomersCollection", Global.ConnectionString, new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "ReceiptDate", dtpReceiptDate.Value }, {"SBillDate", dtpSBillDate.Value}, { "RecAmount", txtPayment.Value.ToString() }, { "PayMode", txtPayMode.Text }, { "SBillNo", txtSBillNo.Text }, { "Remarks", txtRemarks.Text }, { "CustCode", cboCust.SelectedValue.ToString() }, { "TransDate", DateTime.Now }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "UserId", "001" } });
+                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtReceiptNo.Text }, { "PTable", "Inventory_CustomersCollection" }, { "Status", "New" }, { "UserId", "001" }, { "PkeyDate", dtpReceiptDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
 
                         tran.Commit();
                         con.Dispose();
@@ -145,8 +139,8 @@ namespace Project_POS.SaleModule
                     tran = con.BeginTransaction();
                     try
                     {
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_CustomersPayment", $"WHERE ReceiptNo = '{txtReceiptNo.Text}' ", new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "ReceiptDate", dtpReceiptDate.Value }, { "RecAmount", txtPayment.Value.ToString() }, { "PayMode", txtPayMode.Text }, { "SBillNo", txtSBillNo.Text }, {"SBillDate", dtpSBillDate.Value }, { "Remarks", txtRemarks.Text }, { "CustCode", cboCust.SelectedValue.ToString() }, { "TransDate", DateTime.Now }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "UserId", "001" } });
-                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtReceiptNo.Text }, { "PTable", "Inventory_CustomersPayment" }, { "Status", "Edit" }, { "UserId", "001" }, { "PkeyDate", dtpReceiptDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_CustomersCollection", $"WHERE ReceiptNo = '{txtReceiptNo.Text}' ", new Dictionary<string, object> { { "ReceiptNo", txtReceiptNo.Text }, { "ReceiptDate", dtpReceiptDate.Value }, { "RecAmount", txtPayment.Value.ToString() }, { "PayMode", txtPayMode.Text }, { "SBillNo", txtSBillNo.Text }, {"SBillDate", dtpSBillDate.Value }, { "Remarks", txtRemarks.Text }, { "CustCode", cboCust.SelectedValue.ToString() }, { "TransDate", DateTime.Now }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "UserId", "001" } });
+                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtReceiptNo.Text }, { "PTable", "Inventory_CustomersCollection" }, { "Status", "Edit" }, { "UserId", "001" }, { "PkeyDate", dtpReceiptDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
                         tran.Commit();
                         con.Dispose();
                         IsEnable(false);
@@ -174,8 +168,8 @@ namespace Project_POS.SaleModule
                     {
                         con.Open();
                         tran = con.BeginTransaction();
-                        SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_CustomersPayment", $" ReceiptNo = '{txtReceiptNo.Text}'");
-                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtReceiptNo.Text }, { "PTable", "Inventory_CustomersPayment" }, { "Status", "Delete" }, { "UserId", "001" }, { "PkeyDate", dtpReceiptDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
+                        SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_CustomersCollection", $" ReceiptNo = '{txtReceiptNo.Text}'");
+                        SqlQuery.Insert(con, tran, "TransactionLog", Global.ConnectionString, new Dictionary<string, object> { { "PkeyValue", txtReceiptNo.Text }, { "PTable", "Inventory_CustomersCollection" }, { "Status", "Delete" }, { "UserId", "001" }, { "PkeyDate", dtpReceiptDate.Value.Date }, { "Remarks", txtRemarks.Text }, { "TransTime", DateTime.Now.ToShortTimeString() }, { "TransDate", DateTime.Now } });
                         tran.Commit();
                         con.Dispose();
                         ClearControls();
@@ -216,7 +210,7 @@ namespace Project_POS.SaleModule
         {
             SqlConnection con = new SqlConnection(Global.ConnectionString);
             frmLOV frm = new frmLOV();
-            frm.SetData(con, Global.ConnectionString, "SELECT * FROM Inventory_CustomersPayment WITH(NOLOCK)", "ReceiptNo");
+            frm.SetData(con, Global.ConnectionString, "SELECT * FROM Inventory_CustomersCollection WITH(NOLOCK)", "ReceiptNo");
             frm.FormClosing += (o, a) =>
             {
                 con.Open();
@@ -226,7 +220,7 @@ namespace Project_POS.SaleModule
                 {
                     return;
                 }
-                DataTable dtMaster = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT * FROM Inventory_CustomersPayment WITH(NOLOCK) WHERE ReceiptNo = '{code}'");
+                DataTable dtMaster = SqlQuery.Read(con, tran, Global.ConnectionString, $"SELECT * FROM Inventory_CustomersCollection WITH(NOLOCK) WHERE ReceiptNo = '{code}'");
                 if (dtMaster.Rows.Count > 0)
                 {
                     DataRow row = dtMaster.Rows[0];
@@ -426,7 +420,7 @@ namespace Project_POS.SaleModule
                               WHERE BillNo = '{BillNo}';
                               
                               SELECT @RecAmount = ISNULL(SUM(CONVERT(decimal(18,2), RecAmount)), 0) 
-                              FROM Inventory_CustomersPayment ICP WITH(NOLOCK) 
+                              FROM Inventory_CustomersCollection ICP WITH(NOLOCK) 
                               WHERE SBillNo = '{BillNo}';
                               
                               SET @Pending = @TotalRecAbleAmount - @RecAmount;

@@ -39,17 +39,17 @@
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.btnHelp = new System.Windows.Forms.ToolStripButton();
             this.grpMain = new System.Windows.Forms.GroupBox();
-            this.txtSuppCode = new System.Windows.Forms.TextBox();
-            this.txtPhoneNo = new System.Windows.Forms.TextBox();
-            this.txtSuppName = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.RichTextBox();
-            this.txtNIC = new System.Windows.Forms.TextBox();
-            this.chkActive = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkActive = new System.Windows.Forms.CheckBox();
+            this.txtNIC = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.RichTextBox();
+            this.txtSuppName = new System.Windows.Forms.TextBox();
+            this.txtPhoneNo = new System.Windows.Forms.TextBox();
+            this.txtSuppCode = new System.Windows.Forms.TextBox();
             this.tsItem.SuspendLayout();
             this.grpMain.SuspendLayout();
             this.SuspendLayout();
@@ -196,42 +196,55 @@
             this.grpMain.TabIndex = 23;
             this.grpMain.TabStop = false;
             // 
-            // txtSuppCode
+            // label5
             // 
-            this.txtSuppCode.Location = new System.Drawing.Point(106, 19);
-            this.txtSuppCode.Multiline = true;
-            this.txtSuppCode.Name = "txtSuppCode";
-            this.txtSuppCode.Size = new System.Drawing.Size(165, 20);
-            this.txtSuppCode.TabIndex = 0;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(346, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "NIC :";
             // 
-            // txtPhoneNo
+            // label4
             // 
-            this.txtPhoneNo.Location = new System.Drawing.Point(106, 45);
-            this.txtPhoneNo.Name = "txtPhoneNo";
-            this.txtPhoneNo.Size = new System.Drawing.Size(165, 20);
-            this.txtPhoneNo.TabIndex = 1;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(25, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Address :";
             // 
-            // txtSuppName
+            // label3
             // 
-            this.txtSuppName.Location = new System.Drawing.Point(106, 71);
-            this.txtSuppName.Name = "txtSuppName";
-            this.txtSuppName.Size = new System.Drawing.Size(450, 20);
-            this.txtSuppName.TabIndex = 2;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(25, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "SuppName :";
             // 
-            // txtAddress
+            // label2
             // 
-            this.txtAddress.Location = new System.Drawing.Point(106, 97);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(450, 71);
-            this.txtAddress.TabIndex = 3;
-            this.txtAddress.Text = "";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(25, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "PhoneNo :";
             // 
-            // txtNIC
+            // label1
             // 
-            this.txtNIC.Location = new System.Drawing.Point(384, 45);
-            this.txtNIC.Name = "txtNIC";
-            this.txtNIC.Size = new System.Drawing.Size(172, 20);
-            this.txtNIC.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(25, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "SuppCode :";
             // 
             // chkActive
             // 
@@ -244,55 +257,44 @@
             this.chkActive.Text = "Active";
             this.chkActive.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // txtNIC
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "SuppCode :";
+            this.txtNIC.Location = new System.Drawing.Point(384, 45);
+            this.txtNIC.Name = "txtNIC";
+            this.txtNIC.Size = new System.Drawing.Size(172, 20);
+            this.txtNIC.TabIndex = 4;
             // 
-            // label2
+            // txtAddress
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "PhoneNo :";
+            this.txtAddress.Location = new System.Drawing.Point(106, 97);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(450, 71);
+            this.txtAddress.TabIndex = 3;
+            this.txtAddress.Text = "";
             // 
-            // label3
+            // txtSuppName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(25, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "SuppName :";
+            this.txtSuppName.Location = new System.Drawing.Point(106, 71);
+            this.txtSuppName.Name = "txtSuppName";
+            this.txtSuppName.Size = new System.Drawing.Size(450, 20);
+            this.txtSuppName.TabIndex = 2;
             // 
-            // label4
+            // txtPhoneNo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(25, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Address :";
+            this.txtPhoneNo.Location = new System.Drawing.Point(106, 45);
+            this.txtPhoneNo.Name = "txtPhoneNo";
+            this.txtPhoneNo.Size = new System.Drawing.Size(165, 20);
+            this.txtPhoneNo.TabIndex = 1;
             // 
-            // label5
+            // txtSuppCode
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(346, 48);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "NIC :";
+            this.txtSuppCode.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtSuppCode.Location = new System.Drawing.Point(106, 19);
+            this.txtSuppCode.Multiline = true;
+            this.txtSuppCode.Name = "txtSuppCode";
+            this.txtSuppCode.ReadOnly = true;
+            this.txtSuppCode.Size = new System.Drawing.Size(165, 20);
+            this.txtSuppCode.TabIndex = 0;
             // 
             // frmSupplier
             // 

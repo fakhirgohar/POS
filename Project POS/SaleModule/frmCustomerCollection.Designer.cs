@@ -1,6 +1,6 @@
 ﻿namespace Project_POS.SaleModule
 {
-    partial class frmCustomerPayment
+    partial class frmCustomerCollection
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerPayment));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerCollection));
             this.tsItem = new System.Windows.Forms.ToolStrip();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnEdit = new System.Windows.Forms.ToolStripButton();
@@ -451,7 +451,7 @@
             this.dgvDetail.Size = new System.Drawing.Size(663, 298);
             this.dgvDetail.TabIndex = 0;
             // 
-            // frmCustomerPayment
+            // frmCustomerCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -459,8 +459,8 @@
             this.Controls.Add(this.grpDetail);
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
-            this.Name = "frmCustomerPayment";
-            this.Text = "frmCustomerPayment";
+            this.Name = "frmCustomerCollection";
+            this.Text = "frmCustomerCollection";
             this.tsItem.ResumeLayout(false);
             this.tsItem.PerformLayout();
             this.grpMain.ResumeLayout(false);

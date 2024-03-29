@@ -173,11 +173,29 @@
     <Compile Include="PurchaseModule\frmInventoryStoreType.Designer.cs">
       <DependentUpon>frmInventoryStoreType.cs</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseModule\frmPurchaseReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseModule\frmPurchaseReport.Designer.cs">
+      <DependentUpon>frmPurchaseReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseModule\frmPurchaseSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseModule\frmPurchaseSummary.Designer.cs">
+      <DependentUpon>frmPurchaseSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseModule\frmSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PurchaseModule\frmSupplier.Designer.cs">
       <DependentUpon>frmSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseModule\frmSupplierCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseModule\frmSupplierCollection.Designer.cs">
+      <DependentUpon>frmSupplierCollection.cs</DependentUpon>
     </Compile>
     <Compile Include="PurchaseModule\frmSupplierPayment.cs">
       <SubType>Form</SubType>
@@ -191,11 +209,11 @@
     <Compile Include="SaleModule\frmAddSerial.Designer.cs">
       <DependentUpon>frmAddSerial.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaleModule\frmCustomerPayment.cs">
+    <Compile Include="SaleModule\frmCustomerCollection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SaleModule\frmCustomerPayment.Designer.cs">
-      <DependentUpon>frmCustomerPayment.cs</DependentUpon>
+    <Compile Include="SaleModule\frmCustomerCollection.Designer.cs">
+      <DependentUpon>frmCustomerCollection.cs</DependentUpon>
     </Compile>
     <Compile Include="SaleModule\frmInventoryCustomer.cs">
       <SubType>Form</SubType>
@@ -214,6 +232,18 @@
     </Compile>
     <Compile Include="SaleModule\frmInventorySaleReturn.Designer.cs">
       <DependentUpon>frmInventorySaleReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaleModule\frmSaleReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaleModule\frmSaleReport.Designer.cs">
+      <DependentUpon>frmSaleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaleModule\frmSaleSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaleModule\frmSaleSummary.Designer.cs">
+      <DependentUpon>frmSaleSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmDashBoard.resx">
@@ -275,8 +305,17 @@
     <EmbeddedResource Include="PurchaseModule\frmInventoryStoreType.resx">
       <DependentUpon>frmInventoryStoreType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseModule\frmPurchaseReport.resx">
+      <DependentUpon>frmPurchaseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseModule\frmPurchaseSummary.resx">
+      <DependentUpon>frmPurchaseSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PurchaseModule\frmSupplier.resx">
       <DependentUpon>frmSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseModule\frmSupplierCollection.resx">
+      <DependentUpon>frmSupplierCollection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PurchaseModule\frmSupplierPayment.resx">
       <DependentUpon>frmSupplierPayment.cs</DependentUpon>
@@ -284,8 +323,8 @@
     <EmbeddedResource Include="SaleModule\frmAddSerial.resx">
       <DependentUpon>frmAddSerial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SaleModule\frmCustomerPayment.resx">
-      <DependentUpon>frmCustomerPayment.cs</DependentUpon>
+    <EmbeddedResource Include="SaleModule\frmCustomerCollection.resx">
+      <DependentUpon>frmCustomerCollection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaleModule\frmInventoryCustomer.resx">
       <DependentUpon>frmInventoryCustomer.cs</DependentUpon>
@@ -295,6 +334,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaleModule\frmInventorySaleReturn.resx">
       <DependentUpon>frmInventorySaleReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleModule\frmSaleReport.resx">
+      <DependentUpon>frmSaleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleModule\frmSaleSummary.resx">
+      <DependentUpon>frmSaleSummary.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSet\ProjectDataSet.xsc">
       <DependentUpon>ProjectDataSet.xsd</DependentUpon>

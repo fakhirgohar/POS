@@ -26,12 +26,15 @@ namespace Project_POS.InventoryModule
             InitializeComponent();
             DtDetial.Clear();
             DtDetial = Dt1.Copy();
-            if ( Dt2 != null)
+            if ( Dt2 != null )
             {
-                DtFilterdRows.Clear();
-                DtFilterdRows = Dt2.DefaultView.ToTable(false, "TransNo");
-                SingleSelect = SingleSelection;
+                if(Dt2.Rows.Count > 0)
+                {
+                    DtFilterdRows.Clear();
+                    DtFilterdRows = Dt2.DefaultView.ToTable(false, "TransNo");
+                }
             }
+            SingleSelect = SingleSelection;
             LoadData();
         }
 

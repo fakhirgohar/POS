@@ -97,6 +97,9 @@ namespace Project_POS.SaleModule
                     txtCustCode.Text = dt1.Rows[0]["CustCode"].ToString();
                     txtCustName.Text = dt1.Rows[0]["CustName"].ToString();
                     grpDetail.Enabled = true;
+
+                    txtPayMode.Text = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT PayMode FROM Inventory_Sale WITH(NOLOCK) WHERE BillNo = '{code}'");
+
                     ClearDetailControls();
                 };
                 frm.ShowDialog();
@@ -285,7 +288,7 @@ namespace Project_POS.SaleModule
                     {
                         int Sno = 1;
                         txtRBillNo.Text = SqlQuery.GetNewTransNo();
-                        SqlQuery.Insert(con, tran, "Inventory_SaleReturn", Global.ConnectionString, new Dictionary<string, object> { { "RBillNo", txtRBillNo.Text }, { "RBillDate", dtpRBillDate.Value.ToShortDateString() }, { "RReceiptNo", txtReceiptNo.Text }, { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "CustCode", txtCustCode.Text }, { "CustType", "Cash" }, { "Remarks", txtRemarks.Text }, { "TotalQty", txtTotalQty.Text }, { "TotalAmount", txtSummary.Text }, { "BillTransDate", DateTime.Now.ToShortDateString() }, { "BillTransTime", DateTime.Now.ToLongTimeString() } });
+                        SqlQuery.Insert(con, tran, "Inventory_SaleReturn", Global.ConnectionString, new Dictionary<string, object> { { "RBillNo", txtRBillNo.Text }, { "RBillDate", dtpRBillDate.Value.ToShortDateString() }, { "RReceiptNo", txtReceiptNo.Text }, { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "CustCode", txtCustCode.Text }, { "PayMode", txtPayMode.Text }, { "Remarks", txtRemarks.Text }, { "TotalQty", txtTotalQty.Text }, { "TotalAmount", txtSummary.Text }, { "BillTransDate", DateTime.Now.ToShortDateString() }, { "BillTransTime", DateTime.Now.ToLongTimeString() } });
 
                         foreach (DataRow Row in DtDetail.Rows)
                         {
@@ -356,7 +359,7 @@ namespace Project_POS.SaleModule
                 {
                     if (InsertUpdateValidate(DtDetail))
                     {
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_SaleReturn", $"WHERE RBillNo = '{txtRBillNo.Text}' ", new Dictionary<string, object> { { "RBillNo", txtRBillNo.Text }, { "RBillDate", dtpRBillDate.Value.ToShortDateString() }, { "RReceiptNo", txtReceiptNo.Text }, { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "CustCode", txtCustCode.Text }, { "CustType", "Cash" }, { "Remarks", txtRemarks.Text }, { "TotalQty", txtTotalQty.Text }, { "TotalAmount", txtSummary.Text }, { "BillTransDate", DateTime.Now.ToShortDateString() }, { "BillTransTime", DateTime.Now.ToLongTimeString() } });
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_SaleReturn", $"WHERE RBillNo = '{txtRBillNo.Text}' ", new Dictionary<string, object> { { "RBillNo", txtRBillNo.Text }, { "RBillDate", dtpRBillDate.Value.ToShortDateString() }, { "RReceiptNo", txtReceiptNo.Text }, { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "CustCode", txtCustCode.Text }, { "PayMode", txtPayMode.Text }, { "Remarks", txtRemarks.Text }, { "TotalQty", txtTotalQty.Text }, { "TotalAmount", txtSummary.Text }, { "BillTransDate", DateTime.Now.ToShortDateString() }, { "BillTransTime", DateTime.Now.ToLongTimeString() } });
                         SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_SaleReturnDetail", $"RBillNo='{txtRBillNo.Text}'");
                         DeleteItemsDetail(DtDetail, con, tran);
 

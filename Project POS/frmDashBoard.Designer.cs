@@ -36,7 +36,7 @@ namespace POS
             this.Sale_Panel = new System.Windows.Forms.Panel();
             this.btnSaleRep = new System.Windows.Forms.Button();
             this.btnSaleReturn = new System.Windows.Forms.Button();
-            this.btnCustomerPayment = new System.Windows.Forms.Button();
+            this.btnCustomerCollection = new System.Windows.Forms.Button();
             this.btn_SaleItem = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnSale = new System.Windows.Forms.Button();
@@ -90,7 +90,7 @@ namespace POS
             this.Sale_Panel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.Sale_Panel.Controls.Add(this.btnSaleRep);
             this.Sale_Panel.Controls.Add(this.btnSaleReturn);
-            this.Sale_Panel.Controls.Add(this.btnCustomerPayment);
+            this.Sale_Panel.Controls.Add(this.btnCustomerCollection);
             this.Sale_Panel.Controls.Add(this.btn_SaleItem);
             this.Sale_Panel.Controls.Add(this.btnCustomer);
             this.Sale_Panel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -135,23 +135,23 @@ namespace POS
             this.btnSaleReturn.UseVisualStyleBackColor = false;
             this.btnSaleReturn.Click += new System.EventHandler(this.btnSaleReturn_Click);
             // 
-            // btnCustomerPayment
+            // btnCustomerCollection
             // 
-            this.btnCustomerPayment.BackColor = System.Drawing.Color.Transparent;
-            this.btnCustomerPayment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCustomerPayment.FlatAppearance.BorderSize = 0;
-            this.btnCustomerPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomerPayment.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnCustomerPayment.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCustomerPayment.Location = new System.Drawing.Point(0, 54);
-            this.btnCustomerPayment.Name = "btnCustomerPayment";
-            this.btnCustomerPayment.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
-            this.btnCustomerPayment.Size = new System.Drawing.Size(173, 27);
-            this.btnCustomerPayment.TabIndex = 2;
-            this.btnCustomerPayment.Text = "Customer Payment";
-            this.btnCustomerPayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomerPayment.UseVisualStyleBackColor = false;
-            this.btnCustomerPayment.Click += new System.EventHandler(this.btnCustomerPayment_Click);
+            this.btnCustomerCollection.BackColor = System.Drawing.Color.Transparent;
+            this.btnCustomerCollection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomerCollection.FlatAppearance.BorderSize = 0;
+            this.btnCustomerCollection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomerCollection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnCustomerCollection.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCustomerCollection.Location = new System.Drawing.Point(0, 54);
+            this.btnCustomerCollection.Name = "btnCustomerCollection";
+            this.btnCustomerCollection.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
+            this.btnCustomerCollection.Size = new System.Drawing.Size(173, 27);
+            this.btnCustomerCollection.TabIndex = 2;
+            this.btnCustomerCollection.Text = "Customer Collection";
+            this.btnCustomerCollection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomerCollection.UseVisualStyleBackColor = false;
+            this.btnCustomerCollection.Click += new System.EventHandler(this.btnCustomerCollection_Click);
             // 
             // btn_SaleItem
             // 
@@ -596,7 +596,7 @@ namespace POS
         private PictureBox pictureBox1;
         private Panel Sale_Panel;
         private Button btnSaleReturn;
-        private Button btnCustomerPayment;
+        private Button btnCustomerCollection;
         private Button btn_SaleItem;
         private Button btnCustomer;
         private Button btnSale;

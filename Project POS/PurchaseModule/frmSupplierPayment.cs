@@ -270,11 +270,8 @@ namespace Project_POS.PurchaseModule
                     DataRow row = dtMaster.Rows[0];
                     txtReceiptNo.Text = row["ReceiptNo"].ToString();
                     dtpReceiptDate.Value = Convert.ToDateTime(row["ReceiptDate"].ToString());
-                    cboSupp.Text = row["SuppCode"].ToString();
-                    cboSupp.SelectedValue = row["SuppCode"].ToString();
-                    cboPBillNo.Text = row["PBillNo"].ToString();
-                    txtPBillNo.Text = row["PBillNo"].ToString();
-                    cboPBillNo.SelectedValue = row["PBillNo"].ToString();
+                    cboSupp.SelectedValue = row["SuppCode"];
+                    cboPBillNo.SelectedValue = row["PBillNo"];
                     txtRemarks.Text = row["Remarks"].ToString();
                     LoadData(cboPBillNo.SelectedValue.ToString());
                 }
@@ -398,10 +395,14 @@ namespace Project_POS.PurchaseModule
 
         private bool InsertUpdateValidate()
         {
+            if(dtDetail.Rows.Count == 0)
+            {
+                MessageBox.Show(this, "Invalid Purchase Data No\nNo Record to Save!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return false;
+            }
+
             if (string.IsNullOrEmpty(txtPBillNo.Text))
             {
                 MessageBox.Show(this, "Invalid Purchase Bill No\nBill No Could Not be Empty!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return false;
-
             }
 
             if (dtpBillDate.Value.Date > dtpReceiptDate.Value.Date)

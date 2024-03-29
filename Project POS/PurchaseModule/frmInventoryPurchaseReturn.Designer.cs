@@ -49,7 +49,6 @@
             this.dtpBillDate = new System.Windows.Forms.DateTimePicker();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.txtSuppName = new System.Windows.Forms.TextBox();
-            this.cboSuppliers = new System.Windows.Forms.ComboBox();
             this.txtReceiptNo = new System.Windows.Forms.TextBox();
             this.txtBillNo = new System.Windows.Forms.TextBox();
             this.grpDetail = new System.Windows.Forms.GroupBox();
@@ -71,6 +70,8 @@
             this.txtQty = new System.Windows.Forms.NumericUpDown();
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.cboItemCode = new System.Windows.Forms.ComboBox();
+            this.txtPayMode = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tsItem.SuspendLayout();
             this.grpMain.SuspendLayout();
             this.grpDetail.SuspendLayout();
@@ -96,7 +97,7 @@
             this.btnHelp});
             this.tsItem.Location = new System.Drawing.Point(0, 0);
             this.tsItem.Name = "tsItem";
-            this.tsItem.Size = new System.Drawing.Size(980, 75);
+            this.tsItem.Size = new System.Drawing.Size(981, 75);
             this.tsItem.TabIndex = 21;
             this.tsItem.Text = "toolStrip1";
             // 
@@ -205,6 +206,8 @@
             // 
             // grpMain
             // 
+            this.grpMain.Controls.Add(this.txtPayMode);
+            this.grpMain.Controls.Add(this.label8);
             this.grpMain.Controls.Add(this.label6);
             this.grpMain.Controls.Add(this.label5);
             this.grpMain.Controls.Add(this.label4);
@@ -215,7 +218,6 @@
             this.grpMain.Controls.Add(this.dtpBillDate);
             this.grpMain.Controls.Add(this.txtRemarks);
             this.grpMain.Controls.Add(this.txtSuppName);
-            this.grpMain.Controls.Add(this.cboSuppliers);
             this.grpMain.Controls.Add(this.txtReceiptNo);
             this.grpMain.Controls.Add(this.txtBillNo);
             this.grpMain.Location = new System.Drawing.Point(12, 89);
@@ -228,7 +230,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(478, 48);
+            this.label6.Location = new System.Drawing.Point(478, 76);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 12;
@@ -238,7 +240,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(478, 19);
+            this.label5.Location = new System.Drawing.Point(478, 47);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 11;
@@ -288,7 +290,7 @@
             // 
             this.dtpReceiptDate.CustomFormat = "dd MMM yyyy";
             this.dtpReceiptDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpReceiptDate.Location = new System.Drawing.Point(561, 45);
+            this.dtpReceiptDate.Location = new System.Drawing.Point(561, 73);
             this.dtpReceiptDate.Name = "dtpReceiptDate";
             this.dtpReceiptDate.Size = new System.Drawing.Size(200, 20);
             this.dtpReceiptDate.TabIndex = 6;
@@ -297,7 +299,7 @@
             // 
             this.dtpBillDate.CustomFormat = "dd MMM yyyy";
             this.dtpBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBillDate.Location = new System.Drawing.Point(561, 16);
+            this.dtpBillDate.Location = new System.Drawing.Point(561, 44);
             this.dtpBillDate.Name = "dtpBillDate";
             this.dtpBillDate.Size = new System.Drawing.Size(200, 20);
             this.dtpBillDate.TabIndex = 5;
@@ -312,19 +314,11 @@
             // 
             // txtSuppName
             // 
-            this.txtSuppName.Location = new System.Drawing.Point(338, 72);
+            this.txtSuppName.Location = new System.Drawing.Point(106, 72);
             this.txtSuppName.Name = "txtSuppName";
-            this.txtSuppName.Size = new System.Drawing.Size(423, 20);
+            this.txtSuppName.Size = new System.Drawing.Size(226, 20);
             this.txtSuppName.TabIndex = 3;
-            // 
-            // cboSuppliers
-            // 
-            this.cboSuppliers.FormattingEnabled = true;
-            this.cboSuppliers.Location = new System.Drawing.Point(106, 71);
-            this.cboSuppliers.Name = "cboSuppliers";
-            this.cboSuppliers.Size = new System.Drawing.Size(226, 21);
-            this.cboSuppliers.TabIndex = 2;
-            this.cboSuppliers.SelectedValueChanged += new System.EventHandler(this.cboSuppliers_SelectedValueChanged);
+            this.txtSuppName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuppName_KeyDown);
             // 
             // txtReceiptNo
             // 
@@ -531,11 +525,31 @@
             this.cboItemCode.TabIndex = 0;
             this.cboItemCode.SelectedValueChanged += new System.EventHandler(this.cboItemCode_SelectedValueChanged);
             // 
+            // txtPayMode
+            // 
+            this.txtPayMode.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtPayMode.Location = new System.Drawing.Point(561, 19);
+            this.txtPayMode.Multiline = true;
+            this.txtPayMode.Name = "txtPayMode";
+            this.txtPayMode.Size = new System.Drawing.Size(200, 20);
+            this.txtPayMode.TabIndex = 19;
+            this.txtPayMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPayMode_KeyDown);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(478, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "PayMode :";
+            // 
             // frmInventoryPurchaseReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 617);
+            this.ClientSize = new System.Drawing.Size(981, 617);
             this.Controls.Add(this.grpDetail);
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
@@ -572,7 +586,6 @@
         private System.Windows.Forms.DateTimePicker dtpBillDate;
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.TextBox txtSuppName;
-        private System.Windows.Forms.ComboBox cboSuppliers;
         private System.Windows.Forms.TextBox txtReceiptNo;
         private System.Windows.Forms.TextBox txtBillNo;
         private System.Windows.Forms.Label label6;
@@ -601,5 +614,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown txtSummary;
         private System.Windows.Forms.DataGridViewImageColumn btnDel;
+        private System.Windows.Forms.TextBox txtPayMode;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -30,19 +30,19 @@
         {
             this.dgvDetail = new System.Windows.Forms.DataGridView();
             this.dgvFilterdRows = new System.Windows.Forms.DataGridView();
+            this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.FTransNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearchDetial = new System.Windows.Forms.TextBox();
             this.btnSearchDetial = new System.Windows.Forms.Button();
             this.btnSearchFilterdRows = new System.Windows.Forms.Button();
             this.txtSearchFilterdRows = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnApplyFilter = new System.Windows.Forms.Button();
+            this.btnRemoveAll = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnAddAll = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TransNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRemoveAll = new System.Windows.Forms.Button();
-            this.btnApplyFilter = new System.Windows.Forms.Button();
-            this.btnAddAll = new System.Windows.Forms.Button();
-            this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.FTransNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilterdRows)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -84,6 +84,22 @@
             this.dgvFilterdRows.Size = new System.Drawing.Size(385, 374);
             this.dgvFilterdRows.TabIndex = 1;
             this.dgvFilterdRows.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilterdRows_CellClick);
+            // 
+            // Remove
+            // 
+            this.Remove.HeaderText = "Remove";
+            this.Remove.Name = "Remove";
+            this.Remove.Text = "Remove";
+            this.Remove.ToolTipText = "Remove";
+            this.Remove.UseColumnTextForButtonValue = true;
+            this.Remove.Width = 60;
+            // 
+            // FTransNo
+            // 
+            this.FTransNo.DataPropertyName = "TransNo";
+            this.FTransNo.HeaderText = "TransNo";
+            this.FTransNo.Name = "FTransNo";
+            this.FTransNo.Width = 320;
             // 
             // txtSearchDetial
             // 
@@ -130,6 +146,26 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
+            // btnApplyFilter
+            // 
+            this.btnApplyFilter.Location = new System.Drawing.Point(87, 445);
+            this.btnApplyFilter.Name = "btnApplyFilter";
+            this.btnApplyFilter.Size = new System.Drawing.Size(75, 37);
+            this.btnApplyFilter.TabIndex = 7;
+            this.btnApplyFilter.Text = "Apply Filter";
+            this.btnApplyFilter.UseVisualStyleBackColor = true;
+            this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
+            // 
+            // btnRemoveAll
+            // 
+            this.btnRemoveAll.Location = new System.Drawing.Point(6, 445);
+            this.btnRemoveAll.Name = "btnRemoveAll";
+            this.btnRemoveAll.Size = new System.Drawing.Size(75, 37);
+            this.btnRemoveAll.TabIndex = 6;
+            this.btnRemoveAll.Text = "Remove All";
+            this.btnRemoveAll.UseVisualStyleBackColor = true;
+            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnAddAll);
@@ -141,6 +177,16 @@
             this.groupBox2.Size = new System.Drawing.Size(397, 486);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
+            // 
+            // btnAddAll
+            // 
+            this.btnAddAll.Location = new System.Drawing.Point(6, 445);
+            this.btnAddAll.Name = "btnAddAll";
+            this.btnAddAll.Size = new System.Drawing.Size(75, 37);
+            this.btnAddAll.TabIndex = 8;
+            this.btnAddAll.Text = "Add All";
+            this.btnAddAll.UseVisualStyleBackColor = true;
+            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
             // 
             // Add
             // 
@@ -156,53 +202,7 @@
             this.TransNo.DataPropertyName = "TransNo";
             this.TransNo.HeaderText = "TransNo";
             this.TransNo.Name = "TransNo";
-            this.TransNo.Width = 330;
-            // 
-            // btnRemoveAll
-            // 
-            this.btnRemoveAll.Location = new System.Drawing.Point(6, 445);
-            this.btnRemoveAll.Name = "btnRemoveAll";
-            this.btnRemoveAll.Size = new System.Drawing.Size(75, 37);
-            this.btnRemoveAll.TabIndex = 6;
-            this.btnRemoveAll.Text = "Remove All";
-            this.btnRemoveAll.UseVisualStyleBackColor = true;
-            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
-            // 
-            // btnApplyFilter
-            // 
-            this.btnApplyFilter.Location = new System.Drawing.Point(87, 445);
-            this.btnApplyFilter.Name = "btnApplyFilter";
-            this.btnApplyFilter.Size = new System.Drawing.Size(75, 37);
-            this.btnApplyFilter.TabIndex = 7;
-            this.btnApplyFilter.Text = "Apply Filter";
-            this.btnApplyFilter.UseVisualStyleBackColor = true;
-            this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
-            // 
-            // btnAddAll
-            // 
-            this.btnAddAll.Location = new System.Drawing.Point(6, 445);
-            this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(75, 37);
-            this.btnAddAll.TabIndex = 8;
-            this.btnAddAll.Text = "Add All";
-            this.btnAddAll.UseVisualStyleBackColor = true;
-            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
-            // 
-            // Remove
-            // 
-            this.Remove.HeaderText = "Remove";
-            this.Remove.Name = "Remove";
-            this.Remove.Text = "Remove";
-            this.Remove.ToolTipText = "Remove";
-            this.Remove.UseColumnTextForButtonValue = true;
-            this.Remove.Width = 60;
-            // 
-            // FTransNo
-            // 
-            this.FTransNo.DataPropertyName = "TransNo";
-            this.FTransNo.HeaderText = "TransNo";
-            this.FTransNo.Name = "FTransNo";
-            this.FTransNo.Width = 320;
+            this.TransNo.Width = 200;
             // 
             // frmFilter
             // 
@@ -233,12 +233,12 @@
         private System.Windows.Forms.TextBox txtSearchFilterdRows;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridViewButtonColumn Add;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TransNo;
         private System.Windows.Forms.Button btnApplyFilter;
         private System.Windows.Forms.Button btnRemoveAll;
         private System.Windows.Forms.Button btnAddAll;
         private System.Windows.Forms.DataGridViewButtonColumn Remove;
         private System.Windows.Forms.DataGridViewTextBoxColumn FTransNo;
+        private System.Windows.Forms.DataGridViewButtonColumn Add;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TransNo;
     }
 }

@@ -69,13 +69,15 @@
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.cboItemCode = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtPayMode = new System.Windows.Forms.TextBox();
             this.tsItem.SuspendLayout();
             this.grpMain.SuspendLayout();
             this.grpDetail.SuspendLayout();
@@ -208,6 +210,8 @@
             // 
             // grpMain
             // 
+            this.grpMain.Controls.Add(this.label17);
+            this.grpMain.Controls.Add(this.txtPayMode);
             this.grpMain.Controls.Add(this.label7);
             this.grpMain.Controls.Add(this.label6);
             this.grpMain.Controls.Add(this.txtCustName);
@@ -503,6 +507,36 @@
             this.panel1.Size = new System.Drawing.Size(884, 25);
             this.panel1.TabIndex = 10;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(781, 6);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 13);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Store ID :";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(675, 6);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(62, 13);
+            this.label15.TabIndex = 22;
+            this.label15.Text = "Sale Price :";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(569, 6);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 13);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Purchase Price :";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -543,35 +577,22 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "ItemCode :";
             // 
-            // label14
+            // label17
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(569, 6);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 13);
-            this.label14.TabIndex = 21;
-            this.label14.Text = "Purchase Price :";
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(414, 73);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(63, 13);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "PayMode :";
             // 
-            // label15
+            // txtPayMode
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(675, 6);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(62, 13);
-            this.label15.TabIndex = 22;
-            this.label15.Text = "Sale Price :";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(781, 6);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 13);
-            this.label16.TabIndex = 23;
-            this.label16.Text = "Store ID :";
+            this.txtPayMode.Location = new System.Drawing.Point(482, 70);
+            this.txtPayMode.Name = "txtPayMode";
+            this.txtPayMode.Size = new System.Drawing.Size(200, 20);
+            this.txtPayMode.TabIndex = 15;
             // 
             // frmInventorySaleReturn
             // 
@@ -646,5 +667,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtPayMode;
     }
 }

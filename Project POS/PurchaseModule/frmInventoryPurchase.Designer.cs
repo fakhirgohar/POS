@@ -48,12 +48,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSuppName = new System.Windows.Forms.TextBox();
-            this.cboSuppliers = new System.Windows.Forms.ComboBox();
             this.dtpReceiveDate = new System.Windows.Forms.DateTimePicker();
             this.dtpBillDate = new System.Windows.Forms.DateTimePicker();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.txtPurchaser = new System.Windows.Forms.TextBox();
-            this.cboPayMode = new System.Windows.Forms.ComboBox();
             this.txtReceiptNo = new System.Windows.Forms.TextBox();
             this.txtBillNo = new System.Windows.Forms.TextBox();
             this.grpDetail = new System.Windows.Forms.GroupBox();
@@ -65,7 +63,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -74,9 +71,9 @@
             this.txtPPrice = new System.Windows.Forms.NumericUpDown();
             this.txtQty = new System.Windows.Forms.NumericUpDown();
             this.txtStoreName = new System.Windows.Forms.TextBox();
-            this.cboStore = new System.Windows.Forms.ComboBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.cboItems = new System.Windows.Forms.ComboBox();
+            this.txtPayMode = new System.Windows.Forms.TextBox();
             this.tsItem.SuspendLayout();
             this.grpMain.SuspendLayout();
             this.grpDetail.SuspendLayout();
@@ -213,6 +210,7 @@
             // 
             // grpMain
             // 
+            this.grpMain.Controls.Add(this.txtPayMode);
             this.grpMain.Controls.Add(this.label8);
             this.grpMain.Controls.Add(this.label7);
             this.grpMain.Controls.Add(this.label6);
@@ -222,12 +220,10 @@
             this.grpMain.Controls.Add(this.label2);
             this.grpMain.Controls.Add(this.label1);
             this.grpMain.Controls.Add(this.txtSuppName);
-            this.grpMain.Controls.Add(this.cboSuppliers);
             this.grpMain.Controls.Add(this.dtpReceiveDate);
             this.grpMain.Controls.Add(this.dtpBillDate);
             this.grpMain.Controls.Add(this.txtRemarks);
             this.grpMain.Controls.Add(this.txtPurchaser);
-            this.grpMain.Controls.Add(this.cboPayMode);
             this.grpMain.Controls.Add(this.txtReceiptNo);
             this.grpMain.Controls.Add(this.txtBillNo);
             this.grpMain.Location = new System.Drawing.Point(12, 105);
@@ -240,7 +236,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(422, 72);
+            this.label8.Location = new System.Drawing.Point(389, 72);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 16;
@@ -250,7 +246,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(422, 45);
+            this.label7.Location = new System.Drawing.Point(389, 45);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 15;
@@ -260,7 +256,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(422, 20);
+            this.label6.Location = new System.Drawing.Point(389, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 14;
@@ -318,41 +314,37 @@
             // 
             // txtSuppName
             // 
-            this.txtSuppName.Location = new System.Drawing.Point(591, 69);
+            this.txtSuppName.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtSuppName.Location = new System.Drawing.Point(479, 69);
             this.txtSuppName.Multiline = true;
             this.txtSuppName.Name = "txtSuppName";
-            this.txtSuppName.Size = new System.Drawing.Size(173, 20);
+            this.txtSuppName.Size = new System.Drawing.Size(252, 20);
             this.txtSuppName.TabIndex = 8;
-            // 
-            // cboSuppliers
-            // 
-            this.cboSuppliers.FormattingEnabled = true;
-            this.cboSuppliers.Location = new System.Drawing.Point(512, 68);
-            this.cboSuppliers.Name = "cboSuppliers";
-            this.cboSuppliers.Size = new System.Drawing.Size(73, 21);
-            this.cboSuppliers.TabIndex = 7;
-            this.cboSuppliers.SelectedIndexChanged += new System.EventHandler(this.cboSuppliers_SelectedIndexChanged);
+            this.txtSuppName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuppName_KeyDown);
             // 
             // dtpReceiveDate
             // 
+            this.dtpReceiveDate.CalendarMonthBackground = System.Drawing.SystemColors.ButtonHighlight;
             this.dtpReceiveDate.CustomFormat = "dd MMM yyyy";
             this.dtpReceiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpReceiveDate.Location = new System.Drawing.Point(512, 43);
+            this.dtpReceiveDate.Location = new System.Drawing.Point(479, 43);
             this.dtpReceiveDate.Name = "dtpReceiveDate";
             this.dtpReceiveDate.Size = new System.Drawing.Size(252, 20);
             this.dtpReceiveDate.TabIndex = 6;
             // 
             // dtpBillDate
             // 
+            this.dtpBillDate.CalendarMonthBackground = System.Drawing.SystemColors.ButtonHighlight;
             this.dtpBillDate.CustomFormat = "dd MMM yyyy";
             this.dtpBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBillDate.Location = new System.Drawing.Point(512, 17);
+            this.dtpBillDate.Location = new System.Drawing.Point(479, 17);
             this.dtpBillDate.Name = "dtpBillDate";
             this.dtpBillDate.Size = new System.Drawing.Size(252, 20);
             this.dtpBillDate.TabIndex = 5;
             // 
             // txtRemarks
             // 
+            this.txtRemarks.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtRemarks.Location = new System.Drawing.Point(105, 121);
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
@@ -361,25 +353,16 @@
             // 
             // txtPurchaser
             // 
+            this.txtPurchaser.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtPurchaser.Location = new System.Drawing.Point(105, 95);
             this.txtPurchaser.Multiline = true;
             this.txtPurchaser.Name = "txtPurchaser";
             this.txtPurchaser.Size = new System.Drawing.Size(239, 20);
             this.txtPurchaser.TabIndex = 3;
             // 
-            // cboPayMode
-            // 
-            this.cboPayMode.FormattingEnabled = true;
-            this.cboPayMode.Items.AddRange(new object[] {
-            "Cash",
-            "Credit"});
-            this.cboPayMode.Location = new System.Drawing.Point(105, 68);
-            this.cboPayMode.Name = "cboPayMode";
-            this.cboPayMode.Size = new System.Drawing.Size(239, 21);
-            this.cboPayMode.TabIndex = 2;
-            // 
             // txtReceiptNo
             // 
+            this.txtReceiptNo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtReceiptNo.Location = new System.Drawing.Point(105, 42);
             this.txtReceiptNo.Multiline = true;
             this.txtReceiptNo.Name = "txtReceiptNo";
@@ -388,6 +371,7 @@
             // 
             // txtBillNo
             // 
+            this.txtBillNo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtBillNo.Location = new System.Drawing.Point(105, 17);
             this.txtBillNo.Multiline = true;
             this.txtBillNo.Name = "txtBillNo";
@@ -405,7 +389,6 @@
             this.grpDetail.Controls.Add(this.txtPPrice);
             this.grpDetail.Controls.Add(this.txtQty);
             this.grpDetail.Controls.Add(this.txtStoreName);
-            this.grpDetail.Controls.Add(this.cboStore);
             this.grpDetail.Controls.Add(this.txtItemName);
             this.grpDetail.Controls.Add(this.cboItems);
             this.grpDetail.Location = new System.Drawing.Point(12, 275);
@@ -467,7 +450,6 @@
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
@@ -506,21 +488,11 @@
             this.label13.TabIndex = 21;
             this.label13.Text = "Quantity :";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(276, 6);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 13);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "StoreName :";
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(185, 6);
+            this.label11.Location = new System.Drawing.Point(240, 6);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(51, 13);
             this.label11.TabIndex = 19;
@@ -558,6 +530,7 @@
             // 
             // txtQtyTotal
             // 
+            this.txtQtyTotal.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtQtyTotal.Location = new System.Drawing.Point(644, 41);
             this.txtQtyTotal.Maximum = new decimal(new int[] {
             1661992960,
@@ -570,6 +543,7 @@
             // 
             // txtPPrice
             // 
+            this.txtPPrice.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtPPrice.Location = new System.Drawing.Point(518, 41);
             this.txtPPrice.Maximum = new decimal(new int[] {
             1215752192,
@@ -580,9 +554,11 @@
             this.txtPPrice.Size = new System.Drawing.Size(120, 20);
             this.txtPPrice.TabIndex = 5;
             this.txtPPrice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPPrice_KeyDown);
+            this.txtPPrice.Leave += new System.EventHandler(this.txtPPrice_Leave);
             // 
             // txtQty
             // 
+            this.txtQty.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtQty.Location = new System.Drawing.Point(392, 40);
             this.txtQty.Maximum = new decimal(new int[] {
             10000000,
@@ -602,29 +578,24 @@
             // 
             // txtStoreName
             // 
-            this.txtStoreName.Location = new System.Drawing.Point(285, 41);
+            this.txtStoreName.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtStoreName.Location = new System.Drawing.Point(249, 40);
             this.txtStoreName.Name = "txtStoreName";
-            this.txtStoreName.Size = new System.Drawing.Size(100, 20);
+            this.txtStoreName.Size = new System.Drawing.Size(140, 20);
             this.txtStoreName.TabIndex = 3;
-            // 
-            // cboStore
-            // 
-            this.cboStore.FormattingEnabled = true;
-            this.cboStore.Location = new System.Drawing.Point(194, 40);
-            this.cboStore.Name = "cboStore";
-            this.cboStore.Size = new System.Drawing.Size(85, 21);
-            this.cboStore.TabIndex = 2;
-            this.cboStore.SelectedIndexChanged += new System.EventHandler(this.cboStore_SelectedIndexChanged);
+            this.txtStoreName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStoreName_KeyDown);
             // 
             // txtItemName
             // 
+            this.txtItemName.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtItemName.Location = new System.Drawing.Point(88, 40);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(100, 20);
+            this.txtItemName.Size = new System.Drawing.Size(160, 20);
             this.txtItemName.TabIndex = 1;
             // 
             // cboItems
             // 
+            this.cboItems.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cboItems.FormattingEnabled = true;
             this.cboItems.Location = new System.Drawing.Point(6, 39);
             this.cboItems.Name = "cboItems";
@@ -632,6 +603,16 @@
             this.cboItems.TabIndex = 0;
             this.cboItems.SelectedValueChanged += new System.EventHandler(this.cboItems_SelectedValueChanged);
             this.cboItems.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboItems_KeyPress);
+            // 
+            // txtPayMode
+            // 
+            this.txtPayMode.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtPayMode.Location = new System.Drawing.Point(105, 69);
+            this.txtPayMode.Multiline = true;
+            this.txtPayMode.Name = "txtPayMode";
+            this.txtPayMode.Size = new System.Drawing.Size(239, 20);
+            this.txtPayMode.TabIndex = 17;
+            this.txtPayMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPayMode_KeyDown);
             // 
             // frmInventoryPurchase
             // 
@@ -674,12 +655,10 @@
         private System.Windows.Forms.ToolStripButton btnHelp;
         private System.Windows.Forms.GroupBox grpMain;
         private System.Windows.Forms.TextBox txtSuppName;
-        private System.Windows.Forms.ComboBox cboSuppliers;
         private System.Windows.Forms.DateTimePicker dtpReceiveDate;
         private System.Windows.Forms.DateTimePicker dtpBillDate;
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.TextBox txtPurchaser;
-        private System.Windows.Forms.ComboBox cboPayMode;
         private System.Windows.Forms.TextBox txtReceiptNo;
         private System.Windows.Forms.TextBox txtBillNo;
         private System.Windows.Forms.GroupBox grpDetail;
@@ -689,7 +668,6 @@
         private System.Windows.Forms.NumericUpDown txtPPrice;
         private System.Windows.Forms.NumericUpDown txtQty;
         private System.Windows.Forms.TextBox txtStoreName;
-        private System.Windows.Forms.ComboBox cboStore;
         private System.Windows.Forms.TextBox txtItemName;
         private System.Windows.Forms.ComboBox cboItems;
         private System.Windows.Forms.Label label8;
@@ -704,12 +682,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown txtSummary;
         private System.Windows.Forms.DataGridViewImageColumn btnDel;
+        private System.Windows.Forms.TextBox txtPayMode;
     }
 }
