@@ -16,6 +16,7 @@ namespace Project_POS.SaleModule
     public partial class frmSaleSummary : Form
     {
         SqlConnection con; SqlTransaction tran;
+        DataTable dtDetail = new DataTable();
         string FinalWhereCluase, Items, Serial, Bill, Pay, Customer = string.Empty;
         DataTable dtItemCode, dtSerialNo, dtBillNo, dtPayMode, dtCustomer = null;
         public frmSaleSummary()
@@ -210,16 +211,37 @@ namespace Project_POS.SaleModule
 
             if (cboOption.SelectedIndex == 0)
             {
+                dtDetail.Clear();
                 string Query = $"SELECT * FROM FN_SALE_SUMMARY() {WhereClause} ";
-                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
-                dgvDetail.DataSource = dt;
+                dtDetail = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
+                AddNumberToGrid();
+                dgvDetail.DataSource = dtDetail;
+                dgvDetail.Columns["#"].Width = 40;
             }
             else
             {
+                dtDetail.Clear();
                 string Query = $"SELECT * FROM FN_SALE_RETURN_SUMMARY() {WhereClause} ";
-                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
-                dgvDetail.DataSource = dt;
+                dtDetail = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
+                AddNumberToGrid();
+                dgvDetail.DataSource = dtDetail;
+                dgvDetail.Columns["#"].Width = 40;
             }
+        }
+
+        private void AddNumberToGrid()
+        {
+            DataColumn rownoColumn = new DataColumn("#", typeof(int));
+            if (!dtDetail.Columns.Contains("#"))
+            {
+                dtDetail.Columns.Add(rownoColumn);
+            }
+            dtDetail.Columns["#"].SetOrdinal(0);
+            for (int i = 0; i < dtDetail.Rows.Count; i++)
+            {
+                dtDetail.Rows[i]["#"] = i + 1;
+            }
+            
         }
     }
 }

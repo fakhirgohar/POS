@@ -11,12 +11,14 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Project_POS.PurchaseModule
 {
     public partial class frmPurchaseSummary : Form
     {
         SqlConnection con; SqlTransaction tran;
+        DataTable dtDetail = new DataTable();
         string FinalWhereCluase, Items, Serial, Bill, Pay, Supp = string.Empty;
         DataTable dtItemCode, dtSerialNo, dtBillNo, dtPayMode, dtSupplier = null;
         public frmPurchaseSummary()
@@ -216,15 +218,34 @@ namespace Project_POS.PurchaseModule
             if (cboOption.SelectedIndex == 0)
             {
                 string Query = $"SELECT * FROM FN_PURCHASE_SUMMARY() {WhereClause} ";
-                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
-                dgvDetail.DataSource = dt;
+                dtDetail = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
+                AddNumberToGrid();
+                dgvDetail.DataSource = dtDetail;
+                dgvDetail.Columns["#"].Width = 40;
             }
             else
             {
                 string Query = $"SELECT * FROM FN_PURCHASE_RETURN_SUMMARY() {WhereClause} ";
-                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
-                dgvDetail.DataSource = dt;
+                dtDetail = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
+                AddNumberToGrid();
+                dgvDetail.DataSource = dtDetail;
+                dgvDetail.Columns["#"].Width = 40;
             }
+        }
+
+        private void AddNumberToGrid()
+        {
+            DataColumn rownoColumn = new DataColumn("#", typeof(int));
+            if (!dtDetail.Columns.Contains("#"))
+            {
+                dtDetail.Columns.Add(rownoColumn);
+            }
+            dtDetail.Columns["#"].SetOrdinal(0);
+            for (int i = 0; i < dtDetail.Rows.Count; i++)
+            {
+                dtDetail.Rows[i]["#"] = i + 1;
+            }
+
         }
     }
 }

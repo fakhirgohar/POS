@@ -66,11 +66,11 @@
             // 
             this.dgvDetail.AllowUserToAddRows = false;
             this.dgvDetail.AllowUserToDeleteRows = false;
-            this.dgvDetail.AllowUserToOrderColumns = true;
             this.dgvDetail.AllowUserToResizeColumns = false;
             this.dgvDetail.AllowUserToResizeRows = false;
             this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetail.Location = new System.Drawing.Point(6, 10);
+            this.dgvDetail.MultiSelect = false;
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.RowHeadersVisible = false;
             this.dgvDetail.Size = new System.Drawing.Size(1004, 507);
