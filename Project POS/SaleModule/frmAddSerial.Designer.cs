@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dgvAddSerial = new System.Windows.Forms.DataGridView();
-            this.grpMain = new System.Windows.Forms.GroupBox();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblItemCode = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSPrice = new System.Windows.Forms.NumericUpDown();
-            this.btnSelect = new System.Windows.Forms.Button();
             this.dgvCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.grpMain = new System.Windows.Forms.GroupBox();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.txtSPrice = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblItemCode = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddSerial)).BeginInit();
             this.grpMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSPrice)).BeginInit();
@@ -59,6 +59,12 @@
             this.dgvAddSerial.Size = new System.Drawing.Size(717, 345);
             this.dgvAddSerial.TabIndex = 0;
             // 
+            // dgvCheck
+            // 
+            this.dgvCheck.HeaderText = " ";
+            this.dgvCheck.Name = "dgvCheck";
+            this.dgvCheck.Width = 40;
+            // 
             // grpMain
             // 
             this.grpMain.Controls.Add(this.btnSelect);
@@ -73,6 +79,52 @@
             this.grpMain.TabIndex = 1;
             this.grpMain.TabStop = false;
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(636, 28);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect.TabIndex = 5;
+            this.btnSelect.Text = "Select";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // txtSPrice
+            // 
+            this.txtSPrice.Location = new System.Drawing.Point(424, 31);
+            this.txtSPrice.Name = "txtSPrice";
+            this.txtSPrice.Size = new System.Drawing.Size(206, 20);
+            this.txtSPrice.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(356, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Sale Price :";
+            // 
+            // lblItemCode
+            // 
+            this.lblItemCode.AutoSize = true;
+            this.lblItemCode.Location = new System.Drawing.Point(228, 33);
+            this.lblItemCode.Name = "lblItemCode";
+            this.lblItemCode.Size = new System.Drawing.Size(62, 13);
+            this.lblItemCode.TabIndex = 2;
+            this.lblItemCode.Text = "lblItemCode";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(159, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "ItemCode :";
+            // 
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
@@ -85,58 +137,6 @@
             this.chkSelectAll.UseVisualStyleBackColor = true;
             this.chkSelectAll.CheckedChanged += new System.EventHandler(this.chkSelectAll_CheckedChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(159, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ItemCode :";
-            // 
-            // lblItemCode
-            // 
-            this.lblItemCode.AutoSize = true;
-            this.lblItemCode.Location = new System.Drawing.Point(228, 33);
-            this.lblItemCode.Name = "lblItemCode";
-            this.lblItemCode.Size = new System.Drawing.Size(62, 13);
-            this.lblItemCode.TabIndex = 2;
-            this.lblItemCode.Text = "lblItemCode";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(356, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Sale Price :";
-            // 
-            // txtSPrice
-            // 
-            this.txtSPrice.Location = new System.Drawing.Point(424, 31);
-            this.txtSPrice.Name = "txtSPrice";
-            this.txtSPrice.Size = new System.Drawing.Size(206, 20);
-            this.txtSPrice.TabIndex = 4;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Location = new System.Drawing.Point(636, 28);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnSelect.TabIndex = 5;
-            this.btnSelect.Text = "Select";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // dgvCheck
-            // 
-            this.dgvCheck.HeaderText = " ";
-            this.dgvCheck.Name = "dgvCheck";
-            this.dgvCheck.Width = 40;
-            // 
             // frmAddSerial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,7 +145,7 @@
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.dgvAddSerial);
             this.Name = "frmAddSerial";
-            this.Text = "frmAddSerial";
+            this.Text = "Add Serial (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddSerial)).EndInit();
             this.grpMain.ResumeLayout(false);
             this.grpMain.PerformLayout();

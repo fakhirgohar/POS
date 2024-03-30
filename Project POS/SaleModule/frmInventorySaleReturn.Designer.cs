@@ -39,6 +39,8 @@
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.btnHelp = new System.Windows.Forms.ToolStripButton();
             this.grpMain = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtPayMode = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCustName = new System.Windows.Forms.TextBox();
@@ -76,8 +78,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtPayMode = new System.Windows.Forms.TextBox();
             this.tsItem.SuspendLayout();
             this.grpMain.SuspendLayout();
             this.grpDetail.SuspendLayout();
@@ -233,11 +233,28 @@
             this.grpMain.TabIndex = 23;
             this.grpMain.TabStop = false;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(422, 73);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(63, 13);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "PayMode :";
+            // 
+            // txtPayMode
+            // 
+            this.txtPayMode.Location = new System.Drawing.Point(490, 70);
+            this.txtPayMode.Name = "txtPayMode";
+            this.txtPayMode.Size = new System.Drawing.Size(200, 20);
+            this.txtPayMode.TabIndex = 15;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(414, 46);
+            this.label7.Location = new System.Drawing.Point(422, 46);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 13);
             this.label7.TabIndex = 14;
@@ -247,7 +264,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(414, 20);
+            this.label6.Location = new System.Drawing.Point(422, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 13);
             this.label6.TabIndex = 13;
@@ -255,7 +272,7 @@
             // 
             // txtCustName
             // 
-            this.txtCustName.Location = new System.Drawing.Point(268, 95);
+            this.txtCustName.Location = new System.Drawing.Point(276, 95);
             this.txtCustName.Name = "txtCustName";
             this.txtCustName.Size = new System.Drawing.Size(414, 20);
             this.txtCustName.TabIndex = 12;
@@ -264,7 +281,7 @@
             // 
             this.dtpBillDate.CustomFormat = "dd MMM yyyy";
             this.dtpBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBillDate.Location = new System.Drawing.Point(482, 44);
+            this.dtpBillDate.Location = new System.Drawing.Point(490, 44);
             this.dtpBillDate.Name = "dtpBillDate";
             this.dtpBillDate.Size = new System.Drawing.Size(200, 20);
             this.dtpBillDate.TabIndex = 11;
@@ -273,7 +290,7 @@
             // 
             this.dtpRBillDate.CustomFormat = "dd MMM yyyy";
             this.dtpRBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpRBillDate.Location = new System.Drawing.Point(482, 18);
+            this.dtpRBillDate.Location = new System.Drawing.Point(490, 18);
             this.dtpRBillDate.Name = "dtpRBillDate";
             this.dtpRBillDate.Size = new System.Drawing.Size(200, 20);
             this.dtpRBillDate.TabIndex = 10;
@@ -330,28 +347,28 @@
             // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(81, 121);
+            this.txtRemarks.Location = new System.Drawing.Point(89, 121);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(601, 20);
             this.txtRemarks.TabIndex = 4;
             // 
             // txtCustCode
             // 
-            this.txtCustCode.Location = new System.Drawing.Point(81, 95);
+            this.txtCustCode.Location = new System.Drawing.Point(89, 95);
             this.txtCustCode.Name = "txtCustCode";
             this.txtCustCode.Size = new System.Drawing.Size(181, 20);
             this.txtCustCode.TabIndex = 3;
             // 
             // txtReceiptNo
             // 
-            this.txtReceiptNo.Location = new System.Drawing.Point(81, 69);
+            this.txtReceiptNo.Location = new System.Drawing.Point(89, 69);
             this.txtReceiptNo.Name = "txtReceiptNo";
             this.txtReceiptNo.Size = new System.Drawing.Size(181, 20);
             this.txtReceiptNo.TabIndex = 2;
             // 
             // txtBillNo
             // 
-            this.txtBillNo.Location = new System.Drawing.Point(81, 43);
+            this.txtBillNo.Location = new System.Drawing.Point(89, 43);
             this.txtBillNo.Name = "txtBillNo";
             this.txtBillNo.Size = new System.Drawing.Size(181, 20);
             this.txtBillNo.TabIndex = 1;
@@ -359,7 +376,7 @@
             // 
             // txtRBillNo
             // 
-            this.txtRBillNo.Location = new System.Drawing.Point(81, 17);
+            this.txtRBillNo.Location = new System.Drawing.Point(89, 17);
             this.txtRBillNo.Name = "txtRBillNo";
             this.txtRBillNo.Size = new System.Drawing.Size(181, 20);
             this.txtRBillNo.TabIndex = 0;
@@ -422,9 +439,15 @@
             // 
             // dgvDetail
             // 
+            this.dgvDetail.AllowUserToAddRows = false;
+            this.dgvDetail.AllowUserToDeleteRows = false;
+            this.dgvDetail.AllowUserToResizeColumns = false;
+            this.dgvDetail.AllowUserToResizeRows = false;
             this.dgvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetail.Location = new System.Drawing.Point(20, 77);
+            this.dgvDetail.MultiSelect = false;
             this.dgvDetail.Name = "dgvDetail";
+            this.dgvDetail.RowHeadersVisible = false;
             this.dgvDetail.Size = new System.Drawing.Size(966, 288);
             this.dgvDetail.TabIndex = 19;
             this.dgvDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellClick);
@@ -576,23 +599,6 @@
             this.label9.Size = new System.Drawing.Size(63, 13);
             this.label9.TabIndex = 17;
             this.label9.Text = "ItemCode :";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(414, 73);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 13);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "PayMode :";
-            // 
-            // txtPayMode
-            // 
-            this.txtPayMode.Location = new System.Drawing.Point(482, 70);
-            this.txtPayMode.Name = "txtPayMode";
-            this.txtPayMode.Size = new System.Drawing.Size(200, 20);
-            this.txtPayMode.TabIndex = 15;
             // 
             // frmInventorySaleReturn
             // 

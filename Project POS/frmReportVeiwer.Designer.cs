@@ -35,6 +35,7 @@
             // 
             this.CtrlRptVeiwer.Location = new System.Drawing.Point(12, 12);
             this.CtrlRptVeiwer.Name = "CtrlRptVeiwer";
+            this.CtrlRptVeiwer.ServerReport.BearerToken = null;
             this.CtrlRptVeiwer.Size = new System.Drawing.Size(776, 426);
             this.CtrlRptVeiwer.TabIndex = 0;
             // 
@@ -45,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.CtrlRptVeiwer);
             this.Name = "frmReportVeiwer";
-            this.Text = "Report Viewer";
+            this.Text = "Report Viewer (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

@@ -325,7 +325,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPurchaseReport";
-            this.Text = "frmPurchaseReport";
+            this.Text = "Purchase Report (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

@@ -1,4 +1,5 @@
 ﻿using Project_POS.Classes;
+using Project_POS.InventoryModule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,8 @@ namespace Project_POS.SaleModule
             AddGridCountColumn();
         }
         DataTable dtDetail = new DataTable();
+        DataTable dtCustomer, dtPayMode = null;
+        string Customer, PayMode = string.Empty;
         SqlConnection con; SqlTransaction tran;
         bool IsEdit = false;
         #region functions
@@ -37,15 +40,14 @@ namespace Project_POS.SaleModule
                     if (InsertUpdateValidate(dtDetail))
                     {
                         decimal TotalRecievAble = txtSummary.Value;
-                        if(cboPayMode.SelectedValue.ToString() == "Cash")
+                        if(PayMode == "Cash")
                         {
                             TotalRecievAble = 0;
 
                         }
                         txtBillNo.Text = SqlQuery.GetNewTransNo();
-                        string CustCode = string.IsNullOrEmpty(cboCustomer.Text) ? "1" : cboCustomer.Text;
                         string ReceiptNo = string.IsNullOrEmpty(txtReceiptNo.Text.Trim()) ? txtBillNo.Text : txtReceiptNo.Text;
-                        SqlQuery.Insert(con, tran, "Inventory_Sale", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", cboPayMode.SelectedValue.ToString() }, { "CustCode", CustCode }, { "Advance", "" }, { "TotalReceiveAble", TotalRecievAble }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Insert(con, tran, "Inventory_Sale", Global.ConnectionString, new Dictionary<string, object> { { "BillNo", txtBillNo.Text }, { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", PayMode }, { "CustCode", Customer }, { "Advance", "" }, { "TotalReceiveAble", TotalRecievAble }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
                         int Sno = 1;
                         foreach (DataRow Row in dtDetail.Rows)
                         {
@@ -53,7 +55,7 @@ namespace Project_POS.SaleModule
 
                             if (Qty <= 0)
                             {
-                                MessageBox.Show(this, "ItemCode does not exist in Stock!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                                MessageBox.Show(this, "ItemCode does not exist in Stock!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                                 return;
                             }
 
@@ -76,7 +78,7 @@ namespace Project_POS.SaleModule
                         con.Dispose();
                         MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
                         IsEnable(false);
-                        MessageBox.Show(this, "Saved Successfully!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        MessageBox.Show(this, "Saved Successfully!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     }
                 }
                 catch (Exception ex)
@@ -102,13 +104,13 @@ namespace Project_POS.SaleModule
                     if (InsertUpdateValidate(dtDetail))
                     {
                         decimal TotalRecievAble = txtSummary.Value;
-                        if (cboPayMode.SelectedValue.ToString() == "Cash")
+                        if (PayMode == "Cash")
                         {
                             TotalRecievAble = 0;
 
                         }
                         string ReceiptNo = string.IsNullOrEmpty(txtReceiptNo.Text.Trim()) ? txtBillNo.Text : txtReceiptNo.Text;
-                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Sale", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", cboPayMode.SelectedValue.ToString() }, { "CustCode", "" }, { "Advance", "" }, { "TotalReceiveAble", TotalRecievAble }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
+                        SqlQuery.Update(con, tran, Global.ConnectionString, "Inventory_Sale", $"WHERE BillNo = '{txtBillNo.Text}' ", new Dictionary<string, object> { { "BillDate", dtpBillDate.Value.ToShortDateString() }, { "ReceiptNo", ReceiptNo }, { "PayMode", PayMode }, { "CustCode", Customer }, { "Advance", "" }, { "TotalReceiveAble", TotalRecievAble }, { "Remarks", txtRemarks.Text }, { "TransDate", DateTime.Now.ToShortDateString() }, { "TransTime", DateTime.Now.TimeOfDay } });
 
                         SqlQuery.Delete(con, tran, Global.ConnectionString, "Inventory_SaleDetail", $"BillNo='{txtBillNo.Text}'");
                         InsertItemDetail(dtDetail, con, tran);
@@ -120,7 +122,7 @@ namespace Project_POS.SaleModule
 
                             if (Qty <= 0)
                             {
-                                MessageBox.Show(this, "ItemCode does not exist in Stock!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                                MessageBox.Show(this, "ItemCode does not exist in Stock!", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                                 return;
                             }
 
@@ -140,7 +142,7 @@ namespace Project_POS.SaleModule
                         tran.Commit();
                         con.Dispose();
                         MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Save);
-                        MessageBox.Show(this, "Update Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        MessageBox.Show(this, "Update Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                         IsEnable(false);
                     }
                 }
@@ -159,10 +161,10 @@ namespace Project_POS.SaleModule
         }
         private void Delete()
         {
-            if (string.IsNullOrEmpty(txtBillNo.Text.Trim())) { MessageBox.Show(this, "No Record to Delete !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return; }
+            if (string.IsNullOrEmpty(txtBillNo.Text.Trim())) { MessageBox.Show(this, "No Record to Delete !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return; }
             else if (SqlQuery.IsFound(con, tran, Global.ConnectionString, "Inventory_SaleReturn", $"BillNo = '{txtBillNo.Text}'"))
             {
-                MessageBox.Show(this, $"Cannot Delete \nSale Return Posted Against this BillNo = '{txtBillNo.Text}' !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return;
+                MessageBox.Show(this, $"Cannot Delete \nSale Return Posted Against this BillNo = '{txtBillNo.Text}' !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return;
             }
 
             DialogResult result = MessageBox.Show("Are you sure you want to Delete ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -187,7 +189,7 @@ namespace Project_POS.SaleModule
                         MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Cancel);
                         ClearControls();
                         ClearDetailTextBox();
-                        MessageBox.Show(this, "Deleted Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        MessageBox.Show(this, "Deleted Successfully !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                         IsEnable(false);
                     }
                     catch (Exception ex)
@@ -209,7 +211,7 @@ namespace Project_POS.SaleModule
         {
             if (string.IsNullOrEmpty(txtBillNo.Text.Trim()))
             {
-                MessageBox.Show(this, "No Record to Edit !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                MessageBox.Show(this, "No Record to Edit !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 return;
             }
             IsEdit = true;
@@ -251,9 +253,9 @@ namespace Project_POS.SaleModule
                     dtpBillDate.Value = Convert.ToDateTime(row["BillDate"]);
                     txtBillNo.Text = row["BillNo"].ToString();
                     txtReceiptNo.Text = row["ReceiptNo"].ToString();
-                    cboPayMode.Text = row["PayMode"].ToString();
+                    txtPayMode.Text = PayMode = row["PayMode"].ToString();
                     txtRemarks.Text = row["Remarks"].ToString();
-                    cboCustomer.SelectedValue = row["CustCode"].ToString();
+                    txtCustName.Text = Customer = row["CustCode"].ToString();
                 }
 
                 if (dtDetail.Rows.Count > 0)
@@ -285,9 +287,7 @@ namespace Project_POS.SaleModule
             txtRemarks.Text = string.Empty;
             txtReceiptNo.Text = string.Empty;
             txtItemName.Text = string.Empty;
-
-            cboCustomer.Text = string.Empty;
-            cboPayMode.Text = string.Empty;
+            txtPayMode.Text = string.Empty;
             cboItems.Text = string.Empty;
 
             dtpBillDate.Value = DateTime.Now;
@@ -305,11 +305,6 @@ namespace Project_POS.SaleModule
             cboItems.DisplayMember = "ItemCode";
             cboItems.ValueMember = "ItemCode";
             cboItems.DataSource = dtItems;
-
-            DataTable dtCustomer = SqlQuery.Read(con, tran, Global.ConnectionString, "SELECT CustCode FROM Inventory_Customer WITH(NOLOCK)");
-            cboCustomer.DisplayMember = "CustCode";
-            cboCustomer.ValueMember = "CustCode";
-            cboCustomer.DataSource = dtCustomer;
         }
 
         private void IsEnable(bool cond)
@@ -321,19 +316,19 @@ namespace Project_POS.SaleModule
 
         private bool InsertUpdateValidate(DataTable dt)
         {
-            //if (string.IsNullOrEmpty(txtReceiptNo.Text)) { MessageBox.Show(this, "Enter Receipt No !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false; }
-            if (string.IsNullOrEmpty(txtCustName.Text)) { MessageBox.Show(this, "Select Customer !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false; }
+            if (string.IsNullOrEmpty(PayMode)) { MessageBox.Show(this, "Select Payment Mode !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return false; }
+            if (string.IsNullOrEmpty(Customer)) { MessageBox.Show(this, "Select Customer !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return false; }
             foreach (DataRow Row in dt.Rows)
             {
                 string Query = $"SELECT IP.ReceiveDate, IP.BillDate FROM Inventory_Purchase IP WITH(NOLOCK) LEFT JOIN Inventory_PurchaseDetail IPD WITH(NOLOCK) ON IP.BillNo = IPD.BillNo WHERE IPD.SerialNo = '{Row["SerialNo"]}' AND ItemCode = '{Row["ItemCode"]}'";
                 DataTable DtTemp = SqlQuery.Read(con, tran, Global.ConnectionString, Query);
                 if (dtpBillDate.Value < Convert.ToDateTime(DtTemp.Rows[0]["ReceiveDate"].ToString()))
                 {
-                    MessageBox.Show(this, "Invalid Bill Date !\nBill Date should be Greater than Receive Date", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false;
+                    MessageBox.Show(this, "Invalid Bill Date !\nBill Date should be Greater than Receive Date", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return false;
                 }
                 if (dtpBillDate.Value < Convert.ToDateTime(DtTemp.Rows[0]["BillDate"].ToString()))
                 {
-                    MessageBox.Show(this, "Invalid Bill Date !\nBill Date should be Greater than Purchase Bill Date", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return false;
+                    MessageBox.Show(this, "Invalid Bill Date !\nBill Date should be Greater than Purchase Bill Date", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1); return false;
                 }
             }
             return true;
@@ -560,14 +555,6 @@ namespace Project_POS.SaleModule
             }
         }
 
-        private void cboCustomer_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cboCustomer.SelectedValue != null)
-            {
-                txtCustName.Text = SqlQuery.GetSingleValue(con, tran, Global.ConnectionString, $"SELECT CustName FROM Inventory_Customer WITH(NOLOCK) WHERE CustCode = '{cboCustomer.SelectedValue.ToString()}'");
-            }
-        }
-
         private void cboItems_SelectedValueChanged(object sender, EventArgs e)
         {
              if(cboItems.SelectedValue != null)
@@ -581,6 +568,69 @@ namespace Project_POS.SaleModule
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPayMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                string Query = string.Empty;
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, "SELECT 'Cash' AS TransNo UNION SELECT 'Credit' AS TransNo");
+                frmFilter frm = new frmFilter(dt, dtPayMode, true);
+                frm.FormClosed += (Obj, key) =>
+                {
+                    var filter = Obj as frmFilter;
+                    dtPayMode = filter.DtFilterdRows.Copy();
+                    if (dtPayMode.Rows.Count > 0)
+                    {
+                        StringBuilder StrbPayMode = new StringBuilder();
+                        foreach (DataRow row in dtPayMode.Rows)
+                        {
+                            string transNo = row["TransNo"].ToString();
+                            StrbPayMode.Append($"'{transNo}',");
+                        }
+                        txtPayMode.Text = StrbPayMode.ToString().TrimEnd(',');
+                        PayMode = txtPayMode.Text;
+                    }
+                    else
+                    {
+                        PayMode = txtPayMode.Text = string.Empty;
+                    }
+                };
+                frm.ShowDialog();
+            }
+        }
+
+        private void txtCustName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                string Query = string.Empty;
+
+                DataTable dt = SqlQuery.Read(con, tran, Global.ConnectionString, "SELECT CustCode AS TransNo, CustName as Name FROM Inventory_Customer WITH(NOLOCK)");
+                frmFilter frm = new frmFilter(dt, dtCustomer, false);
+                frm.FormClosed += (Obj, key) =>
+                {
+                    var filter = Obj as frmFilter;
+                    dtCustomer = filter.DtFilterdRows.Copy();
+                    if (dtCustomer.Rows.Count > 0)
+                    {
+                        StringBuilder StrbSupp = new StringBuilder();
+                        foreach (DataRow row in dtCustomer.Rows)
+                        {
+                            string transNo = row["TransNo"].ToString();
+                            StrbSupp.Append($"'{transNo}',");
+                        }
+                        txtCustName.Text = StrbSupp.ToString().TrimEnd(',');
+                        Customer = txtCustName.Text;
+                    }
+                    else
+                    {
+                        Customer = txtCustName.Text = string.Empty;
+                    }
+                };
+                frm.ShowDialog();
+            }
         }
     }
 }

@@ -451,7 +451,7 @@
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
             this.Name = "frmSupplierCollection";
-            this.Text = "frmSupplierCollection";
+            this.Text = "Supplier Collection (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.tsItem.ResumeLayout(false);
             this.tsItem.PerformLayout();
             this.grpMain.ResumeLayout(false);

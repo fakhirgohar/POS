@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Project_POS.SaleModule
 {
@@ -21,7 +22,7 @@ namespace Project_POS.SaleModule
             InitializeComponent();
             MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
             createDtDetialColumns();
-            AddGridCountColumn();
+            //AddGridCountColumn();
         }
 
         private void frmInventorySaleReturn_Load(object sender, EventArgs e)
@@ -161,7 +162,7 @@ namespace Project_POS.SaleModule
                     ResetDgvColumnSize();
                 }
                 UpdateTxtQty(frm.dtFinalResult);
-                UpdateRowCount();
+                //UpdateRowCount();
             }
         }
 
@@ -228,9 +229,10 @@ namespace Project_POS.SaleModule
             }
             else
             {
-                MessageBox.Show(this, "The ItemCode and SerialNo is Already Exist in Table !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return;
+                MessageBox.Show(this, "SerialNo is Already Exist Or Serial is Not Found !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); return;
             }
 
+            AddNumberToGrid();
             dgvDetail.DataSource = DtDetail;
             ResetDgvColumnSize();
             txtSerial.Text = string.Empty;
@@ -253,9 +255,9 @@ namespace Project_POS.SaleModule
                     DtDetail.Rows.RemoveAt(i);
                 }
             }
-            dgvDetail.DataSource = null;
+            AddNumberToGrid();            
             dgvDetail.DataSource = DtDetail;
-            UpdateRowCount();
+            //UpdateRowCount();
             ResetDgvColumnSize();
         }
         private void createDtDetialColumns()
@@ -530,12 +532,13 @@ namespace Project_POS.SaleModule
                 if (DtDetail.Rows.Count > 0)
                 {
                     DtDetail.AcceptChanges();
+                    AddNumberToGrid();
                     dgvDetail.DataSource = DtDetail;
                     ResetDgvColumnSize();
-                    UpdateRowCount();
+                    //UpdateRowCount();
                     UpdateSum();
                 }
-                UpdateRowCount();
+                //UpdateRowCount();
                 MyControls.UpdateButtonStates(btnNew, btnEdit, btnDelete, btnPrint, btnSearch, btnSave, btnCancel, MyControls.Event.Load);
                 IsEnable(false);
             };
@@ -629,6 +632,7 @@ namespace Project_POS.SaleModule
 
         private void ResetDgvColumnSize()
         {
+            dgvDetail.Columns["#"].Width = 40;
             dgvDetail.Columns["ItemCode"].Width = 130;
             dgvDetail.Columns["ItemName"].Width = 180;
             dgvDetail.Columns["SerialNo"].Width = 150;
@@ -716,25 +720,41 @@ namespace Project_POS.SaleModule
             txtSummary.Text = TotalAmount.ToString();
         }
 
-        private void AddGridCountColumn()
-        {
-            var countColumn = new DataGridViewTextBoxColumn();
-            countColumn.HeaderText = "#";
-            countColumn.ReadOnly = true;
-            countColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgvDetail.Columns.Insert(0, countColumn);
+        //private void AddGridCountColumn()
+        //{
+        //    var countColumn = new DataGridViewTextBoxColumn();
+        //    countColumn.HeaderText = "#";
+        //    countColumn.ReadOnly = true;
+        //    countColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+        //    dgvDetail.Columns.Insert(0, countColumn);
 
 
-        }
-        private void UpdateRowCount()
+        //}
+        //private void UpdateRowCount()
+        //{
+        //    if (dgvDetail.Rows.Count > 0)
+        //    {
+        //        for (int i = 0; i < dgvDetail.Rows.Count; i++)
+        //        {
+        //            dgvDetail.Rows[i].Cells[0].Value = (i + 1).ToString();
+        //        }
+        //    }
+        //}
+
+
+        private void AddNumberToGrid()
         {
-            if (dgvDetail.Rows.Count > 0)
+            DataColumn rownoColumn = new DataColumn("#", typeof(int));
+            if (!DtDetail.Columns.Contains("#"))
             {
-                for (int i = 0; i < dgvDetail.Rows.Count; i++)
-                {
-                    dgvDetail.Rows[i].Cells[0].Value = (i + 1).ToString();
-                }
+                DtDetail.Columns.Add(rownoColumn);
             }
+            DtDetail.Columns["#"].SetOrdinal(0);
+            for (int i = 0; i < DtDetail.Rows.Count; i++)
+            {
+                DtDetail.Rows[i]["#"] = i + 1;
+            }
+
         }
 
         #endregion

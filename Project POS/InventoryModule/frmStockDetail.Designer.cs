@@ -275,7 +275,7 @@
             this.Controls.Add(this.grpDetail);
             this.Controls.Add(this.grpFilter);
             this.Name = "frmStockDetail";
-            this.Text = "frmStockDetail";
+            this.Text = "Stock Detail (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.grpFilter.ResumeLayout(false);
             this.grpFilter.PerformLayout();
             this.grpDetail.ResumeLayout(false);

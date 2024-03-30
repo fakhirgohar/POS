@@ -227,7 +227,7 @@
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
             this.Name = "frmInventoryCompany";
-            this.Text = "frmInventoryCompany";
+            this.Text = "Inventory Company (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.Load += new System.EventHandler(this.frmInventoryCompany_Load);
             this.tsItem.ResumeLayout(false);
             this.tsItem.PerformLayout();

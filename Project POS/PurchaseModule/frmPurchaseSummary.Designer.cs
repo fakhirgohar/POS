@@ -279,7 +279,7 @@
             this.Controls.Add(this.grpDetail);
             this.Controls.Add(this.grpFilter);
             this.Name = "frmPurchaseSummary";
-            this.Text = "frmPurchaseSummary";
+            this.Text = "Purchase Summary (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.grpDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
             this.grpFilter.ResumeLayout(false);

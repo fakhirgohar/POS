@@ -49,6 +49,7 @@
             this.txtSupp = new System.Windows.Forms.TextBox();
             this.txtPBillNo = new System.Windows.Forms.TextBox();
             this.grpMain = new System.Windows.Forms.GroupBox();
+            this.txtPayment = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.dtpReceiptDate = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
@@ -57,17 +58,16 @@
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtpending = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotalPaid = new System.Windows.Forms.TextBox();
             this.grpDetail = new System.Windows.Forms.GroupBox();
             this.dgvDetail = new System.Windows.Forms.DataGridView();
-            this.txtPayment = new System.Windows.Forms.NumericUpDown();
-            this.txtpending = new System.Windows.Forms.TextBox();
             this.tsItem.SuspendLayout();
             this.grpMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPayment)).BeginInit();
             this.grpDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPayment)).BeginInit();
             this.SuspendLayout();
             // 
             // tsItem
@@ -315,6 +315,18 @@
             this.grpMain.TabIndex = 32;
             this.grpMain.TabStop = false;
             // 
+            // txtPayment
+            // 
+            this.txtPayment.Location = new System.Drawing.Point(84, 126);
+            this.txtPayment.Maximum = new decimal(new int[] {
+            -1486618624,
+            232830643,
+            0,
+            0});
+            this.txtPayment.Name = "txtPayment";
+            this.txtPayment.Size = new System.Drawing.Size(266, 20);
+            this.txtPayment.TabIndex = 44;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -390,6 +402,15 @@
             this.label6.TabIndex = 35;
             this.label6.Text = "Pending :";
             // 
+            // txtpending
+            // 
+            this.txtpending.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtpending.Location = new System.Drawing.Point(84, 99);
+            this.txtpending.Name = "txtpending";
+            this.txtpending.ReadOnly = true;
+            this.txtpending.Size = new System.Drawing.Size(266, 20);
+            this.txtpending.TabIndex = 34;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -431,27 +452,6 @@
             this.dgvDetail.Size = new System.Drawing.Size(663, 298);
             this.dgvDetail.TabIndex = 0;
             // 
-            // txtPayment
-            // 
-            this.txtPayment.Location = new System.Drawing.Point(84, 126);
-            this.txtPayment.Maximum = new decimal(new int[] {
-            -1486618624,
-            232830643,
-            0,
-            0});
-            this.txtPayment.Name = "txtPayment";
-            this.txtPayment.Size = new System.Drawing.Size(266, 20);
-            this.txtPayment.TabIndex = 44;
-            // 
-            // txtpending
-            // 
-            this.txtpending.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtpending.Location = new System.Drawing.Point(84, 99);
-            this.txtpending.Name = "txtpending";
-            this.txtpending.ReadOnly = true;
-            this.txtpending.Size = new System.Drawing.Size(266, 20);
-            this.txtpending.TabIndex = 34;
-            // 
             // frmSupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,14 +461,14 @@
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
             this.Name = "frmSupplierPayment";
-            this.Text = "frmSupplierPayment";
+            this.Text = "Supplier Payment (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.tsItem.ResumeLayout(false);
             this.tsItem.PerformLayout();
             this.grpMain.ResumeLayout(false);
             this.grpMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPayment)).EndInit();
             this.grpDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPayment)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.dgvDetail = new System.Windows.Forms.DataGridView();
+            this.Add = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TransNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvFilterdRows = new System.Windows.Forms.DataGridView();
             this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.FTransNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,8 +43,6 @@
             this.btnRemoveAll = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddAll = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.TransNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilterdRows)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -66,6 +66,22 @@
             this.dgvDetail.Size = new System.Drawing.Size(385, 374);
             this.dgvDetail.TabIndex = 0;
             this.dgvDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellClick);
+            // 
+            // Add
+            // 
+            this.Add.HeaderText = "Add";
+            this.Add.Name = "Add";
+            this.Add.Text = "Add";
+            this.Add.ToolTipText = "Add";
+            this.Add.UseColumnTextForButtonValue = true;
+            this.Add.Width = 50;
+            // 
+            // TransNo
+            // 
+            this.TransNo.DataPropertyName = "TransNo";
+            this.TransNo.HeaderText = "TransNo";
+            this.TransNo.Name = "TransNo";
+            this.TransNo.Width = 200;
             // 
             // dgvFilterdRows
             // 
@@ -116,6 +132,7 @@
             this.btnSearchDetial.TabIndex = 3;
             this.btnSearchDetial.Text = "Find";
             this.btnSearchDetial.UseVisualStyleBackColor = true;
+            this.btnSearchDetial.Click += new System.EventHandler(this.btnSearchDetial_Click);
             // 
             // btnSearchFilterdRows
             // 
@@ -125,6 +142,7 @@
             this.btnSearchFilterdRows.TabIndex = 5;
             this.btnSearchFilterdRows.Text = "Find";
             this.btnSearchFilterdRows.UseVisualStyleBackColor = true;
+            this.btnSearchFilterdRows.Click += new System.EventHandler(this.btnSearchFilterdRows_Click);
             // 
             // txtSearchFilterdRows
             // 
@@ -187,22 +205,6 @@
             this.btnAddAll.Text = "Add All";
             this.btnAddAll.UseVisualStyleBackColor = true;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
-            // 
-            // Add
-            // 
-            this.Add.HeaderText = "Add";
-            this.Add.Name = "Add";
-            this.Add.Text = "Add";
-            this.Add.ToolTipText = "Add";
-            this.Add.UseColumnTextForButtonValue = true;
-            this.Add.Width = 50;
-            // 
-            // TransNo
-            // 
-            this.TransNo.DataPropertyName = "TransNo";
-            this.TransNo.HeaderText = "TransNo";
-            this.TransNo.Name = "TransNo";
-            this.TransNo.Width = 200;
             // 
             // frmFilter
             // 

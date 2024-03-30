@@ -39,18 +39,16 @@
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.btnHelp = new System.Windows.Forms.ToolStripButton();
             this.grpMain = new System.Windows.Forms.GroupBox();
-            this.cboPayMode = new System.Windows.Forms.ComboBox();
+            this.txtPayMode = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCustName = new System.Windows.Forms.TextBox();
             this.dtpBillDate = new System.Windows.Forms.DateTimePicker();
             this.txtRemarks = new System.Windows.Forms.TextBox();
-            this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.txtReceiptNo = new System.Windows.Forms.TextBox();
             this.txtBillNo = new System.Windows.Forms.TextBox();
             this.grpDetail = new System.Windows.Forms.GroupBox();
@@ -202,18 +200,16 @@
             // 
             // grpMain
             // 
-            this.grpMain.Controls.Add(this.cboPayMode);
+            this.grpMain.Controls.Add(this.txtPayMode);
             this.grpMain.Controls.Add(this.label7);
             this.grpMain.Controls.Add(this.label6);
             this.grpMain.Controls.Add(this.label5);
             this.grpMain.Controls.Add(this.label4);
-            this.grpMain.Controls.Add(this.label3);
             this.grpMain.Controls.Add(this.label2);
             this.grpMain.Controls.Add(this.label1);
             this.grpMain.Controls.Add(this.txtCustName);
             this.grpMain.Controls.Add(this.dtpBillDate);
             this.grpMain.Controls.Add(this.txtRemarks);
-            this.grpMain.Controls.Add(this.cboCustomer);
             this.grpMain.Controls.Add(this.txtReceiptNo);
             this.grpMain.Controls.Add(this.txtBillNo);
             this.grpMain.Location = new System.Drawing.Point(12, 78);
@@ -222,22 +218,19 @@
             this.grpMain.TabIndex = 23;
             this.grpMain.TabStop = false;
             // 
-            // cboPayMode
+            // txtPayMode
             // 
-            this.cboPayMode.FormattingEnabled = true;
-            this.cboPayMode.Items.AddRange(new object[] {
-            "Cash",
-            "Credit"});
-            this.cboPayMode.Location = new System.Drawing.Point(487, 44);
-            this.cboPayMode.Name = "cboPayMode";
-            this.cboPayMode.Size = new System.Drawing.Size(200, 21);
-            this.cboPayMode.TabIndex = 14;
+            this.txtPayMode.Location = new System.Drawing.Point(487, 48);
+            this.txtPayMode.Name = "txtPayMode";
+            this.txtPayMode.Size = new System.Drawing.Size(200, 20);
+            this.txtPayMode.TabIndex = 14;
+            this.txtPayMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPayMode_KeyDown);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(376, 74);
+            this.label7.Location = new System.Drawing.Point(2, 73);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(97, 13);
             this.label7.TabIndex = 13;
@@ -267,27 +260,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 101);
+            this.label4.Location = new System.Drawing.Point(3, 101);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Remarks :";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(19, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Customer ID : ";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 48);
+            this.label2.Location = new System.Drawing.Point(3, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 8;
@@ -297,7 +280,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 19);
+            this.label1.Location = new System.Drawing.Point(3, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 7;
@@ -305,10 +288,11 @@
             // 
             // txtCustName
             // 
-            this.txtCustName.Location = new System.Drawing.Point(487, 72);
+            this.txtCustName.Location = new System.Drawing.Point(104, 70);
             this.txtCustName.Name = "txtCustName";
-            this.txtCustName.Size = new System.Drawing.Size(200, 20);
+            this.txtCustName.Size = new System.Drawing.Size(183, 20);
             this.txtCustName.TabIndex = 6;
+            this.txtCustName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustName_KeyDown);
             // 
             // dtpBillDate
             // 
@@ -325,15 +309,6 @@
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(583, 20);
             this.txtRemarks.TabIndex = 3;
-            // 
-            // cboCustomer
-            // 
-            this.cboCustomer.FormattingEnabled = true;
-            this.cboCustomer.Location = new System.Drawing.Point(104, 71);
-            this.cboCustomer.Name = "cboCustomer";
-            this.cboCustomer.Size = new System.Drawing.Size(183, 21);
-            this.cboCustomer.TabIndex = 2;
-            this.cboCustomer.SelectedValueChanged += new System.EventHandler(this.cboCustomer_SelectedValueChanged);
             // 
             // txtReceiptNo
             // 
@@ -525,7 +500,7 @@
             this.Controls.Add(this.grpMain);
             this.Controls.Add(this.tsItem);
             this.Name = "frmInventorySale";
-            this.Text = "frmInventorySale";
+            this.Text = "Inventory Sale (Rights Owner Fakhir-Gohar) fakhirgohar@gmail.com";
             this.Load += new System.EventHandler(this.frmInventorySale_Load);
             this.tsItem.ResumeLayout(false);
             this.tsItem.PerformLayout();
@@ -556,11 +531,9 @@
         private System.Windows.Forms.GroupBox grpMain;
         private System.Windows.Forms.DateTimePicker dtpBillDate;
         private System.Windows.Forms.TextBox txtRemarks;
-        private System.Windows.Forms.ComboBox cboCustomer;
         private System.Windows.Forms.TextBox txtReceiptNo;
         private System.Windows.Forms.TextBox txtBillNo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCustName;
@@ -582,6 +555,6 @@
         private System.Windows.Forms.ComboBox cboItems;
         private System.Windows.Forms.TextBox txtSerial;
         private System.Windows.Forms.DataGridViewImageColumn btnDel;
-        private System.Windows.Forms.ComboBox cboPayMode;
+        private System.Windows.Forms.TextBox txtPayMode;
     }
 }

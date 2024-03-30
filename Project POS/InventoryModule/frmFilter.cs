@@ -77,9 +77,17 @@ namespace Project_POS.InventoryModule
 
         private void btnAddAll_Click(object sender, EventArgs e)
         {
-            DtFilterdRows.Clear();
-            DtFilterdRows = DtDetial.Copy();
-            dgvFilterdRows.DataSource = DtFilterdRows;
+            if (!SingleSelect)
+            {
+                DtFilterdRows.Clear();
+                DtFilterdRows = DtDetial.Copy();
+                dgvFilterdRows.DataSource = DtFilterdRows;
+            }
+            else
+            {
+                MessageBox.Show(this, "Cannot Select Multiple TransNo !", "Message Box Title", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+
+            }
         }
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
@@ -101,6 +109,61 @@ namespace Project_POS.InventoryModule
         private void btnApplyFilter_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSearchDetial_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearchDetial.Text.ToString().Trim()))
+            {
+                dgvDetail.DataSource = DtDetial;
+            }
+            else
+            {
+                DataTable dtTemp = new DataTable();
+                DataRow[] selectedRows = DtDetial.Select($"TransNo LIKE '%{txtSearchDetial.Text}%'");
+                if (selectedRows.Length > 0)
+                {
+                    dtTemp = DtDetial.Clone();
+                    foreach (DataRow row in selectedRows)
+                    {
+                        dtTemp.ImportRow(row);
+                    }
+
+                    dgvDetail.DataSource = dtTemp;
+                }
+                else
+                {
+                    dgvDetail.DataSource = null;
+                }
+            }
+
+        }
+
+        private void btnSearchFilterdRows_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearchFilterdRows.Text.ToString().Trim()))
+            {
+                dgvFilterdRows.DataSource = DtFilterdRows;
+            }
+            else
+            {
+                DataTable dtTemp = new DataTable();
+                DataRow[] selectedRows = DtFilterdRows.Select($"TransNo LIKE '%{txtSearchFilterdRows.Text}%'");
+                if (selectedRows.Length > 0)
+                {
+                    dtTemp = DtFilterdRows.Clone();
+                    foreach (DataRow row in selectedRows)
+                    {
+                        dtTemp.ImportRow(row);
+                    }
+
+                    dgvFilterdRows.DataSource = dtTemp;
+                }
+                else
+                {
+                    dgvFilterdRows.DataSource = null;
+                }
+            }
         }
     }
 }
